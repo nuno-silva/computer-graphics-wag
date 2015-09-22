@@ -194,3 +194,9 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
+
+# object files
+*.o
+
+# binary files
+src/main
