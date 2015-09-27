@@ -1,8 +1,4 @@
-#ifdef __MACH__
-# include <GLUT/glut.h>
-#else
-# include <GL/glut.h>
-#endif
+#include "global.hpp"
 
 #define WINDOW_TITLE "Micro Machines"
 #define WINDOW_SIZE 600,600
