@@ -11,10 +11,10 @@ Entity::~Entity()
 
 Vector3 * Entity::getPosition()
 {
-	return nullptr;
+	return 0;
 }
 
 Vector3 * Entity::setPosition(GLdouble n, GLdouble y, GLdouble z)
 {
-	return nullptr;
+	return 0;
 }
