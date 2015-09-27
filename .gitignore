@@ -200,3 +200,5 @@ FakesAssemblies/
 
 # binary files
 src/main
+
+VisualStudio/MicroMachines/src/
