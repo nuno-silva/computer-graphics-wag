@@ -1,16 +1,19 @@
-CXX = g++
-CXXFLAGS = -O2 -g -Wall
-LDLIBS = -lGL -lGLU -lglut
+CC = g++
+CXXFLAGS = -Wall -Wextra -pedantic
 
 ifeq ($(OS),Windows_NT)
-    # windows
+		# windows
 else
-    UNAME_S := $(shell uname -s)
-    ifeq ($(UNAME_S),Linux)
-        CXXFLAGS += -Wno-deprecated-declarations    
-    endif
-    ifeq ($(UNAME_S),Darwin)
-    endif
+		UNAME_S := $(shell uname -s)
+		ifeq ($(UNAME_S),Linux)
+				LDLIBS = -lGL -lGLU -lglut
+				CXX = g++
+				CXXFLAGS += -Og
+		endif
+		ifeq ($(UNAME_S),Darwin)
+				CXXFLAGS += -Wno-deprecated-declarations -g
+				LDLIBS = -framework glut -framework opengl
+		endif
 endif
 
 
