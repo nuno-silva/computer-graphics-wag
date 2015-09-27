@@ -7,6 +7,7 @@
 #define WINDOW_TITLE "Micro Machines"
 #define WINDOW_SIZE 600,600
 
+
 /** called when the window size changes
  * */
 void reshape( int width, int height ) {
