@@ -8,6 +8,7 @@ class Camera {
 protected:
 	GLdouble _near;
 	GLdouble _far;
+	Camera();
 public:
 	Camera( GLdouble near, GLdouble far );
 	~Camera();

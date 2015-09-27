@@ -13,7 +13,7 @@ public:
 	~Vector3();
 	GLdouble getX();
 	GLdouble getY();
-	GLGLdouble getZ();
+	GLdouble getZ();
 	void set(GLdouble x, GLdouble y, GLdouble z);
 	Vector3 operator=(const Vector3& vec);
 	Vector3 operator*(GLdouble num);

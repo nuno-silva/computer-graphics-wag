@@ -41,11 +41,6 @@ Vector3 Vector3::operator*(GLdouble num)
 	return Vector3();
 }
 
-Vector3 Vector3::operator*(GLdouble num)
-{
-	return Vector3();
-}
-
 Vector3 Vector3::operator+(const Vector3 &)
 {
 	return Vector3();
