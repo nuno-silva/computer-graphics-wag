@@ -4,9 +4,9 @@ A Micro Machines implementation for the Computer Graphics course - Instituto Sup
 
 # Compiling and running on Linux
 ## Compiling
-Make sure you have gcc, openGL, GLU and GLUT installed. For instance, on Lubuntu,
+Make sure you have gcc, g++, openGL, GLU and GLUT installed. For instance, on Lubuntu,
 ```shell
-sudo apt-get install freeglut3-dev
+sudo apt-get install g++ freeglut3-dev
 ```
 should install all required dependencies.
 
