@@ -19,3 +19,8 @@ Vector3 * Entity::setPosition(GLdouble n, GLdouble y, GLdouble z)
 {
     return 0;
 }
+
+Vector3 * Entity::setPosition(const Vector3 & p)
+{
+	return 0;
+}

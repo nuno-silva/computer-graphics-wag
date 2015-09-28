@@ -15,7 +15,7 @@ void reshape( int width, int height ) {
 /** called when the screen needs updating
  * */
 void display() {
-    game.display();
+    game.display(); // this calls flush
 }
 
 int main( int argc, char *argv[] ) {
