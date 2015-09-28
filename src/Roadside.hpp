@@ -1,11 +1,9 @@
 #pragma once
 #include "StaticObject.hpp"
 
-class Roadside : StaticObject
+class Roadside : public StaticObject
 {
 public:
-	Roadside();
-	~Roadside();
 	void draw();
 
 private:

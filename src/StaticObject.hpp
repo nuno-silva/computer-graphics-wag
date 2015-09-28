@@ -1,13 +1,11 @@
 #pragma once
 
 #include "global.hpp"
+#include "GameObject.hpp"
 
-class StaticObject
+class StaticObject : public GameObject
 {
 public:
-	StaticObject();
-	~StaticObject();
-
-private:
-
+    void draw();
+    void update( GLdouble delta_t );
 };

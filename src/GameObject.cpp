@@ -1,17 +1,9 @@
 #include "GameObject.hpp"
 
-GameObject::GameObject() {
+ void GameObject::draw( ) {
 
-}
+ }
 
-GameObject::~GameObject() {
+ void GameObject::update( __attribute__((unused)) GLdouble delta_t ) {
 
-}
-
-void GameObject::draw() {
-
-}
-
-void GameObject::update( GLdouble delta_t ) {
-
-}
+ }

@@ -4,6 +4,7 @@
 #include "global.hpp"
 
 class Entity {
+	Vector3 _position;
 public:
 	Entity();
 	~Entity();
