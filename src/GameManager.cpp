@@ -20,7 +20,7 @@ void GameManager::display() {
     glClear( GL_COLOR_BUFFER_BIT );
 
     /* draw a green rectangle */
-    glColor3f( 0.0f, 1.0f, 0.0f );
+    /*glColor3f( 0.0f, 1.0f, 0.0f );
     glBegin( GL_POLYGON );
     {
         glVertex3f( -1.0f, -1.0f, 0.0f );
@@ -28,18 +28,40 @@ void GameManager::display() {
         glVertex3f( 0.0f, 1.0f, 0.0f );
         glVertex3f( -1.0f, 1.0f, 0.0f );
     }
+    glEnd();*/
+
+    glBegin( GL_LINES);
+
+    glColor3f( 1.0f, 0.0f, 0.0f );
+    glVertex3f( 0.0f, 0.0f, 0.0f );
+    glVertex3f( 1.0f, 0.0f, 0.0f );
+
+    glColor3f( 0.0f, 1.0f, 0.0f );
+    glVertex3f( 0.0f, 0.0f, 0.0f );
+    glVertex3f( 0.0f, 1.0f, 0.0f );
+
+    glColor3f( 0.0f, 0.0f, 1.0f );
+    glVertex3f( 0.0f, 0.0f, 0.0f );
+    glVertex3f( 0.0f, 0.0f, 1.0f );
     glEnd();
+
+
+    // testing something
+    //gluLookAt(0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+
+    glColor3f( 1.0f, 1.0f, 1.0f );
+    glPushMatrix();
+    glTranslatef( 0.0f, 0.0f, (-1.0f) );
+	glutSolidCube( 2.0f );
+    glColor3f( 1.0f, 1.0f, 0.0f );
+	glutWireCube( 2.0f );
+    glPopMatrix();
+
 
     std::vector<GameObject*>::size_type sz = _game_objects.size();
     for( unsigned i = 0; i < sz; i++ ) {
         _game_objects[i]->draw();
     }
-
-    // testing something
-    //gluLookAt(0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
-	glColor3f(0.0f, 0.0f, 1.0f);
-	glutSolidCube(0.5);
-
 
     glFlush();
 }
@@ -62,6 +84,10 @@ void GameManager::reshape( GLsizei w, GLsizei h ) {
 
     glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();
+
+    //gluLookAt( eye, center, up );
+    //gluLookAt(0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.9f);
+    gluLookAt( 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f );
 }
 
 

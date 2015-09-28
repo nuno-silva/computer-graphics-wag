@@ -4,7 +4,8 @@
 class Roadside : public StaticObject
 {
 public:
-	void draw();
+    virtual ~Roadside();
+    virtual void draw();
 
 private:
 

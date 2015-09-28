@@ -6,6 +6,7 @@
 class StaticObject : public GameObject
 {
 public:
-    void draw();
+    virtual ~StaticObject();
+    virtual void draw();
     void update( GLdouble delta_t );
 };

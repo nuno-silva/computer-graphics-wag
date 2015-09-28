@@ -7,7 +7,8 @@
 class GameObject : Entity {
 
 public:
-    void draw();
+    virtual ~GameObject();
+    virtual void draw();
     void update( GLdouble delta_t );
 };
 
