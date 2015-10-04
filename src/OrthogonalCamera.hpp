@@ -4,7 +4,7 @@
 
 #include "Camera.hpp"
 
-class OrthogonalCamera : Camera {
+class OrthogonalCamera : public Camera {
     GLdouble _left;
     GLdouble _right;
     GLdouble _bottom;
@@ -14,6 +14,6 @@ public:
                       GLdouble top, GLdouble near, GLdouble far );
     ~OrthogonalCamera();
     void update();
-    void computeProjectionMatrix();
-    void computeVisualizationMatrix();
+    virtual void computeProjectionMatrix();
+    virtual void computeVisualizationMatrix();
 };

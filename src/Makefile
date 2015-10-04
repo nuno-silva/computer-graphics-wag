@@ -1,5 +1,6 @@
 CXX = g++
 CXXFLAGS = -Wall -Wextra -pedantic
+CXXFLAGS+= -Wno-variadic-macros
 
 ifeq ($(OS),Windows_NT)
 		# windows
@@ -15,12 +16,18 @@ else
 		endif
 endif
 
-OBJS = main.o 
+OBJS = main.o
 OBJS += GameManager.o GameObject.o
 OBJS += Camera.o OrthogonalCamera.o
 OBJS += Entity.o River.o Roadside.o StaticObject.o Vector3.o
 
 all: micromachines
+
+debug: CXXFLAGS+=-DDEBUG -g
+debug: all
+
+debug_ncolor: CFLAGS+=-DDEBUG_NO_COLORS
+debug_ncolor: debug
 
 micromachines: $(OBJS)
 	$(CXX) $(OBJS) $(LDFLAGS) $(LDLIBS) -o micromachines

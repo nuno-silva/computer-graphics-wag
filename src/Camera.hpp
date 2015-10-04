@@ -10,13 +10,15 @@ class Camera : public Entity {
 protected:
     GLdouble _near;
     GLdouble _far;
+    GLsizei _width;
+    GLsizei _height;
 public:
     Camera( GLdouble near, GLdouble far );
     ~Camera();
     void update();
-    void computeProjectionMatrix();
-    void computeVisualizationMatrix();
+    void reshape( GLsizei w, GLsizei h );
+    virtual void computeProjectionMatrix();
+    virtual void computeVisualizationMatrix();
     const Vector3& getUp();
     const Vector3& getCenter();
-    const Vector3& getAt();
 };

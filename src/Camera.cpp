@@ -4,8 +4,7 @@
 Camera::Camera( GLdouble near, GLdouble far ) : Entity(),
     // FIXME: should this be fixed?
     _up( (GLdouble) 0.0f, (GLdouble) 1.0f, (GLdouble) 0.0f ),
-    _center( (GLdouble) 0.0f, (GLdouble) 0.0f, (GLdouble) 0.0f ),
-    _at( (GLdouble) 0.0f, (GLdouble) 0.0f, (GLdouble) -1.9f )
+    _center( (GLdouble) 0.0f, (GLdouble) 0.0f, (GLdouble) 0.0f )
 {
     _near = near;
     _far = far;
@@ -19,12 +18,19 @@ void Camera::update() {
     // TODO
 }
 
+void Camera::reshape( GLsizei w, GLsizei h ) {
+    _width = w;
+    _height = h;
+}
+
 void Camera::computeProjectionMatrix() {
+    DBG_PRINT("computeProjectionMatrix()\n");
     glMatrixMode( GL_PROJECTION );
     glLoadIdentity();
 }
 
 void Camera::computeVisualizationMatrix() {
+    DBG_PRINT("computeVisualizationMatrix()\n");
     glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();
 }
@@ -38,10 +44,5 @@ const Vector3& Camera::getUp()
 const Vector3& Camera::getCenter()
 {
     return _center;
-}
-
-const Vector3& Camera::getAt()
-{
-    return _at;
 }
 

@@ -10,17 +10,17 @@ Entity::~Entity()
 
 }
 
-Vector3 * Entity::getPosition()
+Vector3& Entity::getPosition()
 {
-    return 0;
+    return _position;
 }
 
-Vector3 * Entity::setPosition(GLdouble n, GLdouble y, GLdouble z)
+void Entity::setPosition(GLdouble x, GLdouble y, GLdouble z)
 {
-    return 0;
+    _position.set( x, y, z );
 }
 
-Vector3 * Entity::setPosition(const Vector3 & p)
+void Entity::setPosition(const Vector3 & p)
 {
-	return 0;
+    _position = p;
 }

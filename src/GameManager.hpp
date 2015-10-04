@@ -9,6 +9,7 @@
 class GameManager {
     std::vector<GameObject*> _game_objects;
     std::vector<Camera*> _cameras;
+    Camera* _activeCamera;
     /* std::vector<LightSource> _light_source; */
 public:
     GameManager();

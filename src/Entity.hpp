@@ -8,8 +8,8 @@ class Entity {
 public:
 	Entity();
 	~Entity();
-	Vector3* getPosition();
-	Vector3* setPosition(GLdouble n, GLdouble y, GLdouble z);
-	Vector3* setPosition(const Vector3& p);
+	Vector3& getPosition();
+	void setPosition(GLdouble n, GLdouble y, GLdouble z);
+	void setPosition(const Vector3& p);
 
 };

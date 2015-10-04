@@ -1,4 +1,5 @@
 #include "GameManager.hpp"
+#include "OrthogonalCamera.hpp"
 #include "Roadside.hpp"
 
 GameManager::GameManager() : _game_objects(), _cameras()
@@ -30,22 +31,6 @@ void GameManager::display() {
     }
     glEnd();*/
 
-    glBegin( GL_LINES);
-
-    glColor3f( 1.0f, 0.0f, 0.0f );
-    glVertex3f( 0.0f, 0.0f, 0.0f );
-    glVertex3f( 1.0f, 0.0f, 0.0f );
-
-    glColor3f( 0.0f, 1.0f, 0.0f );
-    glVertex3f( 0.0f, 0.0f, 0.0f );
-    glVertex3f( 0.0f, 1.0f, 0.0f );
-
-    glColor3f( 0.0f, 0.0f, 1.0f );
-    glVertex3f( 0.0f, 0.0f, 0.0f );
-    glVertex3f( 0.0f, 0.0f, 1.0f );
-    glEnd();
-
-
     // testing something
     //gluLookAt(0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
 
@@ -69,25 +54,15 @@ void GameManager::display() {
 /** called when the window size changes
  * */
 void GameManager::reshape( GLsizei w, GLsizei h ) {
-    // FIXME
     glViewport( 0, 0, w, h );
 
-    glMatrixMode( GL_PROJECTION );
-    glLoadIdentity();
-
-    GLfloat ratio = (GLfloat) w / (GLfloat) h;
-    if( w > h ) {
-        glOrtho( -2.0f * ratio, 2.0f * ratio, -2.0f, 2.0f, -2.0f, 2.0f );
-    } else {
-        glOrtho( -2.0f, 2.0f, -2.0f / ratio, 2.0f / ratio, -2.0f, 2.0f );
+    std::vector<Camera*>::size_type sz = _cameras.size();
+    for( unsigned i = 0; i < sz; i++ ) {
+        _cameras[i]->reshape( w, h );
     }
 
-    glMatrixMode( GL_MODELVIEW );
-    glLoadIdentity();
-
-    //gluLookAt( eye, center, up );
-    //gluLookAt(0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.9f);
-    gluLookAt( 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f );
+    _activeCamera->computeProjectionMatrix();
+    _activeCamera->computeVisualizationMatrix();
 }
 
 
@@ -109,6 +84,9 @@ void GameManager::update() {
 
 void GameManager::init() {
     _game_objects.push_back( new Roadside() );
+    _activeCamera = new OrthogonalCamera(-2.0f, 2.0f, -2.0f, 2.0f, -2.0f,2.0f);
+    _activeCamera->setPosition( 0.0f, 0.0f, 1.0f );
+    _cameras.push_back( _activeCamera );
     // TODO: insert table, etc ??
 }
 
