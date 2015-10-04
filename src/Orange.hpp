@@ -1,9 +1,9 @@
 #pragma once
 
 #include "global.hpp"
-#include "StaticObject.hpp"
+#include "Obstacle.hpp"
 
-class Orange : public StaticObject {
+class Orange : public Obstacle {
 private:
     GLdouble _radius;
 public:

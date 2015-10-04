@@ -16,7 +16,6 @@ else
 		endif
 endif
 
-
 SOURCES := $(wildcard *.cpp)
 OBJS := $(SOURCES:.cpp=.o)
 
