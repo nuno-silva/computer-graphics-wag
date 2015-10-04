@@ -1,9 +1,8 @@
 #include "Camera.hpp"
 
 
-
 Camera::Camera( GLdouble near, GLdouble far ) : Entity(),
-    _up(0.0d, 1.0d, 0.0d), _center(0.0d, 0.0d, 0.0d), _near(near), _far(far) {}
+    _up(0.0f, 1.0f, 0.0f), _center(0.0f, 0.0f, 0.0f), _near(near), _far(far) {}
 
 Camera::~Camera() {}
 
@@ -11,7 +10,10 @@ void Camera::update() {
     // TODO
 }
 
-void Camera::reshape( GLsizei w, GLsizei h ) : _width(w), _height(h) {}
+void Camera::reshape( GLsizei w, GLsizei h ) {
+    _width  = w;
+    _height = h;
+}
 
 void Camera::computeProjectionMatrix() {
     DBG_PRINT("computeProjectionMatrix()\n");

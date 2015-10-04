@@ -16,7 +16,7 @@ public:
     virtual ~Camera();
 
     void update();
-    void reshape( GLsizei w, GLsizei h );
+    void reshape( GLsizei width, GLsizei height );
 
     virtual void computeProjectionMatrix();
     virtual void computeVisualizationMatrix();

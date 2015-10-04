@@ -10,7 +10,7 @@ public:
 	Entity();
 	~Entity();
 
-	Vector3& getPosition() const;
+	Vector3 getPosition() const;
 
 	void setPosition(GLdouble n, GLdouble y, GLdouble z);
 	void setPosition(const Vector3& p);
