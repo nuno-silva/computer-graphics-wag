@@ -2,7 +2,7 @@
 #include "OrthogonalCamera.hpp"
 #include "Roadside.hpp"
 #include "Table.hpp"
-#include "Car.h"
+#include "Car.hpp"
 
 GameManager::GameManager() : _game_objects(), _cameras() {}
 
