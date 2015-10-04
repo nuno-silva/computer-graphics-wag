@@ -1,6 +1,5 @@
-#pragma once
-#include "DynamicObject.h"
-#include "Car.h"
+#include "DynamicObject.hpp"
+#include "Car.hpp"
 
 Car::Car()
 {
