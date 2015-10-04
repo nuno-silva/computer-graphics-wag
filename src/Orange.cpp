@@ -15,10 +15,9 @@ void Orange::draw() {
 
     glColor3f( 1.0f, 0.4f, 0.0f);
     glutSolidSphere(_radius, SLICES, STACKS);
-
 #ifdef DEBUG
     glColor3f(0.5f, 0.2f, 0.0f);
-    glutWireSphere(2.0f);
+    glutWireSphere(2.0f, SLICES, STACKS);
 #endif
     glPopMatrix();
 };
