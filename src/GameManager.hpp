@@ -8,9 +8,9 @@
 #include "Camera.hpp"
 
 class GameManager {
-    GameObjectCollection _game_objects;
-    std::vector<Camera*> _cameras;
-    Camera* _activeCamera;
+    GameObjectCollection                 _game_objects;
+    std::vector<std::shared_ptr<Camera>> _cameras;
+    std::shared_ptr<Camera>              _activeCamera;
     /* std::vector<LightSource> _light_source; */
 public:
     GameManager();

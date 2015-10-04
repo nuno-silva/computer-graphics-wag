@@ -60,7 +60,7 @@ void GameManager::init() {
     // TODO: meter roadside dentro de Table?
     _game_objects.add( std::make_shared<Roadside>( 0.92f ) );
 
-    _activeCamera = new OrthogonalCamera(-2.0f, 2.0f, -2.0f, 2.0f, -2.0f,2.0f);
+    _activeCamera = std::make_shared<OrthogonalCamera>(-2.0f, 2.0f, -2.0f, 2.0f, -2.0f,2.0f);
     _activeCamera->setPosition( 0.0f, 0.0f, 1.0f );
     _cameras.push_back( _activeCamera );
 }
