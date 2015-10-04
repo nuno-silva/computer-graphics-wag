@@ -9,9 +9,8 @@ void GameObjectCollection::draw() {
 
     DBG_PRINT("draw()\n");
 
-    std::vector< std::shared_ptr<GameObject> >::size_type sz = _children.size();
-    for( unsigned i = 0; i < sz; i++ ) {
-        _children[i]->draw();
+    for (auto c : _children) {
+        c->draw();
     }
 }
 
@@ -20,9 +19,8 @@ void GameObjectCollection::update( GLdouble delta_t ) {
 
     DBG_PRINT("update()\n");
 
-    std::vector< std::shared_ptr<GameObject> >::size_type sz = _children.size();
-    for( unsigned i = 0; i < sz; i++ ) {
-        _children[i]->update( delta_t );
+    for (auto c : _children) {
+        c->update( delta_t );
     }
 }
 
