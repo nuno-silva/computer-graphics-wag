@@ -14,7 +14,7 @@ protected:
     GLsizei _height;
 public:
     Camera( GLdouble near, GLdouble far );
-    ~Camera();
+    virtual ~Camera();
     void update();
     void reshape( GLsizei w, GLsizei h );
     virtual void computeProjectionMatrix();

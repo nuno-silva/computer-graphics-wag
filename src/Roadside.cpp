@@ -1,47 +1,43 @@
 #include "Roadside.hpp"
+#include "Cheerio.hpp"
 #include <cstdio>
 #include <cmath>
+
+Roadside::Roadside( GLdouble size ) : _size(size) {
+    const GLfloat cheerio_count = 25.0f;
+    const GLfloat deg_inc = 2.0f * PI / cheerio_count;
+
+    const GLfloat inside_radius = _size * 0.70f;
+    const GLfloat outside_radius = _size;
+
+    const GLfloat cheerio_inside_r = 0.011f;
+    const GLfloat cheerio_outside_r = 0.02f;
+
+
+    const GLfloat z = cheerio_inside_r / 2.0f;
+
+    for ( GLfloat i = 0.0f; i < 2.0f * PI; i+=deg_inc ) {
+        GLfloat x = sin(i);
+        GLfloat y = 0.8*cos(i) + 0.2*sin(i);
+        add( std::make_shared<Cheerio>( cheerio_inside_r, cheerio_outside_r,
+                                        x * inside_radius, y * inside_radius, z ) );
+        add( std::make_shared<Cheerio>( cheerio_inside_r, cheerio_outside_r,
+                                        x * outside_radius, y * outside_radius, z ) );
+    }
+}
 
 Roadside::~Roadside() {
 
 }
 
-void draw_cheerio( GLfloat x, GLfloat y, GLfloat z ) {
-    glColor3f( 1.0f, 0.33f, 0.0f );
-    glPushMatrix();
-    glTranslatef( x, y, z );
-    glutWireTorus( 0.011f, 0.02, 10, 10 );
-    glPopMatrix();
-}
 
 //void draw_track_edge
 
 void Roadside::draw()
 {
-    printf("Roadside::draw();\n");
-    #warning this is not working. Use std::shared_ptr instead of pointers?
-    // Rodrigo: Of course!
-
-
-    const int cheerios_no = 100;
-
-    const GLfloat inside_radius = 0.6f;
-    const GLfloat outside_radius = 0.8f;
-
-    const GLfloat z = +0.1f;
-
-    // draw_track_edge
-    for (int i = 0; i < cheerios_no; ++i) {
-        GLfloat x = inside_radius * sin(i);
-        GLfloat y = inside_radius * cos(i);
-        draw_cheerio(x, y, z);
-    }
-
-    for (int i = 0; i < cheerios_no; ++i) {
-        GLfloat x = outside_radius * sin(i);
-        GLfloat y = outside_radius * cos(i);
-        draw_cheerio(x, y, z);
-    }
-
+    DBG_PRINT("draw()\n");
+    glPushMatrix();
+    GameObjectCollection::draw();
+    glPopMatrix();
 }
 

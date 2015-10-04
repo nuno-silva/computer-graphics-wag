@@ -19,5 +19,7 @@ public:
     Vector3 operator*(GLdouble num);
     Vector3 operator+(const Vector3&);
     Vector3 operator-(const Vector3&);
+    /** glTranslate using this vector */
+    void glTranslate();
 
 };

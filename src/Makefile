@@ -1,6 +1,6 @@
 CXX = g++
 CXXFLAGS = -Wall -Wextra -pedantic
-CXXFLAGS+= -Wno-variadic-macros
+CXXFLAGS+= -Wno-variadic-macros -std=c++11
 
 ifeq ($(OS),Windows_NT)
 		# windows
@@ -20,6 +20,7 @@ OBJS = main.o
 OBJS += GameManager.o GameObject.o
 OBJS += Camera.o OrthogonalCamera.o
 OBJS += Entity.o River.o Roadside.o StaticObject.o Vector3.o
+OBJS += GameObjectCollection.o Table.o Cheerio.o
 
 all: micromachines
 

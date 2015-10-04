@@ -4,11 +4,11 @@
 
 #include "Entity.hpp"
 
-class GameObject : Entity {
+class GameObject : public Entity {
 
 public:
     virtual ~GameObject();
     virtual void draw();
-    void update( GLdouble delta_t );
+    virtual void update( GLdouble delta_t );
 };
 

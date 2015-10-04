@@ -4,10 +4,11 @@
 #include <vector>
 
 #include "GameObject.hpp"
+#include "GameObjectCollection.hpp"
 #include "Camera.hpp"
 
 class GameManager {
-    std::vector<GameObject*> _game_objects;
+    GameObjectCollection _game_objects;
     std::vector<Camera*> _cameras;
     Camera* _activeCamera;
     /* std::vector<LightSource> _light_source; */

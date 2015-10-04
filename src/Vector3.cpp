@@ -6,8 +6,8 @@ Vector3::Vector3()
 
 Vector3::Vector3(GLdouble x, GLdouble y, GLdouble z)
 {
-	_x = x; 
-	_y = y; 
+	_x = x;
+	_y = y;
 	_z = z;
 }
 
@@ -21,7 +21,7 @@ GLdouble Vector3::getX() const
 }
 
 GLdouble Vector3::getY() const
-{	
+{
 	return _y;
 }
 
@@ -38,7 +38,7 @@ void Vector3::set(GLdouble x, GLdouble y, GLdouble z)
 }
 
 Vector3 Vector3::operator=(const Vector3 & vec)
-{	
+{
 	_x = vec.getX();
 	_y = vec.getY();
 	_z = vec.getZ();
@@ -58,4 +58,9 @@ Vector3 Vector3::operator+(const Vector3& vec)
 Vector3 Vector3::operator-(const Vector3& vec)
 {
 	return Vector3(this->getX() - vec.getX(), this->getY() - vec.getY(), this->getZ() - vec.getZ());
+}
+
+void Vector3::glTranslate()
+{
+	glTranslatef( _x, _y, _z );
 }

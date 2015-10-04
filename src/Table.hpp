@@ -1,15 +1,17 @@
 #pragma once
+
 #include "global.hpp"
 #include "StaticObject.hpp"
-#define TABLE_SIZE 5
 
-class Table : StaticObject
+
+class Table : public StaticObject
 {
 public:
-	Table();
-	~Table();
-	void draw();
+	Table( GLdouble size );
+	Table( GLdouble size, GLdouble x, GLdouble y, GLdouble z );
+	virtual ~Table();
+	virtual void draw();
 
 private:
-
+	GLdouble _size;
 };
