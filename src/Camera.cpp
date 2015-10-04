@@ -1,27 +1,17 @@
 #include "Camera.hpp"
 
 
+
 Camera::Camera( GLdouble near, GLdouble far ) : Entity(),
-    // FIXME: should this be fixed?
-    _up( (GLdouble) 0.0f, (GLdouble) 1.0f, (GLdouble) 0.0f ),
-    _center( (GLdouble) 0.0f, (GLdouble) 0.0f, (GLdouble) 0.0f )
-{
-    _near = near;
-    _far = far;
-}
+    _up(0.0d, 1.0d, 0.0d), _center(0.0d, 0.0d, 0.0d), _near(near), _far(far) {}
 
-Camera::~Camera() {
-
-}
+Camera::~Camera() {}
 
 void Camera::update() {
     // TODO
 }
 
-void Camera::reshape( GLsizei w, GLsizei h ) {
-    _width = w;
-    _height = h;
-}
+void Camera::reshape( GLsizei w, GLsizei h ) : _width(w), _height(h) {}
 
 void Camera::computeProjectionMatrix() {
     DBG_PRINT("computeProjectionMatrix()\n");
@@ -35,14 +25,6 @@ void Camera::computeVisualizationMatrix() {
     glLoadIdentity();
 }
 
-
-const Vector3& Camera::getUp()
-{
-    return _up;
-}
-
-const Vector3& Camera::getCenter()
-{
-    return _center;
-}
+const Vector3& Camera::getUp()     const { return _up;     }
+const Vector3& Camera::getCenter() const { return _center; }
 
