@@ -21,6 +21,7 @@ OBJS += GameManager.o GameObject.o
 OBJS += Camera.o OrthogonalCamera.o
 OBJS += Entity.o River.o Roadside.o StaticObject.o Vector3.o
 OBJS += GameObjectCollection.o Table.o Cheerio.o
+OBJS += Orange.o
 
 all: micromachines
 
