@@ -3,8 +3,8 @@
 
 class Car : public DynamicObject {
 public:
-	Car::Car();
-	Car::~Car();
+	Car();
+	~Car();
 	void draw();
 
 };
