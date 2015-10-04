@@ -4,7 +4,15 @@
 #ifdef __MACH__
 # include <GLUT/glut.h>
 #else
+# include <stdlib.h>
 # include <GL/glut.h>
+#endif
+
+
+#if __GNUC__
+# define ATTRIBUTE_UNUSED __attribute__((unused))
+#else
+# define ATTRIBUTE_UNUSED
 #endif
 
 /* enables debug prints if defined; we define it in the makefile

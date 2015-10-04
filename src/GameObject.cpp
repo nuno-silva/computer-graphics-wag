@@ -10,7 +10,7 @@ void Axis3d_draw() {
 
     glBegin( GL_LINES);
 
-    // red X axis
+	
     glColor3f( 1.0f, 0.0f, 0.0f );
     glVertex3f( 0.0f, 0.0f, 0.0f );
     glVertex3f( 1.1f, 0.0f, 0.0f );
@@ -42,6 +42,6 @@ void GameObject::draw() {
 #endif
 }
 
-void GameObject::update( __attribute__((unused)) GLdouble delta_t ) {
+void GameObject::update(ATTRIBUTE_UNUSED GLdouble delta_t ) {
     DBG_PRINT("update()\n");
 }

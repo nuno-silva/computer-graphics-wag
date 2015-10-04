@@ -2,6 +2,7 @@
 #include "OrthogonalCamera.hpp"
 #include "Roadside.hpp"
 #include "Table.hpp"
+#include "Car.h"
 
 GameManager::GameManager() : _game_objects(), _cameras() {}
 
@@ -45,6 +46,8 @@ void GameManager::init() {
 
     // TODO: meter roadside dentro de Table?
     _game_objects.add( std::make_shared<Roadside>( 0.92f ) );
+
+	_game_objects.add( std::make_shared<Car>() );
 
     _activeCamera = std::make_shared<OrthogonalCamera>(-2.0f, 2.0f, -2.0f, 2.0f, -2.0f,2.0f);
     _activeCamera->setPosition( 0.0f, 0.0f, 1.0f );
