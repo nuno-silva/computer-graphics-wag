@@ -22,9 +22,6 @@ Vector3 Vector3::operator=(const Vector3 & vec) {
     _z = vec.getZ();
 
     return *this;
-
-    // Fixme: Shouldn't this be the right semantics?
-    // return Vector3(vec.getX(), vec.getY(), vec.getZ());
 }
 
 Vector3 Vector3::operator*(GLdouble num) const {
