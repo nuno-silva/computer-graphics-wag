@@ -4,14 +4,11 @@
 #include "StaticObject.hpp"
 
 
-class Table : public StaticObject
-{
+class Table : public StaticObject {
 public:
-	Table( GLdouble size );
-	Table( GLdouble size, GLdouble x, GLdouble y, GLdouble z );
-	virtual ~Table();
-	virtual void draw();
-
+    Table( GLdouble size );
+    Table( GLdouble size, GLdouble x, GLdouble y, GLdouble z );
+    virtual void draw();
 private:
-	GLdouble _size;
+    GLdouble _size;
 };
