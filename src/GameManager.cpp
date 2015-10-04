@@ -3,14 +3,9 @@
 #include "Roadside.hpp"
 #include "Table.hpp"
 
-GameManager::GameManager() : _game_objects(), _cameras()
-{
+GameManager::GameManager() : _game_objects(), _cameras() {}
 
-}
-
-GameManager::~GameManager() {
-
-}
+GameManager::~GameManager() {}
 
 /** called when the screen needs updating
  * */
@@ -18,7 +13,7 @@ void GameManager::display() {
     glClearColor( 0.0f, 0.0f, 0.0f, 1.0f );
     glClear( GL_COLOR_BUFFER_BIT );
 
-   _game_objects.draw();
+    _game_objects.draw();
 
     glFlush();
 }
@@ -28,9 +23,8 @@ void GameManager::display() {
 void GameManager::reshape( GLsizei w, GLsizei h ) {
     glViewport( 0, 0, w, h );
 
-    std::vector<Camera*>::size_type sz = _cameras.size();
-    for( unsigned i = 0; i < sz; i++ ) {
-        _cameras[i]->reshape( w, h );
+    for( auto c : _cameras ) {
+        c->reshape( w, h );
     }
 
     _activeCamera->computeProjectionMatrix();
@@ -38,21 +32,13 @@ void GameManager::reshape( GLsizei w, GLsizei h ) {
 }
 
 
-void GameManager::keyPressed() {
+void GameManager::keyPressed() {}
 
-}
+void GameManager::onTimer() {}
 
-void GameManager::onTimer() {
+void GameManager::idle() {}
 
-}
-
-void GameManager::idle() {
-
-}
-
-void GameManager::update() {
-
-}
+void GameManager::update() {}
 
 void GameManager::init() {
     _game_objects.add( std::make_shared<Table>( 2.0f, 0.0f, 0.0f, -1.0f ) );
