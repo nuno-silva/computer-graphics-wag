@@ -8,6 +8,11 @@
 # include <GL/glut.h>
 #endif
 
+/* usefull unit conversions, assuming one unit is one meter */
+#define mm(x) ( (x) / 1000.0f ) // millimeter to meter
+#define cm(x) ( (x) / 100.0f  ) // centimeter to meter
+#define dm(x) ( (x) / 10.0f   ) //  decimeter to meter
+#define  m(x) ( (float) (x)   ) //      meter to meter
 
 #if __GNUC__
 # define ATTRIBUTE_UNUSED __attribute__((unused))
