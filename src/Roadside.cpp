@@ -4,14 +4,14 @@
 #include <cmath>
 
 Roadside::Roadside( GLdouble size ) : _size(size) {
-    const GLfloat cheerio_count = 25.0f;
+    const GLfloat cheerio_count = 100.0f;
     const GLfloat deg_inc = 2.0f * PI / cheerio_count;
 
-    const GLfloat inside_radius = _size * 0.70f;
+    const GLfloat inside_radius  = _size * 0.70f;
     const GLfloat outside_radius = _size;
 
-    const GLfloat cheerio_inside_r = 0.011f;
-    const GLfloat cheerio_outside_r = 0.02f;
+    const GLfloat cheerio_inside_r  = 0.005f;
+    const GLfloat cheerio_outside_r = 0.009f;
 
 
     const GLfloat z = cheerio_inside_r / 2.0f;
