@@ -163,13 +163,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Camera.hpp" />
-    <ClInclude Include="src\Car.h" />
+    <ClInclude Include="src\Car.hpp" />
     <ClInclude Include="src\Cheerio.hpp" />
-    <ClInclude Include="src\DynamicObject.h" />
+    <ClInclude Include="src\DynamicObject.hpp" />
     <ClInclude Include="src\GameManager.hpp" />
     <ClInclude Include="src\GameObject.hpp" />
     <ClInclude Include="src\GameObjectCollection.hpp" />
     <ClInclude Include="src\global.hpp" />
+    <ClInclude Include="src\Obstacle.hpp" />
     <ClInclude Include="src\OrthogonalCamera.hpp" />
     <ClInclude Include="src\River.hpp" />
     <ClInclude Include="src\Roadside.hpp" />

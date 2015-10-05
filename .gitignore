@@ -205,3 +205,4 @@ src/micromachines
 *.d
 
 VisualStudio/MicroMachines/src/
+NOTES.MD

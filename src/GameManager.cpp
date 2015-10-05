@@ -4,7 +4,7 @@
 #include "OrthogonalCamera.hpp"
 #include "Roadside.hpp"
 #include "Table.hpp"
-
+#include "Car.hpp"
 
 GameManager::GameManager() : _game_objects(), _cameras() {}
 
@@ -59,7 +59,7 @@ void GameManager::init() {
 
 
     _activeCamera = std::make_shared<OrthogonalCamera>(-2.0f, 2.0f, -2.0f, 2.0f, -2.0f,2.0f);
-    _activeCamera->setPosition( 0.0f, 0.0f, 1.0f );
+    _activeCamera->setPosition( 1.0f, 0.0f, 0.0f );
     _cameras.push_back( _activeCamera );
 }
 
