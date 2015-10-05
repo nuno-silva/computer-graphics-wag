@@ -14,6 +14,9 @@
 #define dm(x) ( (x) / 10.0f   ) //  decimeter to meter
 #define  m(x) ( (float) (x)   ) //      meter to meter
 
+/* convert a color vector to 3 parameters */
+#define components3(x) x[0],x[1],x[2]
+
 #if __GNUC__
 # define ATTRIBUTE_UNUSED __attribute__((unused))
 #else
