@@ -52,9 +52,9 @@ void GameManager::init() {
 	  _game_objects.add( std::make_shared<Car>() );
 
     // Oranges
-    _game_objects.add( std::make_shared<Orange>(0.025f, 0.7f, 0.2f, 0.0) );
-    _game_objects.add( std::make_shared<Orange>(0.025f, 0.6f, 0.6f, 0.0) );
-    _game_objects.add( std::make_shared<Orange>(0.025f, -0.7f, -0.5f, 0.0) );
+    _game_objects.add( std::make_shared<Orange>(cm(2.5), cm(70),  cm(20),  0));
+    _game_objects.add( std::make_shared<Orange>(cm(2.5), cm(60),  cm(60),  0));
+    _game_objects.add( std::make_shared<Orange>(cm(2.5), cm(-70), cm(-50), 0));
 
 
 
