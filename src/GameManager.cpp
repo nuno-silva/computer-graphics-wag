@@ -39,19 +39,34 @@ void GameManager::reshape( GLsizei w, GLsizei h ) {
 
 void GameManager::keyPressed() {}
 
-void GameManager::onTimer() {}
+void GameManager::onTimer() {
+    /*
+    delta_t = ?
+    update();
+    post_display();
+    timer( 10ms );
+     */
+}
 
-void GameManager::idle() {}
+/* use either onTimer() or idle() */
+
+void GameManager::idle() {
+    /*
+    delta_t = ?
+    update();
+    post_display();
+     */
+}
 
 void GameManager::update() {}
 
 void GameManager::init() {
-    _game_objects.add( std::make_shared<Table>( 2.0f, 0.0f, 0.0f, -1.0f ) );
+    _game_objects.add( std::make_shared<Table>( m(2), m(0), m(0), m(0) ) );
 
     // TODO: meter roadside dentro de Table?
     _game_objects.add( std::make_shared<Roadside>( 0.92f ) );
 
-	  _game_objects.add( std::make_shared<Car>() );
+      _game_objects.add( std::make_shared<Car>() );
 
     // Oranges
     _game_objects.add( std::make_shared<Orange>(cm(2.5), cm(70),  cm(20),  0));

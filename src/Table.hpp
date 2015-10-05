@@ -11,4 +11,6 @@ public:
     virtual void draw();
 private:
     GLdouble _size;
+
+    static constexpr GLfloat TABLE_COLOR[3]   = { 0.827f, 0.827f, 0.827f }; // LightGrey
 };

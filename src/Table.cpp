@@ -8,9 +8,10 @@ Table::Table( GLdouble size, GLdouble x, GLdouble y, GLdouble z ) : _size(size) 
 
 void Table::draw() {
     glPushMatrix();
+    glTranslatef( cm(0), cm(0), - _size/2 ); // table origin is on the top face
     GameObject::draw();
 
-    glColor3f( 1.0f, 1.0f, 1.0f );
+    glColor3f( components3(TABLE_COLOR) );
     glutSolidCube( _size );
 
 #ifdef DEBUG
