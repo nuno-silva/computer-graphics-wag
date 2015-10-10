@@ -14,4 +14,6 @@ public:
     virtual void draw();
     virtual void update( GLdouble delta_t );
     void add( std::shared_ptr<GameObject> g );
+	virtual void setWireframeState(bool value);
+	virtual void invertWireframeState();
 };

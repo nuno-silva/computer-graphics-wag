@@ -41,6 +41,7 @@ void GameManager::reshape( GLsizei w, GLsizei h ) {
 void GameManager::keyPressed(unsigned char key, int x, int y) { 
 	if (key == 'a') {
 		// switch object to "wireframe"
+		_game_objects.invertWireframeState();
 	}
 }
 
