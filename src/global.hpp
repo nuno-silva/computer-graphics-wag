@@ -19,9 +19,12 @@
 
 #if __GNUC__
 # define ATTRIBUTE_UNUSED __attribute__((unused))
+#define _STDCALL
 #else
 # define ATTRIBUTE_UNUSED
+#define _STDCALL _stdcall
 #endif
+
 
 /* enables debug prints if defined; we define it in the makefile
 #define DEBUG

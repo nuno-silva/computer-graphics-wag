@@ -3,7 +3,11 @@
 
 #define Y_SCALE 2.0f
 
-Car::Car(GLdouble width, GLdouble length) : _width(width), _length(length) {}
+
+
+Car::Car(GLdouble width, GLdouble length) : _width(width), _length(length) { 
+	setWireframeState();
+}
 
 GLdouble Car::getWidth() const {
     return _width;
@@ -41,11 +45,27 @@ void Car::draw() {
 
     glScalef(1.0f, Y_SCALE, 1.0f);
     glTranslatef(0.0f, 0.0f, -Wheel::WHEEL_OUTER_RADIUS);
-    glutSolidCube(_length);
+    drawCube(_length);
 
     glPopMatrix();
 
     drawWheels(_width, _length);
 
     glPopMatrix();
+}
+
+// @Override
+void Car::setWireframeState() {
+	if (drawAsWireframe) {
+
+		drawCube = glutWireCube;
+	}
+	else {
+		drawCube = glutSolidCube;
+	}
+}
+
+void Car::update(GLdouble a)
+{
+	setWireframeState();
 }

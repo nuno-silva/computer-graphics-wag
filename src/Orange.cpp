@@ -1,10 +1,11 @@
 #include "Orange.hpp"
 
 
-Orange::Orange(GLdouble radius) : Orange(radius, 0, 0, 0) {}
+Orange::Orange(GLdouble radius) : Orange(radius, 0, 0, 0) { setWireframeState(); }
 
 Orange::Orange(GLdouble radius, GLdouble x, GLdouble y, GLdouble z) : _radius(radius) {
     setPosition(x, y, z);
+    setWireframeState();
 }
 
 void Orange::draw() {
@@ -15,10 +16,18 @@ void Orange::draw() {
     GameObject::draw();
 
     glColor3f( components3( OrangeColors::skin ));
-    glutSolidSphere(_radius, num_slices, num_slacks);
-#ifdef DEBUG
-    glColor3f(0.5f, 0.2f, 0.0f);
-    glutWireSphere(_radius, 8, 8);
-#endif
+    drawSphere(_radius, num_slices, num_slacks);
+
     glPopMatrix();
 }
+
+void Orange::setWireframeState()
+{
+    if (drawAsWireframe) {
+        drawSphere = glutWireSphere;
+    }
+    else {
+        drawSphere = glutSolidSphere;
+    }
+}
+

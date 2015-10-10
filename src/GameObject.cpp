@@ -42,6 +42,22 @@ void GameObject::draw() {
 #endif
 }
 
+void GameObject::setDrawAsWireframe(bool value)
+{
+	drawAsWireframe = value;
+}
+
+bool GameObject::getDrawAsWireframe()
+{
+	return drawAsWireframe;
+}
+
+void GameObject::setWireframeState()
+{
+	DBG_PRINT("GameObject::setWireframeState()\n");
+
+}
+
 void GameObject::update(ATTRIBUTE_UNUSED GLdouble delta_t ) {
     DBG_PRINT("update()\n");
 }

@@ -29,3 +29,18 @@ void GameObjectCollection::add( std::shared_ptr<GameObject> g) {
 
     _children.push_back( g );
 }
+
+void GameObjectCollection::setWireframeState(bool value)
+{
+	for (auto gameObj : _children) {
+		gameObj->setDrawAsWireframe(value);
+	}
+}
+
+void GameObjectCollection::invertWireframeState()
+{
+	for (auto gameObj : _children) {
+		gameObj->setDrawAsWireframe(!gameObj->getDrawAsWireframe());
+	}
+
+}
