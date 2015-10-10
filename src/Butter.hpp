@@ -10,12 +10,18 @@ namespace ButterColors {
 class Butter : public Obstacle
 {
 public:
-	Butter( GLdouble x, GLdouble y, GLdouble z );
+    Butter( GLdouble x, GLdouble y, GLdouble z );
     virtual ~Butter();
     virtual void draw();
 
-    static constexpr GLfloat box_height = cm(8);
+    static constexpr GLfloat box_width  = cm(4);
+    static constexpr GLfloat box_length = cm(6);
+    static constexpr GLfloat box_height = cm(4);
+
+    static constexpr GLfloat lid_width  = cm(5);
+    static constexpr GLfloat lid_length = cm(7);
     static constexpr GLfloat lid_height = cm(1);
+
 };
 
 
