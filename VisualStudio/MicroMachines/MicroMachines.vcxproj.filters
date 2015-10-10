@@ -101,10 +101,13 @@
     <ClInclude Include="src\Table.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\DynamicObject.h">
+    <ClInclude Include="src\Obstacle.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Car.h">
+    <ClInclude Include="src\Car.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DynamicObject.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

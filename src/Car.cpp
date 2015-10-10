@@ -1,24 +1,51 @@
-#include "DynamicObject.hpp"
 #include "Car.hpp"
+#include "Wheel.hpp"
 
-Car::Car()
-{
+#define Y_SCALE 2.0f
+
+Car::Car(GLdouble width, GLdouble length) : _width(width), _length(length) {}
+
+GLdouble Car::getWidth() const {
+    return _width;
 }
 
-Car::~Car()
-{
+GLdouble Car::getLength() const {
+    return _length;
 }
 
-void Car::draw()
-{
-	glPushMatrix();
-	GameObject::draw();
-	
-	glPushMatrix();
-		glScalef(1.0f, 2.0f, 1.0f); // scale y *2
-		glutSolidCube(0.2); // TODO: change size
-	glPopMatrix();
+void drawWheels(GLdouble car_width, GLdouble car_length) {
+    const GLdouble outer = Wheel::WHEEL_OUTER_RADIUS;
+    const GLdouble inner = Wheel::WHEEL_INNER_RADIUS;
 
+    Wheel back_left(  (outer - inner) / 2, (car_length / 2 - outer) * Y_SCALE, outer);
+    Wheel back_right((-outer + inner) / 2, (car_length / 2 - outer) * Y_SCALE, outer);
 
-	glPopMatrix();
+    Wheel front_left(  (outer - inner) / 2, -(car_length / 2 - outer) * Y_SCALE, outer);
+    Wheel front_right((-outer + inner) / 2, -(car_length / 2 - outer) * Y_SCALE, outer);
+
+    back_left.draw();
+    back_right.draw();
+    front_left.draw();
+    front_right.draw();
+}
+
+void Car::draw() {
+    glPushMatrix();
+
+    GameObject::draw();
+
+    glTranslatef(0.0f, 0.0f, 0.2f);
+    glScalef(6.0f, 6.0f, 6.0f);
+
+    glPushMatrix();
+
+    glScalef(1.0f, Y_SCALE, 1.0f);
+    glTranslatef(0.0f, 0.0f, -Wheel::WHEEL_OUTER_RADIUS);
+    glutSolidCube(_length);
+
+    glPopMatrix();
+
+    drawWheels(_width, _length);
+
+    glPopMatrix();
 }

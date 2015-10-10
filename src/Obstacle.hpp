@@ -2,4 +2,6 @@
 
 #include "DynamicObject.hpp"
 
-class Obstacle : public DynamicObject {};
+class Obstacle : public DynamicObject {
+    virtual void draw() = 0;
+};

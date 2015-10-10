@@ -1,26 +1,19 @@
 #include "DynamicObject.hpp"
 
-DynamicObject::DynamicObject()
-{
+void DynamicObject::update(GLdouble delta_t) {
+    (void) delta_t;
 }
 
-DynamicObject::~DynamicObject()
-{
+void DynamicObject::setSpeed(const Vector3 & speed) {
+    (void) speed;
 }
 
-void DynamicObject::update(GLdouble delta_t)
-{
+void DynamicObject::setSpeed(GLdouble x, GLdouble y, GLdouble z) {
+    (void) x;
+    (void) y;
+    (void) z;
 }
 
-void DynamicObject::setSpeed(const Vector3 & speed)
-{
-}
-
-void DynamicObject::setSpeed(GLdouble x, GLdouble y, GLdouble z)
-{
-}
-
-Vector3 DynamicObject::getSpeed()
-{
-	return Vector3();
+Vector3 DynamicObject::getSpeed() const {
+    return Vector3();
 }
