@@ -68,12 +68,13 @@ void GameManager::init() {
     _game_objects.add( std::make_shared<Roadside>( 0.92f ) );
 
     // Car
-	  _game_objects.add( std::make_shared<Car>(0.04f, 0.04f) );
+    _game_objects.add( std::make_shared<Car>(0.04f, 0.04f) );
 
     // Oranges
-    _game_objects.add( std::make_shared<Orange>(cm(2.5), cm(70),  cm(20),  0));
-    _game_objects.add( std::make_shared<Orange>(cm(2.5), cm(60),  cm(60),  0));
-    _game_objects.add( std::make_shared<Orange>(cm(2.5), cm(-70), cm(-50), 0));
+    GLfloat orange_radius = cm(2.5);
+    _game_objects.add( std::make_shared<Orange>(orange_radius, cm(70),  cm(20),  orange_radius));
+    _game_objects.add( std::make_shared<Orange>(orange_radius, cm(60),  cm(60),  orange_radius));
+    _game_objects.add( std::make_shared<Orange>(orange_radius, cm(-70), cm(-50), orange_radius));
 
     // Butter
     _game_objects.add( std::make_shared<Butter>(cm(40), cm(57), cm(0)));

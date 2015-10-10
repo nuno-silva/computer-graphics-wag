@@ -1,7 +1,5 @@
 #include "Orange.hpp"
 
-#define SLICES 10
-#define STACKS 10
 
 Orange::Orange(GLdouble radius) : Orange(radius, 0, 0, 0) {}
 
@@ -10,14 +8,17 @@ Orange::Orange(GLdouble radius, GLdouble x, GLdouble y, GLdouble z) : _radius(ra
 }
 
 void Orange::draw() {
+    const GLint num_slices = 20;
+    const GLint num_slacks = 20;
+
     glPushMatrix();
     GameObject::draw();
 
-    glColor3f( 1.0f, 0.4f, 0.0f);
-    glutSolidSphere(_radius, SLICES, STACKS);
+    glColor3f( components3( OrangeColors::skin ));
+    glutSolidSphere(_radius, num_slices, num_slacks);
 #ifdef DEBUG
     glColor3f(0.5f, 0.2f, 0.0f);
-    glutWireSphere(2.0f, SLICES, STACKS);
+    glutWireSphere(_radius, 8, 8);
 #endif
     glPopMatrix();
-};
+}
