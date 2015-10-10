@@ -3,12 +3,11 @@
 #include "DynamicObject.hpp"
 
 class Wheel : public DynamicObject {
+    GLdouble _inner_radius;
+    GLdouble _outer_radius;
 public:
-    static constexpr GLdouble WHEEL_OUTER_RADIUS = 0.005f;
-    static constexpr GLdouble WHEEL_INNER_RADIUS = 0.003f;
+    Wheel(GLdouble inner_radius, GLdouble outer_radius,
+          GLdouble x, GLdouble y, GLdouble z);
 
-    Wheel(GLdouble x, GLdouble y, GLdouble z);
     virtual void draw();
-	void (_STDCALL*drawTorus) (GLdouble, GLdouble, GLint, GLint);
-	virtual void setWireframeState() override;
 };

@@ -1,7 +1,23 @@
+#include "global.hpp"
+
 #include "Car.hpp"
 #include "Wheel.hpp"
 
-#define Y_SCALE 2.0f
+#define SCALE 30
+
+// Car wheels radii
+// FIXME: Why do the wheels look so big?
+constexpr GLdouble inner         = SCALE * cm(0.25);
+constexpr GLdouble outer         = SCALE * cm(0.5);
+
+// Car elements dimensions
+constexpr GLdouble bottom_length = SCALE * cm(5.25);
+constexpr GLdouble bottom_width  = SCALE * cm(2);
+constexpr GLdouble bottom_height = SCALE * cm(1);
+
+constexpr GLdouble top_length    = SCALE * cm(3);
+constexpr GLdouble top_width     = SCALE * cm(1.5);
+constexpr GLdouble top_height    = SCALE * cm(0.75);
 
 
 
@@ -18,14 +34,10 @@ GLdouble Car::getLength() const {
 }
 
 void drawWheels(GLdouble car_width, GLdouble car_length) {
-    const GLdouble outer = Wheel::WHEEL_OUTER_RADIUS;
-    const GLdouble inner = Wheel::WHEEL_INNER_RADIUS;
-
-    Wheel back_left(  (outer - inner) / 2, (car_length / 2 - outer) * Y_SCALE, outer);
-    Wheel back_right((-outer + inner) / 2, (car_length / 2 - outer) * Y_SCALE, outer);
-
-    Wheel front_left(  (outer - inner) / 2, -(car_length / 2 - outer) * Y_SCALE, outer);
-    Wheel front_right((-outer + inner) / 2, -(car_length / 2 - outer) * Y_SCALE, outer);
+    Wheel back_left  (inner, outer, SCALE * cm(2.75), SCALE * cm(-1), outer);
+    Wheel back_right (inner, outer, SCALE * cm(2.75), SCALE * cm( 1), outer);
+    Wheel front_left (inner, outer, cm(0),            SCALE * cm(-1), outer);
+    Wheel front_right(inner, outer, cm(0),            SCALE * cm( 1), outer);
 
     back_left.draw();
     back_right.draw();
@@ -35,22 +47,32 @@ void drawWheels(GLdouble car_width, GLdouble car_length) {
 
 void Car::draw() {
     glPushMatrix();
+    {
+        // FIXME: Why is this here?
+        // GameObject::draw();
 
-    GameObject::draw();
+        // Car bottom
+        glPushMatrix();
+        {
+            glColor3f(0, 0, 1);
+            glTranslated(SCALE * cm(1.625), 0, SCALE * cm(1));
+            glScaled(bottom_length, bottom_width, bottom_height);
+            glutSolidCube(1);
+        }
+        glPopMatrix();
 
-    glTranslatef(0.0f, 0.0f, 0.2f);
-    glScalef(6.0f, 6.0f, 6.0f);
+        // Car top
+        glPushMatrix();
+        {
+            glColor3f(0, 1, 0);
+            glTranslated(SCALE * cm(2.25), 0, SCALE * cm(1.875));
+            glScaled(top_length, top_width, top_height);
+            glutSolidCube(1);
+        }
+        glPopMatrix();
 
-    glPushMatrix();
-
-    glScalef(1.0f, Y_SCALE, 1.0f);
-    glTranslatef(0.0f, 0.0f, -Wheel::WHEEL_OUTER_RADIUS);
-    drawCube(_length);
-
-    glPopMatrix();
-
-    drawWheels(_width, _length);
-
+        drawWheels(_width, _length);
+    }
     glPopMatrix();
 }
 
