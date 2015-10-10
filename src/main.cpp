@@ -18,6 +18,12 @@ void display() {
     game.display(); // this calls flush
 }
 
+/** called when a key is pressed
+* */
+void keyPressed(unsigned char key, int x, int y) {
+	game.keyPressed(key, x, y);
+}
+
 int main( int argc, char *argv[] ) {
     glutInit( &argc, argv );
 

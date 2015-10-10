@@ -19,7 +19,7 @@ public:
     void display();
     void reshape( GLsizei w, GLsizei h );
 
-    void keyPressed();
+	void keyPressed(unsigned char key, int x, int y);
     void onTimer();
     void idle();
     void update();

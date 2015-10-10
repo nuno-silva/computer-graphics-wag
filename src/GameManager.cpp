@@ -38,7 +38,9 @@ void GameManager::reshape( GLsizei w, GLsizei h ) {
 }
 
 
-void GameManager::keyPressed() {}
+void GameManager::keyPressed(unsigned char key, int x, int y) { 
+		
+}
 
 void GameManager::onTimer() {
     /*

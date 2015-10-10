@@ -144,6 +144,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Butter.cpp" />
     <ClCompile Include="src\Camera.cpp" />
     <ClCompile Include="src\Car.cpp" />
     <ClCompile Include="src\Cheerio.cpp" />
@@ -154,14 +155,17 @@
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\GameObjectCollection.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Orange.cpp" />
     <ClCompile Include="src\OrthogonalCamera.cpp" />
     <ClCompile Include="src\River.cpp" />
     <ClCompile Include="src\Roadside.cpp" />
     <ClCompile Include="src\StaticObject.cpp" />
     <ClCompile Include="src\Table.cpp" />
     <ClCompile Include="src\Vector3.cpp" />
+    <ClCompile Include="src\Wheel.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Butter.hpp" />
     <ClInclude Include="src\Camera.hpp" />
     <ClInclude Include="src\Car.hpp" />
     <ClInclude Include="src\Cheerio.hpp" />
@@ -171,12 +175,14 @@
     <ClInclude Include="src\GameObjectCollection.hpp" />
     <ClInclude Include="src\global.hpp" />
     <ClInclude Include="src\Obstacle.hpp" />
+    <ClInclude Include="src\Orange.hpp" />
     <ClInclude Include="src\OrthogonalCamera.hpp" />
     <ClInclude Include="src\River.hpp" />
     <ClInclude Include="src\Roadside.hpp" />
     <ClInclude Include="src\StaticObject.hpp" />
     <ClInclude Include="src\Table.hpp" />
     <ClInclude Include="src\Vector3.hpp" />
+    <ClInclude Include="src\Wheel.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
