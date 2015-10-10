@@ -11,7 +11,7 @@ void Table::draw() {
     glTranslatef( cm(0), cm(0), - _size/2 ); // table origin is on the top face
     GameObject::draw();
 
-    glColor3f( components3(TABLE_COLOR) );
+    glColor3f( components3(TableColors::table) );
     glutSolidCube( _size );
 
 #ifdef DEBUG

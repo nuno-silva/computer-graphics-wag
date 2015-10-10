@@ -15,14 +15,14 @@ void Butter::draw()
     GameObject::draw(); // translate to position
 
     /* butter box */
-    glColor3f( components3( wallColor) );
+    glColor3f( components3( ButterColors::box ) );
     glPushMatrix();
     glScalef( cm(14), cm(9), box_height );
     glutSolidCube( 1.0f ); // draw a 1x1 cube (now scaled)
     glPopMatrix();
 
     /* butter box lid */
-    glColor3f( components3( lidColor ) );
+    glColor3f( components3( ButterColors::lid ) );
     glPushMatrix();
     glTranslatef( cm(0), cm(0), box_height/2 + lid_height/2 );
     glScalef( cm(15), cm(10), lid_height );
