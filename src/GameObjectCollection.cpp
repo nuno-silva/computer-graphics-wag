@@ -40,6 +40,7 @@ void GameObjectCollection::setWireframeState(bool value)
 void GameObjectCollection::invertWireframeState()
 {
 	for (auto gameObj : _children) {
-		gameObj->setDrawAsWireframe(!getDrawAsWireframe());
-	}	
+		gameObj->setDrawAsWireframe(!gameObj->getDrawAsWireframe());
+	}
+
 }

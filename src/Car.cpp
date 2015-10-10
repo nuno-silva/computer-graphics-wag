@@ -34,7 +34,6 @@ void drawWheels(GLdouble car_width, GLdouble car_length) {
 }
 
 void Car::draw() {
-
     glPushMatrix();
 
     GameObject::draw();
@@ -58,9 +57,15 @@ void Car::draw() {
 // @Override
 void Car::setWireframeState() {
 	if (drawAsWireframe) {
+
 		drawCube = glutWireCube;
 	}
 	else {
 		drawCube = glutSolidCube;
 	}
+}
+
+void Car::update(GLdouble a)
+{
+	setWireframeState();
 }

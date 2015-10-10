@@ -14,4 +14,6 @@ public:
     virtual void draw();
 	void (_STDCALL*drawCube) (GLdouble size);
 	virtual void setWireframeState() override;
+	virtual void update(GLdouble a);
+
 };

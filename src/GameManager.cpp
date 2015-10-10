@@ -5,6 +5,7 @@
 #include "OrthogonalCamera.hpp"
 #include "Roadside.hpp"
 #include "Table.hpp"
+#include <iostream>
 
 #include "Butter.hpp"
 #include "Car.hpp"
