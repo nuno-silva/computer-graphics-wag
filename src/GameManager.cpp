@@ -39,7 +39,9 @@ void GameManager::reshape( GLsizei w, GLsizei h ) {
 
 
 void GameManager::keyPressed(unsigned char key, int x, int y) { 
-		
+	if (key == 'a') {
+		// switch object to "wireframe"
+	}
 }
 
 void GameManager::onTimer() {
@@ -61,7 +63,9 @@ void GameManager::idle() {
      */
 }
 
-void GameManager::update() {}
+void GameManager::update() {
+	
+}
 
 void GameManager::init() {
     _game_objects.add( std::make_shared<Table>( m(2), m(0), m(0), m(0) ) );
