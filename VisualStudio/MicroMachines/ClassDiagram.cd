@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Entity" Collapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAIAAAAAAAAAAAAAAAAAACACAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>src\Entity.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Camera">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAACAACAQAAAQAAAAQAAABACACAAgAIAAAEEQAA=</HashCode>
+      <FileName>src\Camera.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Car">
+    <Position X="14.25" Y="7.5" Width="1.5" />
+    <InheritanceLine Type="DynamicObject" FixedToPoint="true">
+      <Path>
+        <Point X="15.75" Y="5.06" />
+        <Point X="15.75" Y="7.125" />
+        <Point X="15" Y="7.125" />
+        <Point X="15" Y="7.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>CAAAABAEAARAAAAGAAIAAAAAAAAgAAAACgAAEQgEICA=</HashCode>
+      <FileName>src\Car.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cheerio">
+    <Position X="7.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAIAAIAAAAAAAAAAAgAAEAAAAAA=</HashCode>
+      <FileName>src\Cheerio.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DynamicObject">
+    <Position X="15" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAQAAABAAAAAAAEAAA=</HashCode>
+      <FileName>src\DynamicObject.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameManager">
+    <Position X="17" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAABAgAAAAAAAAAAAAAECAAIAAEAAAABVAEA=</HashCode>
+      <FileName>src\GameManager.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameObject">
+    <Position X="11.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAIAAAACAAAAAAAAAgAAAAAEoAA=</HashCode>
+      <FileName>src\GameObject.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameObjectCollection">
+    <Position X="5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAIAAACAAAAAAAAAAAACAAAGIAA=</HashCode>
+      <FileName>src\GameObjectCollection.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Obstacle">
+    <Position X="17.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>src\Obstacle.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OrthogonalCamera">
+    <Position X="3" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAACAAAAAAAAAAAAAAAEAQgAgAAAAAAEACg=</HashCode>
+      <FileName>src\OrthogonalCamera.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Roadside">
+    <Position X="5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAoAAAA=</HashCode>
+      <FileName>src\Roadside.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StaticObject">
+    <Position X="8.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAIAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>src\StaticObject.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Table">
+    <Position X="9.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAQAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>src\Table.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Vector3">
+    <Position X="18.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAIQAAAQAAAQAABAAAAAAAAAAAAAgAGABIAA=</HashCode>
+      <FileName>src\Vector3.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Butter">
+    <Position X="16.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAIAAAAAAAAAAAAAIABAQgAAAIAAAAAgAAABAAABA=</HashCode>
+      <FileName>src\Butter.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wheel">
+    <Position X="11.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAIAAAAAQAAAAAAQAgAAAAAAAAQ=</HashCode>
+      <FileName>src\Wheel.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orange">
+    <Position X="18.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAABAAAAIAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>src\Orange.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

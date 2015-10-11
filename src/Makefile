@@ -16,18 +16,15 @@ else
 		endif
 endif
 
-OBJS = main.o
-OBJS += GameManager.o GameObject.o
-OBJS += Camera.o OrthogonalCamera.o
-OBJS += Entity.o River.o Roadside.o StaticObject.o Vector3.o
-OBJS += GameObjectCollection.o Table.o Cheerio.o
+SOURCES := $(wildcard *.cpp)
+OBJS := $(SOURCES:.cpp=.o)
 
 all: micromachines
 
 debug: CXXFLAGS+=-DDEBUG -g
 debug: all
 
-debug_ncolor: CFLAGS+=-DDEBUG_NO_COLORS
+debug_ncolor: CXXFLAGS+=-DDEBUG_NO_COLORS
 debug_ncolor: debug
 
 micromachines: $(OBJS)

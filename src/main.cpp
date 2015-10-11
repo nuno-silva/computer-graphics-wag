@@ -18,6 +18,17 @@ void display() {
     game.display(); // this calls flush
 }
 
+/** called when a key is pressed
+* */
+void keyPressed(unsigned char key, int x, int y) {
+    game.keyPressed(key, x, y);
+}
+
+void onTimer(int value) {
+    game.onTimer(value, onTimer);
+}
+
+
 int main( int argc, char *argv[] ) {
     glutInit( &argc, argv );
 
@@ -33,6 +44,8 @@ int main( int argc, char *argv[] ) {
 
     glutReshapeFunc(reshape);
     glutDisplayFunc(display);
+    glutKeyboardFunc(keyPressed);
+    glutTimerFunc(TIMER_PERIOD, onTimer, TIMER_PERIOD);
 
     glutMainLoop();
 

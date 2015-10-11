@@ -4,8 +4,28 @@
 #ifdef __MACH__
 # include <GLUT/glut.h>
 #else
+# include <stdlib.h>
 # include <GL/glut.h>
 #endif
+
+/* usefull unit conversions, assuming one unit is one meter */
+#define mm(x) ( (x) / 1000.0f ) // millimeter to meter
+#define cm(x) ( (x) / 100.0f  ) // centimeter to meter
+#define dm(x) ( (x) / 10.0f   ) //  decimeter to meter
+#define  m(x) ( (float) (x)   ) //      meter to meter
+
+/* convert a color vector to 3 parameters */
+#define components3(x) x[0],x[1],x[2]
+
+#if __GNUC__
+# define ATTRIBUTE_UNUSED __attribute__((unused))
+#define _STDCALL
+#else
+# define ATTRIBUTE_UNUSED
+// Required by Windows
+#define _STDCALL _stdcall
+#endif
+
 
 /* enables debug prints if defined; we define it in the makefile
 #define DEBUG
@@ -17,6 +37,10 @@
 
 #if defined DEBUG
 #include <cstdio>
+#endif
+
+#ifndef TIMER_PERIOD
+    #define TIMER_PERIOD 10
 #endif
 
 /* terminal colors for DEBUG_COLORS */

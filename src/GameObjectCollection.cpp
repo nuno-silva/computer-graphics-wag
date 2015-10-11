@@ -9,9 +9,8 @@ void GameObjectCollection::draw() {
 
     DBG_PRINT("draw()\n");
 
-    std::vector< std::shared_ptr<GameObject> >::size_type sz = _children.size();
-    for( unsigned i = 0; i < sz; i++ ) {
-        _children[i]->draw();
+    for (auto c : _children) {
+        c->draw();
     }
 }
 
@@ -20,9 +19,8 @@ void GameObjectCollection::update( GLdouble delta_t ) {
 
     DBG_PRINT("update()\n");
 
-    std::vector< std::shared_ptr<GameObject> >::size_type sz = _children.size();
-    for( unsigned i = 0; i < sz; i++ ) {
-        _children[i]->update( delta_t );
+    for (auto c : _children) {
+        c->update( delta_t );
     }
 }
 
@@ -30,4 +28,19 @@ void GameObjectCollection::add( std::shared_ptr<GameObject> g) {
     DBG_PRINTF("addGameObject( %p )\n", (void*)g.get() );
 
     _children.push_back( g );
+}
+
+void GameObjectCollection::setDrawAsWireframe(bool value)
+{
+	for (auto gameObj : _children) {
+		gameObj->setDrawAsWireframe(value);
+	}
+}
+
+void GameObjectCollection::invertWireframeState()
+{
+	for (auto gameObj : _children) {
+		gameObj->setDrawAsWireframe(!gameObj->getDrawAsWireframe());
+	}
+
 }

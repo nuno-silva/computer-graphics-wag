@@ -3,6 +3,7 @@
 Cheerio::Cheerio( GLdouble innerRadius,  GLdouble outerRadius ) :
                     _innerRadius(innerRadius), _outerRadius(outerRadius)
 {
+	setWireframeState();
 }
 
 Cheerio::Cheerio( GLdouble innerRadius,  GLdouble outerRadius,
@@ -10,11 +11,9 @@ Cheerio::Cheerio( GLdouble innerRadius,  GLdouble outerRadius,
                     _innerRadius(innerRadius), _outerRadius(outerRadius)
 {
     setPosition( x, y, z );
+	setWireframeState();
 }
 
-Cheerio::~Cheerio()
-{
-}
 
 void Cheerio::draw()
 {
@@ -22,7 +21,19 @@ void Cheerio::draw()
 	GameObject::draw();
 
     glColor3f( 1.0f, 0.33f, 0.0f );
-    glutSolidTorus( _innerRadius, _outerRadius, 10, 10 );
+    drawTorus( _innerRadius, _outerRadius, 10, 10 );
 
     glPopMatrix();
+}
+
+void Cheerio::setWireframeState()
+{
+    // NOTE: duplicate code, consider deriving Cheerio and Wheel from
+	// same base class.
+	if (drawAsWireframe) {
+		drawTorus = glutWireTorus;
+	}
+	else {
+		drawTorus = glutSolidTorus;
+	}   
 }

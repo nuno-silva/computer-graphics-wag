@@ -13,5 +13,7 @@ public:
     virtual ~GameObjectCollection();
     virtual void draw();
     virtual void update( GLdouble delta_t );
-    void add( std::shared_ptr<GameObject> g );
+    void add ( std::shared_ptr<GameObject> g );
+	virtual void setDrawAsWireframe(bool value) override;
+	virtual void invertWireframeState();
 };
