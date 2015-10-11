@@ -36,6 +36,14 @@ Vector3 Vector3::operator-(const Vector3& vec) const {
     return Vector3(getX() - vec.getX(), getY() - vec.getY(), getZ() - vec.getZ());
 }
 
+bool Vector3::operator==(const Vector3 & v) const {
+    return _x == v.getX() && _y == v.getY() && _z == v.getZ();
+}
+
+bool Vector3::operator!=(const Vector3 & v) const {
+    return !(*this == v);
+}
+
 void Vector3::glTranslate() const {
     glTranslatef( _x, _y, _z );
 }

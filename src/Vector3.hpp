@@ -22,6 +22,9 @@ public:
     Vector3 operator+(const Vector3&) const;
     Vector3 operator-(const Vector3&) const;
 
+    bool operator==(const Vector3 &) const;
+    bool operator!=(const Vector3 &) const;
+
     /** glTranslate using this vector */
     void glTranslate() const;
 };
