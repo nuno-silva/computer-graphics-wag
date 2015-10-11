@@ -76,10 +76,10 @@ void GameManager::init() {
     _game_objects.add( std::make_shared<Roadside>( 0.92f ) );
 
     // Car
-    _game_objects.add( std::make_shared<Car>(0.04f, 0.04f) );
+    _game_objects.add( std::make_shared<Car>(1.1f, 30.0f) );
 
     // Oranges
-    GLfloat orange_radius = cm(2.5);
+    const GLfloat orange_radius = cm(2.5);
     _game_objects.add( std::make_shared<Orange>(orange_radius, cm(70),  cm(20),  orange_radius));
     _game_objects.add( std::make_shared<Orange>(orange_radius, cm(60),  cm(60),  orange_radius));
     _game_objects.add( std::make_shared<Orange>(orange_radius, cm(-70), cm(-50), orange_radius));
@@ -92,7 +92,7 @@ void GameManager::init() {
     _game_objects.add( std::make_shared<Butter>(cm(-80), cm(70), cm(0)));
 
     _activeCamera = std::make_shared<OrthogonalCamera>(-2.0f, 2.0f, -2.0f, 2.0f, -2.0f,2.0f);
-    _activeCamera->setPosition( 1.0f, 0.0f, 0.0f );
+    _activeCamera->setPosition( 0.0f, 0.0f, 1.0f );
     _cameras.push_back( _activeCamera );
 }
 

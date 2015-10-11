@@ -2,7 +2,7 @@
 
 
 Camera::Camera( GLdouble near, GLdouble far ) : Entity(),
-    _up(0.0f, 0.0f, 1.0f), _center(0.0f, 0.0f, 0.0f), _near(near), _far(far) {}
+    _up(0.0f, 1.0f, .0f), _center(0.0f, 0.0f, 0.0f), _near(near), _far(far) {}
 
 Camera::~Camera() {}
 

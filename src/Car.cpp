@@ -3,41 +3,27 @@
 #include "Car.hpp"
 #include "Wheel.hpp"
 
-#define SCALE 30
-
-// Car wheels radii
-// FIXME: Why do the wheels look so big?
-constexpr GLdouble inner         = SCALE * cm(0.25);
-constexpr GLdouble outer         = SCALE * cm(0.5);
-
-// Car elements dimensions
-constexpr GLdouble bottom_length = SCALE * cm(5.25);
-constexpr GLdouble bottom_width  = SCALE * cm(2);
-constexpr GLdouble bottom_height = SCALE * cm(1);
-
-constexpr GLdouble top_length    = SCALE * cm(3);
-constexpr GLdouble top_width     = SCALE * cm(1.5);
-constexpr GLdouble top_height    = SCALE * cm(0.75);
-
-
-
-Car::Car(GLdouble width, GLdouble length) : _width(width), _length(length) { 
-	setWireframeState();
+Car::Car(GLdouble accel, GLdouble scale, GLdouble x, GLdouble y, GLdouble z) :
+    _acceleration(accel), _scale(scale)
+{
+    setPosition(x, y, z);
 }
 
-GLdouble Car::getWidth() const {
-    return _width;
+Car::Car(GLdouble accel, GLdouble scale) : Car::Car(accel, scale, 0, 0, 0) {
+    setWireframeState();
 }
 
-GLdouble Car::getLength() const {
-    return _length;
+Car::Car(GLdouble accel) : Car::Car(accel, 1.0f) {}
+
+GLdouble Car::getScale() const {
+    return _scale;
 }
 
-void drawWheels(GLdouble car_width, GLdouble car_length) {
-    Wheel back_left  (inner, outer, SCALE * cm(2.75), SCALE * cm(-1), outer);
-    Wheel back_right (inner, outer, SCALE * cm(2.75), SCALE * cm( 1), outer);
-    Wheel front_left (inner, outer, cm(0),            SCALE * cm(-1), outer);
-    Wheel front_right(inner, outer, cm(0),            SCALE * cm( 1), outer);
+static void drawWheels(GLdouble inner, GLdouble outer, GLdouble scale) {
+    Wheel back_left  (inner, outer, scale * cm(2.75), scale * cm(-1), inner + outer);
+    Wheel back_right (inner, outer, scale * cm(2.75), scale * cm( 1), inner + outer);
+    Wheel front_left (inner, outer, scale * cm(0),    scale * cm(-1), inner + outer);
+    Wheel front_right(inner, outer, scale * cm(0),    scale * cm( 1), inner + outer);
 
     back_left.draw();
     back_right.draw();
@@ -49,45 +35,42 @@ void Car::draw() {
     glPushMatrix();
     {
         // FIXME: Why is this here?
-        // GameObject::draw();
+        GameObject::draw();
 
         // Car bottom
         glPushMatrix();
         {
-            glColor3f(0, 0, 1);
-            glTranslated(SCALE * cm(1.625), 0, SCALE * cm(1));
-            glScaled(bottom_length, bottom_width, bottom_height);
-            glutSolidCube(1);
+            glColor3f(1, 0, 0);
+            glTranslated(_scale * cm(1.625), 0, _wheel_inner_radius + _scale * cm(1));
+            glScaled(_bottom_length, _bottom_width, _bottom_height);
+            drawCube(1);
         }
         glPopMatrix();
 
         // Car top
         glPushMatrix();
         {
-            glColor3f(0, 1, 0);
-            glTranslated(SCALE * cm(2.25), 0, SCALE * cm(1.875));
-            glScaled(top_length, top_width, top_height);
-            glutSolidCube(1);
+            glColor3f(1, 1, 0);
+            glTranslated(_scale * cm(2.25), 0, _wheel_inner_radius + _scale * cm(1.875));
+            glScaled(_top_length, _top_width, _top_height);
+            drawCube(1);
         }
         glPopMatrix();
 
-        drawWheels(_width, _length);
+        drawWheels(_wheel_inner_radius, _wheel_outer_radius, _scale);
     }
     glPopMatrix();
 }
 
-// @Override
 void Car::setWireframeState() {
-	if (drawAsWireframe) {
-
-		drawCube = glutWireCube;
-	}
-	else {
-		drawCube = glutSolidCube;
-	}
+    if (drawAsWireframe) {
+        drawCube = glutWireCube;
+    }
+    else {
+        drawCube = glutSolidCube;
+    }
 }
 
-void Car::update(GLdouble a)
-{
-	setWireframeState();
+void Car::update(GLdouble a) {
+    setWireframeState();
 }
