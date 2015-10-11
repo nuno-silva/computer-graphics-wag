@@ -20,3 +20,10 @@ To run Micro Machines:
 ```shell
 make run
 ```
+
+# Compiling and running on Windows
+Good luck using Visual Studio.
+
+# Coding style
+- 4 spaces indent
+
