@@ -4,9 +4,10 @@
 Butter::Butter( GLdouble x, GLdouble y, GLdouble z )
 {
     setPosition( x, y, z );
+    setWireframeState();
 }
 
-Butter::~Butter() { }
+Butter::~Butter() { setWireframeState(); }
 
 void Butter::draw()
 {
