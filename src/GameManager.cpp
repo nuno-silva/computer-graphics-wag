@@ -66,7 +66,7 @@ void GameManager::init() {
     _game_objects.add( std::make_shared<Roadside>( 0.92f ) );
 
     // Car
-    _game_objects.add( std::make_shared<Car>(1.1f, 3.0f) );
+    _game_objects.add( std::make_shared<Car>( 3.0f ) );
 
     // Oranges
     const GLfloat orange_radius = cm(2.5);

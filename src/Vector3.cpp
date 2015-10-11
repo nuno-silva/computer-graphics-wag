@@ -1,6 +1,6 @@
 #include "Vector3.hpp"
 
-Vector3::Vector3() : _x(0), _y(0), _z(0) {}
+Vector3::Vector3() : _x(0), _y(0), _z(0) { }
 
 Vector3::Vector3(GLdouble x, GLdouble y, GLdouble z) {
     _x = x;

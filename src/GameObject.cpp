@@ -10,7 +10,7 @@ void Axis3d_draw() {
 
     glBegin( GL_LINES);
 
-	
+
     glColor3f( 1.0f, 0.0f, 0.0f );
     glVertex3f( 0.0f, 0.0f, 0.0f );
     glVertex3f( 1.1f, 0.0f, 0.0f );
@@ -31,7 +31,7 @@ void Axis3d_draw() {
 }
 
 void GameObject::draw() {
-    DBG_PRINT("draw() " KCYN "translate\n");
+    DBG_PRINT( "draw() " KCYN "translate\n");
 
     // translate to the object's position
     // subclasses should call gl[Push|Pop]Matrix
@@ -44,17 +44,17 @@ void GameObject::draw() {
 
 void GameObject::setDrawAsWireframe(bool value)
 {
-	drawAsWireframe = value;
+    drawAsWireframe = value;
 }
 
 bool GameObject::getDrawAsWireframe()
 {
-	return drawAsWireframe;
+    return drawAsWireframe;
 }
 
 void GameObject::setWireframeState()
 {
-	DBG_PRINT("GameObject::setWireframeState()\n");
+    DBG_PRINT("GameObject::setWireframeState()\n");
 
 }
 

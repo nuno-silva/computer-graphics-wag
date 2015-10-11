@@ -1,17 +1,15 @@
 #include "global.hpp"
 #include "Car.hpp"
 
-Car::Car(GLdouble accel, GLdouble scale, GLdouble x, GLdouble y, GLdouble z) :
-    _acceleration(accel), _scale(scale)
+Car::Car(GLdouble scale, GLdouble x, GLdouble y, GLdouble z) :
+    _scale(scale)
 {
     setPosition(x, y, z);
 }
 
-Car::Car(GLdouble accel, GLdouble scale) : Car::Car(accel, scale, 0, 0, 0) {
+Car::Car(GLdouble scale) : Car::Car(scale, 0, 0, 0) {
     setWireframeState();
 }
-
-Car::Car(GLdouble accel) : Car::Car(accel, 1.0f) { }
 
 GLdouble Car::getScale() const {
     return _scale;
@@ -24,7 +22,7 @@ void Car::drawWheels(GLdouble inner, GLdouble outer, GLdouble scale) {
     wheels[1].setState(inner, outer, scale * cm(2.75), scale * cm(1), inner + outer);
     wheels[2].setState(inner, outer, scale * cm(0), scale * cm(-1), inner + outer);
     wheels[3].setState(inner, outer, scale * cm(0), scale * cm(1), inner + outer);
-    
+
     for (int i = 0; i < NUM_WHEELS; i++) {
         wheels[i].draw();
     }
@@ -73,7 +71,7 @@ void Car::setWireframeState() {
 
 void Car::update(GLdouble a) {
     setWireframeState();
-    
+
     for (int i = 0; i < NUM_WHEELS; i++) {
         wheels[i].update(a);
     }
@@ -82,7 +80,7 @@ void Car::update(GLdouble a) {
 void Car::setDrawAsWireframe(bool value)
 {
     drawAsWireframe = value;
-    
+
     for (int i = 0; i < NUM_WHEELS; i++) {
         wheels[i].setDrawAsWireframe(value);
     }
