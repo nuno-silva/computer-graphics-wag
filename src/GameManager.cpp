@@ -38,11 +38,11 @@ void GameManager::reshape( GLsizei w, GLsizei h ) {
 }
 
 
-void GameManager::keyPressed(unsigned char key, int x, int y) { 
-	if (key == 'a') {
-		// switch object to "wireframe"
-		_game_objects.invertWireframeState();
-	}
+void GameManager::keyPressed(unsigned char key, int x, int y) {
+    if (key == 'a') {
+        // switch object to "wireframe"
+        _game_objects.invertWireframeState();
+    }
 }
 
 void GameManager::onTimer(int value, onTimerCallback onTimer) {
@@ -66,7 +66,7 @@ void GameManager::init() {
     _game_objects.add( std::make_shared<Roadside>( 0.92f ) );
 
     // Car
-    _game_objects.add( std::make_shared<Car>(1.1f, 30.0f) );
+    _game_objects.add( std::make_shared<Car>(1.1f, 3.0f) );
 
     // Oranges
     const GLfloat orange_radius = cm(2.5);
