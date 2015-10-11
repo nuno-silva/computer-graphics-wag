@@ -5,7 +5,6 @@
 #include "OrthogonalCamera.hpp"
 #include "Roadside.hpp"
 #include "Table.hpp"
-#include <iostream>
 
 #include "Butter.hpp"
 #include "Car.hpp"
@@ -46,27 +45,18 @@ void GameManager::keyPressed(unsigned char key, int x, int y) {
 	}
 }
 
-void GameManager::onTimer() {
-    /*
-    delta_t = ?
-    update();
-    post_display();
-    timer( 10ms );
-     */
+void GameManager::onTimer(int value, onTimerCallback onTimer) {
+    int newElapsedTime = glutGet(GLUT_ELAPSED_TIME);
+    GLdouble delta = newElapsedTime - lastElapsedTime;
+    lastElapsedTime = newElapsedTime;
+    update(delta);
+    glutPostRedisplay();
+    glutTimerFunc(TIMER_PERIOD, onTimer, TIMER_PERIOD);
 }
 
-/* use either onTimer() or idle() */
-
-void GameManager::idle() {
-    /*
-    delta_t = ?
-    update();
-    post_display();
-     */
-}
-
-void GameManager::update() {
-	
+void GameManager::update(GLdouble delta) {
+    // TODO: change delta
+    _game_objects.update(delta);
 }
 
 void GameManager::init() {

@@ -22,6 +22,7 @@
 #define _STDCALL
 #else
 # define ATTRIBUTE_UNUSED
+// Required by Windows
 #define _STDCALL _stdcall
 #endif
 
@@ -36,6 +37,10 @@
 
 #if defined DEBUG
 #include <cstdio>
+#endif
+
+#ifndef TIMER_PERIOD
+    #define TIMER_PERIOD 10
 #endif
 
 /* terminal colors for DEBUG_COLORS */

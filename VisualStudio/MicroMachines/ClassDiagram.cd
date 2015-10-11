@@ -25,7 +25,7 @@
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>QAAAAAAAAAQEAAAAAAIAAAAAABAAAAAABgAAAAAEAAA=</HashCode>
+      <HashCode>CAAAABAEAARAAAAGAAIAAAAAAAAgAAAACgAAEQgEICA=</HashCode>
       <FileName>src\Car.hpp</FileName>
     </TypeIdentifier>
   </Class>
@@ -46,7 +46,7 @@
   <Class Name="GameManager">
     <Position X="17" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAQAABAwAAAAAAAAAAAAAECAAIAAEAAAABUAEA=</HashCode>
+      <HashCode>AAAAAAAQAABAgAAAAAAAAAAAAAECAAIAAEAAAABVAEA=</HashCode>
       <FileName>src\GameManager.hpp</FileName>
     </TypeIdentifier>
   </Class>
@@ -60,7 +60,7 @@
   <Class Name="GameObjectCollection">
     <Position X="5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAQAAAAAAAAAAAAAAIAAACAAAAAAAAAAgACAAAGAAA=</HashCode>
+      <HashCode>AAAQAAAAAAAAAAAAAAIAAACAAAAAAAAAAAACAAAGIAA=</HashCode>
       <FileName>src\GameObjectCollection.hpp</FileName>
     </TypeIdentifier>
   </Class>
@@ -109,14 +109,14 @@
   <Class Name="Butter">
     <Position X="16.25" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAIABAQAAAAAAAAAAAAAABAAABA=</HashCode>
+      <HashCode>AAIAIAAAAAAAAAAAAAIABAQgAAAIAAAAAgAAABAAABA=</HashCode>
       <FileName>src\Butter.hpp</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Wheel">
     <Position X="11.75" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAEAAAAAAAAAAAIAAAAACAAAAAAQAgAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAQAAAAAAAAAIAAAAAQAAAAAAQAgAAAAAAAAQ=</HashCode>
       <FileName>src\Wheel.hpp</FileName>
     </TypeIdentifier>
   </Class>

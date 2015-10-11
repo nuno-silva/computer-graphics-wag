@@ -2,7 +2,9 @@
 
 #include "DynamicObject.hpp"
 #include "global.hpp"
+#include "Wheel.hpp"
 
+#define NUM_WHEELS 4
 class Car : public DynamicObject {
     GLdouble _acceleration;
     GLdouble _scale = 1.0f;
@@ -34,5 +36,9 @@ public:
 
     virtual void setWireframeState() override;
     virtual void update(GLdouble a) override;
+    virtual void setDrawAsWireframe(bool value) override;
+    virtual void drawWheels(GLdouble inner, GLdouble outer, GLdouble scal);
 
+private:
+    Wheel wheels[NUM_WHEELS] = { Wheel(), Wheel(), Wheel(), Wheel() };
 };

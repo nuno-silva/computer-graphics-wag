@@ -18,7 +18,7 @@ void Butter::draw()
     glColor3f( components3( ButterColors::box ) );
     glPushMatrix();
     glScalef( box_width, box_length, box_height );
-    glutSolidCube( 1.0f ); // draw a 1x1 cube (now scaled)
+    drawCube( 1.0f ); // draw a 1x1 cube (now scaled)
     glPopMatrix();
 
     /* butter box lid */
@@ -26,8 +26,18 @@ void Butter::draw()
     glTranslatef( cm(0), cm(0), box_height/2 + lid_height/2 );
     glColor3f( components3( ButterColors::lid ) );
     glScalef( lid_width, lid_length, lid_height );
-    glutSolidCube( 1.0f );
+    drawCube( 1.0f );
     glPopMatrix();
 
     glPopMatrix();
+}
+
+void Butter::setWireframeState()
+{
+    if (drawAsWireframe) {
+        drawCube = glutWireCube;
+    }
+    else {
+        drawCube = glutSolidCube;
+    }
 }

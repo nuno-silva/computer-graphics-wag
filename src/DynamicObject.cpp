@@ -2,6 +2,7 @@
 
 void DynamicObject::update(GLdouble delta_t) {
     (void) delta_t;
+    setWireframeState();
 }
 
 void DynamicObject::setSpeed(const Vector3 & speed) {

@@ -6,6 +6,9 @@
 #include "GameObject.hpp"
 #include "GameObjectCollection.hpp"
 #include "Camera.hpp"
+#include "global.hpp"
+
+typedef void(*onTimerCallback) (int);
 
 class GameManager {
     GameObjectCollection                 _game_objects;
@@ -18,11 +21,12 @@ public:
 
     void display();
     void reshape( GLsizei w, GLsizei h );
-
 	void keyPressed(unsigned char key, int x, int y);
-    void onTimer();
-    void idle();
-    void update();
+    void onTimer(int value, onTimerCallback onTimer);
+    void update(GLdouble delta);
     void init();
+
+public:
+    unsigned int lastElapsedTime = 0;
 };
 

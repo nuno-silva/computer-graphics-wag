@@ -58,6 +58,7 @@ void GameObject::setWireframeState()
 
 }
 
-void GameObject::update(ATTRIBUTE_UNUSED GLdouble delta_t ) {
+void GameObject::update(GLdouble delta_t ) {
     DBG_PRINT("update()\n");
+    setWireframeState();
 }

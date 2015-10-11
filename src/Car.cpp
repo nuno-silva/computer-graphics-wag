@@ -1,7 +1,5 @@
 #include "global.hpp"
-
 #include "Car.hpp"
-#include "Wheel.hpp"
 
 Car::Car(GLdouble accel, GLdouble scale, GLdouble x, GLdouble y, GLdouble z) :
     _acceleration(accel), _scale(scale)
@@ -13,22 +11,24 @@ Car::Car(GLdouble accel, GLdouble scale) : Car::Car(accel, scale, 0, 0, 0) {
     setWireframeState();
 }
 
-Car::Car(GLdouble accel) : Car::Car(accel, 1.0f) {}
+Car::Car(GLdouble accel) : Car::Car(accel, 1.0f) { }
 
 GLdouble Car::getScale() const {
     return _scale;
 }
 
-static void drawWheels(GLdouble inner, GLdouble outer, GLdouble scale) {
-    Wheel back_left  (inner, outer, scale * cm(2.75), scale * cm(-1), inner + outer);
-    Wheel back_right (inner, outer, scale * cm(2.75), scale * cm( 1), inner + outer);
-    Wheel front_left (inner, outer, scale * cm(0),    scale * cm(-1), inner + outer);
-    Wheel front_right(inner, outer, scale * cm(0),    scale * cm( 1), inner + outer);
+void Car::drawWheels(GLdouble inner, GLdouble outer, GLdouble scale) {
 
-    back_left.draw();
-    back_right.draw();
-    front_left.draw();
-    front_right.draw();
+    // TODO: REFRACTOR THIS, I AM SORRY, BUT WE ARE IN A HURRY!
+    wheels[0].setState(inner, outer, scale * cm(2.75), scale * cm(-1), inner + outer);
+    wheels[1].setState(inner, outer, scale * cm(2.75), scale * cm(1), inner + outer);
+    wheels[2].setState(inner, outer, scale * cm(0), scale * cm(-1), inner + outer);
+    wheels[3].setState(inner, outer, scale * cm(0), scale * cm(1), inner + outer);
+    
+    for (int i = 0; i < NUM_WHEELS; i++) {
+        wheels[i].draw();
+    }
+
 }
 
 void Car::draw() {
@@ -73,4 +73,17 @@ void Car::setWireframeState() {
 
 void Car::update(GLdouble a) {
     setWireframeState();
+    
+    for (int i = 0; i < NUM_WHEELS; i++) {
+        wheels[i].update(a);
+    }
+}
+
+void Car::setDrawAsWireframe(bool value)
+{
+    drawAsWireframe = value;
+    
+    for (int i = 0; i < NUM_WHEELS; i++) {
+        wheels[i].setDrawAsWireframe(value);
+    }
 }

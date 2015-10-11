@@ -1,7 +1,6 @@
 #pragma once
 
 #include "StaticObject.hpp"
-
 class Cheerio : public StaticObject
 {
 public:
@@ -11,6 +10,8 @@ public:
     virtual void draw();
 	virtual void setWireframeState() override;
 	void (_STDCALL*drawTorus) (GLdouble, GLdouble, GLint, GLint);
+
+        
 private:
     GLdouble _innerRadius;
     GLdouble _outerRadius;
