@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -Wall -Wextra -pedantic
+CXXFLAGS = -Wall -Wextra -pedantic -MMD
 CXXFLAGS+= -Wno-variadic-macros -std=c++11
 
 ifeq ($(OS),Windows_NT)
@@ -8,7 +8,7 @@ else
 		UNAME_S := $(shell uname -s)
 		ifeq ($(UNAME_S),Linux)
 				LDLIBS = -lGL -lGLU -lglut
-				CXXFLAGS += -Og -g
+				CXXFLAGS += -Og -ggdb
 		endif
 		ifeq ($(UNAME_S),Darwin)
 				CXXFLAGS += -Wno-deprecated-declarations -g
@@ -33,9 +33,6 @@ micromachines: $(OBJS)
 # pull in dependency info for *existing* .o files
 -include $(OBJS:.o=.d)
 
-# compile and generate dependency info
-%.o: %.cpp
-	$(CXX) -MMD -c $(CXXFLAGS) $*.cpp -o $*.o
 
 run: micromachines
 	./micromachines
