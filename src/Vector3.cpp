@@ -1,4 +1,5 @@
 #include "Vector3.hpp"
+#include <cmath>
 
 Vector3::Vector3() : _x(0), _y(0), _z(0) { }
 
@@ -15,6 +16,21 @@ GLdouble Vector3::getY() const { return _y; }
 GLdouble Vector3::getZ() const { return _z; }
 
 void Vector3::set(GLdouble x, GLdouble y, GLdouble z) { _x = x; _y = y; _z = z; }
+
+
+GLdouble Vector3::norm() const {
+    GLdouble nrm;
+#define pow2(x) pow(x, 2.0f)
+    nrm = sqrt(  pow2(_x) + pow2(_y) + pow2(_z) );
+    return nrm;
+}
+
+Vector3 Vector3::normalized() const {
+    GLdouble inverse_norm = 1.0f / norm();
+    Vector3 n = *this * inverse_norm;
+    return n;
+}
+
 
 Vector3 Vector3::operator=(const Vector3 & vec) {
     _x = vec.getX();
