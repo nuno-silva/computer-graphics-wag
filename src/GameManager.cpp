@@ -72,14 +72,12 @@ void GameManager::onTimer(int value, onTimerCallback onTimer) {
 }
 
 void GameManager::update(GLdouble delta) {
-    // TODO: change delta
     _game_objects.update(delta);
 }
 
 void GameManager::init() {
     _game_objects.add( std::make_shared<Table>( m(2), m(0), m(0), m(0) ) );
 
-    // TODO: meter roadside dentro de Table?
     _game_objects.add( std::make_shared<Roadside>( 0.92f ) );
 
     // Car
@@ -98,7 +96,7 @@ void GameManager::init() {
     _game_objects.add( std::make_shared<Butter>(cm(30),  cm(20),  cm(0)));
     _game_objects.add( std::make_shared<Butter>(cm(-80), cm(70),  cm(0)));
 
-    _activeCamera = std::make_shared<OrthogonalCamera>(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f,1.0f);
+    _activeCamera = std::make_shared<OrthogonalCamera>(-1.2f, 1.2f, -1.2f, 1.2f, -1.2f,1.2f);
     _activeCamera->setPosition( 0.0f, 0.0f, 1.0f );
     _cameras.push_back( _activeCamera );
 }

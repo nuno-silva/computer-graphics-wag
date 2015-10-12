@@ -5,9 +5,9 @@
 
 #include <iostream>
 
-#define ACCEL cm(10)
+#define ACCEL cm(150)
 
-#define MAX_SPEED cm(40)
+#define MAX_SPEED cm(100)
 
 DynamicObject::DynamicObject() : _accel(0.0f), _speed(0.0f),
                                  _orientation(-1.0f, 0.0f, 0.0f) { }
@@ -26,13 +26,13 @@ void DynamicObject::update(GLdouble delta_t) {
     if (_turnRight) {
         _turnRight = false;
         Vector3 left = _orientation.crossProduct(unitZ);
-        Vector3 newOrient = _orientation + left * (0.33f);
+        Vector3 newOrient = _orientation + left * 10 * delta_t_s;
         angle = newOrient.angleBetween(neg_x);
         _orientation = newOrient;
     } else if (_turnLeft) {
         _turnLeft = false;
         Vector3 right = unitZ.crossProduct(_orientation);
-        Vector3 newOrient = _orientation + right * 0.33f;
+        Vector3 newOrient = _orientation + right * 10 * delta_t_s;
         angle = newOrient.angleBetween(neg_x);
         _orientation = newOrient;
     }
@@ -49,8 +49,11 @@ void DynamicObject::update(GLdouble delta_t) {
         _speed -= _accel * delta_t_s;
     }
 
+    if (fabs(_speed) < cm(2)) {
+        _speed = 0;
+    }
 
-
+    _accel = 0.0f;
 }
 
 void DynamicObject::speedUp() {
@@ -58,7 +61,7 @@ void DynamicObject::speedUp() {
 }
 
 void DynamicObject::slowDown() {
-    _accel = -2 *ACCEL;
+    _accel = -1 *ACCEL;
 }
 
 void DynamicObject::turnRight()
