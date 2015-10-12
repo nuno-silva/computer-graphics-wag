@@ -5,8 +5,10 @@
 
 #include <iostream>
 
-DynamicObject::DynamicObject() : _acceleration(0.0f, 0.0f, 0.0f),
-                                 _speed(0.0f, 0.0f, 0.0f),
+#define ACCEL 0.00001f
+#define SPEED_LIMIT ACCEL
+
+DynamicObject::DynamicObject() : _accel(0.0f), _speed(0.0f),
                                  _orientation(-1.0f, 0.0f, 0.0f) { }
 
 DynamicObject::DynamicObject(Vector3 orientation) : DynamicObject()
@@ -17,58 +19,37 @@ DynamicObject::DynamicObject(Vector3 orientation) : DynamicObject()
 void DynamicObject::update(GLdouble delta_t) {
     setWireframeState();
 
-    setPosition(getPosition() + _speed * delta_t +
-                    _acceleration * 0.5f * pow(delta_t, 2));
-    std::cout << "Position: (" << getPosition().getX() << "," << getPosition().getY() << "," << getPosition().getZ() << ")" << std::endl;
-
-
-    _speed = _speed + _acceleration * delta_t;
-
-    // std::cout << "Speed: " << _speed.norm() << std::endl;
-
-    if (_speed != nullVector) {
-        _orientation  = _speed.normalized();
-    }
-    _acceleration = nullVector;
+    setPosition(getPosition() +
+                _orientation * _speed * delta_t +
+                _orientation * _accel * 0.5f * pow(delta_t, 2));
+    _speed = _speed + _accel * delta_t;
+    _accel = 0;
 }
 
 void DynamicObject::speedUp() {
-    _acceleration = _orientation * 0.0001;
-    // std::cout << "Accel: (" << _acceleration.getX() << "," << _acceleration.getY() << "," << _acceleration.getZ() << ")" << std::endl;
+    _accel = ACCEL;
 }
 
 void DynamicObject::slowDown() {
-    _acceleration = _orientation * (-0.0001);
+    _accel = -ACCEL;
 }
 
 /* acceleration */
-void DynamicObject::setAcceleration(const Vector3 & acceleration) {
-    _acceleration = acceleration;
+void DynamicObject::setAccel(GLdouble accel) {
+    _accel = accel;
 }
 
-void DynamicObject::setAcceleration(GLdouble x, GLdouble y, GLdouble z) {
-    Vector3 v;
-    v.set(x, y, z);
-    _acceleration = v;
-}
-
-Vector3 DynamicObject::getAcceleration() const {
-    return _acceleration;
+GLdouble DynamicObject::getAccel() const {
+    return _accel;
 }
 
 
 /* speed */
-void DynamicObject::setSpeed(const Vector3 & speed) {
+void DynamicObject::setSpeed(GLdouble speed) {
     _speed = speed;
 }
 
-void DynamicObject::setSpeed(GLdouble x, GLdouble y, GLdouble z) {
-    Vector3 v;
-    v.set(x, y, z);
-    _speed = v;
-}
-
-Vector3 DynamicObject::getSpeed() const {
+GLdouble DynamicObject::getSpeed() const {
     return _speed;
 }
 

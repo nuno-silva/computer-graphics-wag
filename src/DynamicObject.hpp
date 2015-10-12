@@ -5,9 +5,9 @@
 
 class DynamicObject : public GameObject {
 private:
-    Vector3 _acceleration;
-    Vector3 _speed;
-    Vector3 _orientation;
+    GLdouble _accel;
+    GLdouble _speed;
+    Vector3  _orientation;
 public:
     DynamicObject();
     DynamicObject(Vector3 orientation);
@@ -18,17 +18,15 @@ public:
     void turnRight();
     void turnLeft();
 
-    void setAcceleration(const Vector3& acceleration);
-    void setAcceleration(GLdouble x, GLdouble y, GLdouble z);
+    void setAccel(GLdouble accel);
 
-    void setSpeed(const Vector3& acceleration);
-    void setSpeed(GLdouble x, GLdouble y, GLdouble z);
+    void setSpeed(GLdouble speed);
 
     void setOrientation(const Vector3& orientation);
     void setOrientation(GLdouble x, GLdouble y, GLdouble z);
 
-    Vector3 getAcceleration() const;
-    Vector3 getSpeed() const;
+    GLdouble getAccel() const;
+    GLdouble getSpeed() const;
     Vector3 getOrientation() const;
 
     virtual void draw() = 0;
