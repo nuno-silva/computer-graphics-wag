@@ -11,7 +11,7 @@ private:
 public:
     DynamicObject();
     DynamicObject(Vector3 orientation);
-    void update(GLdouble delta_t);
+    void update(GLdouble delta_t) override;
 
     void speedUp();
     void slowDown();

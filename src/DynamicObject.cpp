@@ -19,8 +19,8 @@ void DynamicObject::update(GLdouble delta_t) {
 
     setPosition(getPosition() + _speed * delta_t +
                     _acceleration * 0.5f * pow(delta_t, 2));
+    std::cout << "Position: (" << getPosition().getX() << "," << getPosition().getY() << "," << getPosition().getZ() << ")" << std::endl;
 
-    // std::cout << "Position: (" << getPosition().getX() << "," << getPosition().getY() << "," << getPosition().getZ() << ")" << std::endl;
 
     _speed = _speed + _acceleration * delta_t;
 
