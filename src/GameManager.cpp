@@ -1,4 +1,5 @@
 
+#include "Butter.hpp"
 #include "Car.hpp"
 #include "GameManager.hpp"
 #include "Orange.hpp"
@@ -6,10 +7,9 @@
 #include "Roadside.hpp"
 #include "Table.hpp"
 
-#include "Butter.hpp"
-#include "Car.hpp"
+#include <iostream>
 
-GameManager::GameManager() : _game_objects(), _cameras() {}
+GameManager::GameManager() : _game_objects(), _cameras(), _car(5.0f) {}
 
 GameManager::~GameManager() {}
 
@@ -45,6 +45,15 @@ void GameManager::keyPressed(unsigned char key, int x, int y) {
     }
 }
 
+void GameManager::specialPressed(int key, int x, int y) {
+    if (key == 101) { // Up arrow
+        _car.speedUp();
+    } else if (key == 103) { // Down arrow
+        _car.slowDown();
+    }
+}
+
+
 void GameManager::onTimer(int value, onTimerCallback onTimer) {
     int newElapsedTime = glutGet(GLUT_ELAPSED_TIME);
     GLdouble delta = newElapsedTime - lastElapsedTime;
@@ -66,7 +75,7 @@ void GameManager::init() {
     _game_objects.add( std::make_shared<Roadside>( 0.92f ) );
 
     // Car
-    _game_objects.add( std::make_shared<Car>( 3.0f ) );
+    _game_objects.add( std::make_shared<Car>(_car) );
 
     // Oranges
     const GLfloat orange_radius = cm(2.5);
@@ -75,11 +84,11 @@ void GameManager::init() {
     _game_objects.add( std::make_shared<Orange>(orange_radius, cm(-70), cm(-50), orange_radius));
 
     // Butter
-    _game_objects.add( std::make_shared<Butter>(cm(40), cm(57), cm(0)));
+    _game_objects.add( std::make_shared<Butter>(cm(40),  cm(57),  cm(0)));
     _game_objects.add( std::make_shared<Butter>(cm(-35), cm(-60), cm(0)));
-    _game_objects.add( std::make_shared<Butter>(cm(-73), cm(0), cm(0)));
-    _game_objects.add( std::make_shared<Butter>(cm(30), cm(20), cm(0)));
-    _game_objects.add( std::make_shared<Butter>(cm(-80), cm(70), cm(0)));
+    _game_objects.add( std::make_shared<Butter>(cm(-73), cm(0),   cm(0)));
+    _game_objects.add( std::make_shared<Butter>(cm(30),  cm(20),  cm(0)));
+    _game_objects.add( std::make_shared<Butter>(cm(-80), cm(70),  cm(0)));
 
     _activeCamera = std::make_shared<OrthogonalCamera>(-2.0f, 2.0f, -2.0f, 2.0f, -2.0f,2.0f);
     _activeCamera->setPosition( 0.0f, 0.0f, 1.0f );
