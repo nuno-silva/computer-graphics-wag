@@ -20,6 +20,7 @@ public:
 
     GLdouble norm() const;
     Vector3 normalized() const;
+    Vector3 crossProduct(Vector3 &v) const;
 
     Vector3 operator=(const Vector3& vec);
     Vector3 operator*(GLdouble num)   const;

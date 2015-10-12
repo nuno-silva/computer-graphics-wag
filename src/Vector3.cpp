@@ -32,6 +32,16 @@ Vector3 Vector3::normalized() const {
     return n;
 }
 
+Vector3 Vector3::crossProduct(Vector3 &v) const {
+    Vector3 cross;
+    /* @see https://en.wikipedia.org/wiki/Cross_product#Mnemonic */
+    GLdouble x = ( this->getY() * v.getZ() - v.getY() * this->getZ() );
+    GLdouble y = ( this->getZ() * v.getX() - v.getZ() * this->getX() );
+    GLdouble z = ( this->getX() * v.getY() - v.getX() * this->getY() );
+    cross.set( x, y, z );
+    return cross;
+}
+
 
 Vector3 Vector3::operator=(const Vector3 & vec) {
     _x = vec.getX();
