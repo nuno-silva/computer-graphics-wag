@@ -5,9 +5,9 @@
 
 #include <iostream>
 
-#define ACCEL cm(5)
+#define ACCEL cm(10)
 
-#define MAX_SPEED cm(20)
+#define MAX_SPEED cm(40)
 
 DynamicObject::DynamicObject() : _accel(0.0f), _speed(0.0f),
                                  _orientation(-1.0f, 0.0f, 0.0f) { }
@@ -26,13 +26,13 @@ void DynamicObject::update(GLdouble delta_t) {
     if (_turnRight) {
         _turnRight = false;
         Vector3 left = _orientation.crossProduct(unitZ);
-        Vector3 newOrient = _orientation + left;
+        Vector3 newOrient = _orientation + left * (0.33f);
         angle = newOrient.angleBetween(neg_x);
         _orientation = newOrient;
     } else if (_turnLeft) {
         _turnLeft = false;
         Vector3 right = unitZ.crossProduct(_orientation);
-        Vector3 newOrient = _orientation + right;
+        Vector3 newOrient = _orientation + right * 0.33f;
         angle = newOrient.angleBetween(neg_x);
         _orientation = newOrient;
     }
@@ -49,12 +49,8 @@ void DynamicObject::update(GLdouble delta_t) {
         _speed -= _accel * delta_t_s;
     }
 
-/*
-    if ((_speed > 0 && _accel > 0) || (_speed < 0 && _accel < 0)) {
-        std::cout << "that strange if" << std::endl;
-        _accel /= -10.0f;
-    }*/
-    //std::cout << "angle: " << angle << "pos: " << getPosition() << "; speed: " << _speed << "; accel: " << _accel << "; _orientation: " << _orientation << "; fabs speed: " << fabs(_speed)<< std::endl;
+
+
 }
 
 void DynamicObject::speedUp() {
@@ -62,7 +58,7 @@ void DynamicObject::speedUp() {
 }
 
 void DynamicObject::slowDown() {
-    _accel = -4.0f*ACCEL;
+    _accel = -2 *ACCEL;
 }
 
 void DynamicObject::turnRight()

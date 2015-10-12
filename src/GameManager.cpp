@@ -10,7 +10,7 @@
 #include <iostream>
 
 GameManager::GameManager() : _game_objects(), _cameras() {
-    _car = std::make_shared<Car>(2.0);
+    _car = std::make_shared<Car>(1.0);
 }
 
 GameManager::~GameManager() {}
@@ -98,7 +98,7 @@ void GameManager::init() {
     _game_objects.add( std::make_shared<Butter>(cm(30),  cm(20),  cm(0)));
     _game_objects.add( std::make_shared<Butter>(cm(-80), cm(70),  cm(0)));
 
-    _activeCamera = std::make_shared<OrthogonalCamera>(-2.0f, 2.0f, -2.0f, 2.0f, -2.0f,2.0f);
+    _activeCamera = std::make_shared<OrthogonalCamera>(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f,1.0f);
     _activeCamera->setPosition( 0.0f, 0.0f, 1.0f );
     _cameras.push_back( _activeCamera );
 }
