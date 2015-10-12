@@ -1,6 +1,7 @@
 #include "Vector3.hpp"
 #include <cmath>
 #include <iostream>
+#include "global.hpp"
 
 Vector3::Vector3() : _x(0), _y(0), _z(0) { }
 
@@ -40,6 +41,14 @@ Vector3 Vector3::crossProduct(Vector3 &v) const {
     GLdouble z = ( this->getX() * v.getY() - v.getX() * this->getY() );
     cross.set( x, y, z );
     return cross;
+}
+
+GLdouble Vector3::angleBetween(Vector3 & v) const
+{
+    GLdouble dot = getX()*v.getX() + getY()*v.getY() + getZ()*v.getZ();
+    GLdouble lenSq1 = getX()*getX() + getY()*getY() + getZ()*getZ();
+    GLdouble lenSq2 = v.getX()*v.getX() + v.getY()*v.getY() + v.getZ()*v.getZ();
+    return acos(dot / sqrt(lenSq1 * lenSq2))*180/PI;
 }
 
 

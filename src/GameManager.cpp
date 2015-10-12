@@ -53,6 +53,12 @@ void GameManager::specialPressed(int key, int x, int y) {
     } else if (key == 103) { // Down arrow
         _car->slowDown();
     }
+    else if (key == GLUT_KEY_RIGHT) {
+        _car->turnRight();
+    }
+    else if (key == GLUT_KEY_LEFT) {
+        _car->turnLeft();
+    }
 }
 
 

@@ -2,8 +2,6 @@
 
 #include "GameObjectCollection.hpp"
 
-#define PI 3.14159265
-
 class Roadside : public GameObjectCollection
 {
 public:

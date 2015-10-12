@@ -2,6 +2,8 @@
 #include "Car.hpp"
 #include "DynamicObject.hpp"
 
+#include <iostream>
+
 Car::Car(GLdouble scale, GLdouble x, GLdouble y, GLdouble z) :
     DynamicObject::DynamicObject(), _scale(scale)
 {
@@ -33,8 +35,14 @@ void Car::drawWheels(GLdouble inner, GLdouble outer, GLdouble scale) {
 void Car::draw() {
     glPushMatrix();
     {
-        // FIXME: Why is this here?
-        GameObject::draw();
+        GameObject::draw(); // move car to its position
+
+
+        std::cout << "Angle:: " << angle << std::endl;
+
+        //glTranslatef(getPosition().getX() * (-1), getPosition().getY() * (-1), getPosition().getZ() * (-1));
+        glRotatef(angle, 0.0f, 0.0f, 1.0f);
+        //glTranslatef(getPosition().getX(), getPosition().getY(), getPosition().getZ());
 
         // Car bottom
         glPushMatrix();

@@ -8,6 +8,12 @@ private:
     GLdouble _accel;
     GLdouble _speed;
     Vector3  _orientation;
+
+protected:
+    bool _turnLeft;
+    bool _turnRight;
+    GLdouble angle = 0;
+
 public:
     DynamicObject();
     DynamicObject(Vector3 orientation);
