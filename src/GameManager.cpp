@@ -9,7 +9,9 @@
 
 #include <iostream>
 
-GameManager::GameManager() : _game_objects(), _cameras(), _car(5.0f) {}
+GameManager::GameManager() : _game_objects(), _cameras() {
+    _car = std::make_shared<Car>(5.0);
+}
 
 GameManager::~GameManager() {}
 
@@ -47,9 +49,9 @@ void GameManager::keyPressed(unsigned char key, int x, int y) {
 
 void GameManager::specialPressed(int key, int x, int y) {
     if (key == 101) { // Up arrow
-        _car.speedUp();
+        _car->speedUp();
     } else if (key == 103) { // Down arrow
-        _car.slowDown();
+        _car->slowDown();
     }
 }
 
@@ -75,7 +77,7 @@ void GameManager::init() {
     _game_objects.add( std::make_shared<Roadside>( 0.92f ) );
 
     // Car
-    _game_objects.add( std::make_shared<Car>(_car) );
+    _game_objects.add( _car );
 
     // Oranges
     const GLfloat orange_radius = cm(2.5);
