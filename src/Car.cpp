@@ -1,5 +1,6 @@
 #include "global.hpp"
 #include "Car.hpp"
+#include "DynamicObject.hpp"
 
 Car::Car(GLdouble scale, GLdouble x, GLdouble y, GLdouble z) :
     _scale(scale)
@@ -70,6 +71,8 @@ void Car::setWireframeState() {
 }
 
 void Car::update(GLdouble a) {
+    DynamicObject::update(a);
+
     setWireframeState();
 
     for (int i = 0; i < NUM_WHEELS; i++) {

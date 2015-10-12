@@ -12,6 +12,11 @@ public:
     DynamicObject();
     void update(GLdouble delta_t);
 
+    void speedUp();
+    void slowDown();
+    void turnRight();
+    void turnLeft();
+
     void setAcceleration(const Vector3& acceleration);
     void setAcceleration(GLdouble x, GLdouble y, GLdouble z);
 
