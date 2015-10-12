@@ -20,11 +20,11 @@ void DynamicObject::update(GLdouble delta_t) {
     setPosition(getPosition() + _speed * delta_t +
                     _acceleration * 0.5f * pow(delta_t, 2));
 
-    std::cout << "Position: (" << getPosition().getX() << "," << getPosition().getY() << "," << getPosition().getZ() << ")" << std::endl;
+    // std::cout << "Position: (" << getPosition().getX() << "," << getPosition().getY() << "," << getPosition().getZ() << ")" << std::endl;
 
     _speed = _speed + _acceleration * delta_t;
 
-    std::cout << "Speed: " << _speed.norm() << std::endl;
+    // std::cout << "Speed: " << _speed.norm() << std::endl;
 
     if (_speed != nullVector) {
         _orientation  = _speed.normalized();
@@ -33,12 +33,12 @@ void DynamicObject::update(GLdouble delta_t) {
 }
 
 void DynamicObject::speedUp() {
-    _acceleration = _orientation;
-    std::cout << "Accel: (" << _acceleration.getX() << "," << _acceleration.getY() << "," << _acceleration.getZ() << ")" << std::endl;
+    _acceleration = _orientation * 0.0001;
+    // std::cout << "Accel: (" << _acceleration.getX() << "," << _acceleration.getY() << "," << _acceleration.getZ() << ")" << std::endl;
 }
 
 void DynamicObject::slowDown() {
-    _acceleration = _orientation * (-1);
+    _acceleration = _orientation * (-0.0001);
 }
 
 /* acceleration */

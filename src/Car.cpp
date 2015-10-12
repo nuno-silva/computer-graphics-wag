@@ -3,7 +3,7 @@
 #include "DynamicObject.hpp"
 
 Car::Car(GLdouble scale, GLdouble x, GLdouble y, GLdouble z) :
-    _scale(scale)
+    DynamicObject::DynamicObject(), _scale(scale)
 {
     setPosition(x, y, z);
 }

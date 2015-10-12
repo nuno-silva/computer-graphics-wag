@@ -15,7 +15,7 @@ class GameManager {
     GameObjectCollection                 _game_objects;
     std::vector<std::shared_ptr<Camera>> _cameras;
     std::shared_ptr<Camera>              _activeCamera;
-    Car                                  _car;
+    std::shared_ptr<Car>                 _car;
 
     /* std::vector<LightSource> _light_source; */
 public:
