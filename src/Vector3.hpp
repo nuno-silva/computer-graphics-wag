@@ -1,5 +1,6 @@
 #pragma once
 #include "global.hpp"
+#include <iostream>
 
 class Vector3 {
 protected:
@@ -27,6 +28,8 @@ public:
 
     bool operator==(const Vector3 &) const;
     bool operator!=(const Vector3 &) const;
+
+    friend std::ostream & operator<<(std::ostream &, const Vector3 &);
 
     /** glTranslate using this vector */
     void glTranslate() const;

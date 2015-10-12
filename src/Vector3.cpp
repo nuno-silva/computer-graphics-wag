@@ -1,5 +1,6 @@
 #include "Vector3.hpp"
 #include <cmath>
+#include <iostream>
 
 Vector3::Vector3() : _x(0), _y(0), _z(0) { }
 
@@ -62,4 +63,12 @@ bool Vector3::operator!=(const Vector3 & v) const {
 
 void Vector3::glTranslate() const {
     glTranslatef( _x, _y, _z );
+}
+
+std::ostream & operator<<(std::ostream & os, const Vector3 & v) {
+    auto x = v.getX();
+    auto y = v.getY();
+    auto z = v.getZ();
+
+    return os << "(" << x << ", " << y << ", " << z << ")";
 }
