@@ -42,7 +42,7 @@
 #endif
 
 #ifndef TIMER_PERIOD
-    #define TIMER_PERIOD 10
+    #define TIMER_PERIOD 500
 #endif
 
 /* terminal colors for DEBUG_COLORS */

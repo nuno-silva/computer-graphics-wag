@@ -40,9 +40,9 @@ void Car::draw() {
 
         std::cout << "Angle:: " << angle << std::endl;
 
-        //glTranslatef(getPosition().getX() * (-1), getPosition().getY() * (-1), getPosition().getZ() * (-1));
-        glRotatef(angle, 0.0f, 0.0f, 1.0f);
         //glTranslatef(getPosition().getX(), getPosition().getY(), getPosition().getZ());
+        glRotatef(angle, 0.0f, 0.0f, 1.0f);
+        //glTranslatef(getPosition().getX() * (-1), getPosition().getY() * (-1), getPosition().getZ() * (-1));
 
         // Car bottom
         glPushMatrix();
