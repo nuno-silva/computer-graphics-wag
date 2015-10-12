@@ -17,6 +17,9 @@ public:
 
     void set(GLdouble x, GLdouble y, GLdouble z);
 
+    GLdouble norm() const;
+    Vector3 normalized() const;
+
     Vector3 operator=(const Vector3& vec);
     Vector3 operator*(GLdouble num)   const;
     Vector3 operator+(const Vector3&) const;
