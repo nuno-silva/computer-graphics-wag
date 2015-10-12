@@ -12,10 +12,10 @@
 typedef void(*onTimerCallback) (int);
 
 class GameManager {
-    Car                                  _car;
     GameObjectCollection                 _game_objects;
     std::vector<std::shared_ptr<Camera>> _cameras;
     std::shared_ptr<Camera>              _activeCamera;
+    Car                                  _car;
 
     /* std::vector<LightSource> _light_source; */
 public:
