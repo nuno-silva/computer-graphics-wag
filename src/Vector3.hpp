@@ -31,3 +31,5 @@ public:
     /** glTranslate using this vector */
     void glTranslate() const;
 };
+
+const Vector3 nullVector(0,0,0);
