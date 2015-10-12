@@ -12,6 +12,7 @@ else
 		endif
 		ifeq ($(UNAME_S),Darwin)
 				CXXFLAGS += -Wno-deprecated-declarations -g
+				CXXFLAGS += -Wno-inconsistent-missing-override -Wno-unused-parameter -Wno-reorder
 				LDLIBS = -framework glut -framework opengl
 		endif
 endif
