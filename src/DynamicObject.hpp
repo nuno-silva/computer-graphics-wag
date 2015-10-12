@@ -4,12 +4,13 @@
 #include "Vector3.hpp"
 
 class DynamicObject : public GameObject {
-protected:
+private:
     Vector3 _acceleration;
     Vector3 _speed;
     Vector3 _orientation;
 public:
     DynamicObject();
+    DynamicObject(Vector3 orientation);
     void update(GLdouble delta_t);
 
     void speedUp();

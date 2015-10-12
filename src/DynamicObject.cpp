@@ -9,6 +9,11 @@ DynamicObject::DynamicObject() : _acceleration(0.0f, 0.0f, 0.0f),
                                  _speed(0.0f, 0.0f, 0.0f),
                                  _orientation(-1.0f, 0.0f, 0.0f) { }
 
+DynamicObject::DynamicObject(Vector3 orientation) : DynamicObject()
+{
+    _orientation = orientation;
+}
+
 void DynamicObject::update(GLdouble delta_t) {
     setWireframeState();
 
