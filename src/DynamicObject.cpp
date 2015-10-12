@@ -5,8 +5,7 @@
 
 #include <iostream>
 
-#define ACCEL 0.000001f
-#define SPEED_LIMIT ACCEL
+#define ACCEL 0.00001f
 
 DynamicObject::DynamicObject() : _accel(0.0f), _speed(0.0f),
                                  _orientation(-1.0f, 0.0f, 0.0f) { }
@@ -38,9 +37,12 @@ void DynamicObject::update(GLdouble delta_t) {
     setPosition(getPosition() +
                 _orientation * _speed * delta_t +
                 _orientation * _accel * 0.5f * pow(delta_t, 2));
-    _speed = _speed + _accel * delta_t;
-    _accel = 0;
 
+    _speed = _speed + _accel * delta_t;
+
+    if ((_speed > 0 && _accel > 0) || (_speed < 0 && _accel < 0)) {
+        _accel /= -10.0f;
+    }
 }
 
 void DynamicObject::speedUp() {
