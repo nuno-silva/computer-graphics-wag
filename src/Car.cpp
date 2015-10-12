@@ -38,7 +38,7 @@ void Car::draw() {
         GameObject::draw(); // move car to its position
 
 
-        std::cout << "Angle:: " << angle << std::endl;
+        //std::cout << "Angle:: " << angle << std::endl;
 
         //glTranslatef(getPosition().getX(), getPosition().getY(), getPosition().getZ());
         glRotatef(angle, 0.0f, 0.0f, 1.0f);

@@ -10,7 +10,7 @@
 #include <iostream>
 
 GameManager::GameManager() : _game_objects(), _cameras() {
-    _car = std::make_shared<Car>(1.0);
+    _car = std::make_shared<Car>(2.0);
 }
 
 GameManager::~GameManager() {}
