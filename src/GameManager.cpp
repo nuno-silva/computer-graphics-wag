@@ -4,6 +4,7 @@
 #include "GameManager.hpp"
 #include "Orange.hpp"
 #include "OrthogonalCamera.hpp"
+#include "PerspectiveCamera.hpp"
 #include "Roadside.hpp"
 #include "Table.hpp"
 
@@ -82,12 +83,25 @@ void GameManager::update(GLdouble delta) {
 }
 
 void GameManager::init() {
+    // Cameras
+    _cameras.push_back(std::make_shared<OrthogonalCamera>(-1.2f, 1.2f, -1.2f, 1.2f, -1.2f,1.2f));
+    _cameras.push_back(std::make_shared<PerspectiveCamera>(45, 2, .1, 5));
+
+    _activeCamera = _cameras.at(1);
+    _activeCamera->setPosition( 0.0f, -2.0f, 2.0f );
+
+    // Table
     _game_objects.add( std::make_shared<Table>( m(2), m(0), m(0), m(0) ) );
 
+    // Road
     _game_objects.add( std::make_shared<Roadside>( 0.92f ) );
 
-    // Car
-    _game_objects.add( _car );
+    // Butters
+    _game_objects.add( std::make_shared<Butter>(cm(40),  cm(57),  cm(0)));
+    _game_objects.add( std::make_shared<Butter>(cm(-35), cm(-60), cm(0)));
+    _game_objects.add( std::make_shared<Butter>(cm(-73), cm(0),   cm(0)));
+    _game_objects.add( std::make_shared<Butter>(cm(30),  cm(20),  cm(0)));
+    _game_objects.add( std::make_shared<Butter>(cm(-80), cm(70),  cm(0)));
 
     // Oranges
     const GLfloat orange_radius = cm(2.5);
@@ -95,15 +109,9 @@ void GameManager::init() {
     _game_objects.add( std::make_shared<Orange>(orange_radius, cm(60),  cm(60),  orange_radius));
     _game_objects.add( std::make_shared<Orange>(orange_radius, cm(-70), cm(-50), orange_radius));
 
-    // Butter
-    _game_objects.add( std::make_shared<Butter>(cm(40),  cm(57),  cm(0)));
-    _game_objects.add( std::make_shared<Butter>(cm(-35), cm(-60), cm(0)));
-    _game_objects.add( std::make_shared<Butter>(cm(-73), cm(0),   cm(0)));
-    _game_objects.add( std::make_shared<Butter>(cm(30),  cm(20),  cm(0)));
-    _game_objects.add( std::make_shared<Butter>(cm(-80), cm(70),  cm(0)));
+    // Car
+    _game_objects.add( _car );
 
-    _activeCamera = std::make_shared<OrthogonalCamera>(-1.2f, 1.2f, -1.2f, 1.2f, -1.2f,1.2f);
-    _activeCamera->setPosition( 0.0f, 0.0f, 1.0f );
-    _cameras.push_back( _activeCamera );
+
 }
 

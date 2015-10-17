@@ -7,13 +7,12 @@
 
 
 class Camera : public Entity {
-    Vector3 _up, _center, _at;
+    Vector3 _up, _center;
 protected:
     GLdouble _near,  _far;
     GLsizei  _width, _height;
 public:
     Camera( GLdouble near, GLdouble far );
-    virtual ~Camera();
 
     void update();
     void reshape( GLsizei width, GLsizei height );

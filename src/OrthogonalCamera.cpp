@@ -5,14 +5,10 @@ OrthogonalCamera::OrthogonalCamera( GLdouble left, GLdouble right,
                                     GLdouble near, GLdouble far ) :
                                     Camera( near, far )
 {
-    _left = left;
-    _right = right;
+    _left   = left;
+    _right  = right;
     _bottom = bottom;
-    _top = top;
-}
-
-OrthogonalCamera::~OrthogonalCamera() {
-
+    _top    = top;
 }
 
 void OrthogonalCamera::update() {
