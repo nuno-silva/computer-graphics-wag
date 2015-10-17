@@ -13,6 +13,7 @@ public:
                       GLdouble fovy,  GLdouble aspect,
                       GLdouble zNear, GLdouble zFar);
     PerspectiveCamera();
+
     virtual void update();
     virtual void computeProjectionMatrix();
     virtual void computeVisualizationMatrix();

@@ -34,9 +34,6 @@ void GameManager::reshape( GLsizei w, GLsizei h ) {
     for( auto c : _cameras ) {
         c->reshape( w, h );
     }
-
-    _activeCamera->computeProjectionMatrix();
-    _activeCamera->computeVisualizationMatrix();
 }
 
 
@@ -81,6 +78,10 @@ void GameManager::update(GLdouble delta) {
 
     _game_objects.update(delta);
     _activeCamera->update();
+
+    _activeCamera->computeProjectionMatrix();
+    _activeCamera->computeVisualizationMatrix();
+
 }
 
 void GameManager::init() {
@@ -110,6 +111,6 @@ void GameManager::init() {
     _cameras.push_back(std::make_shared<OrthogonalCamera>(-1.2f, 1.2f, -1.2f, 1.2f, -1.2f,1.2f));
     _cameras.push_back(std::make_shared<PerspectiveCamera>(Vector3(0, 1, 1), nullVector, 45, 2, 0.1, 5));
     _cameras.push_back(std::make_shared<CarCamera>(*_car));
-    _activeCamera = _cameras.at(2);
+    _activeCamera = _cameras[2];
 }
 

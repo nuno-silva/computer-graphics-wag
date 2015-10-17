@@ -5,8 +5,8 @@
 
 class CarCamera : public PerspectiveCamera
 {
-    Car _car;
+    std::shared_ptr<Car> _car;
 public:
-    CarCamera(Car car);
+    CarCamera(Car & car);
     virtual void update();
 };

@@ -18,8 +18,8 @@ public:
     Camera(const Vector3 &at, const Vector3 &up, const Vector3 &center, GLdouble near, GLdouble far);
 
 
-    void update();
-    void reshape( GLsizei width, GLsizei height );
+    virtual void update();
+    virtual void reshape( GLsizei width, GLsizei height );
 
     virtual void computeProjectionMatrix();
     virtual void computeVisualizationMatrix();
