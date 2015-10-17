@@ -19,7 +19,6 @@ DynamicObject::DynamicObject(Vector3 orientation) : DynamicObject()
 
 void DynamicObject::update(GLdouble delta_t) {
     GLdouble delta_t_s = delta_t/1000.0f;
-    setWireframeState();
 
     Vector3 neg_x(-1.0f, 0.0f, 0.0f);
     Vector3 unitZ = Vector3(0.0f, 0.0f, 1.0f);

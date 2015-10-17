@@ -29,11 +29,7 @@ public:
 
     virtual void draw() override;
 
-    void (_STDCALL*drawCube) (GLdouble size);
-
-    virtual void setWireframeState() override;
     virtual void update(GLdouble a) override;
-    virtual void setDrawAsWireframe(bool value) override;
     virtual void drawWheels(GLdouble inner, GLdouble outer, GLdouble scal);
 
 private:

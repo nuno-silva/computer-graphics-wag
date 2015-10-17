@@ -1,10 +1,5 @@
 #include "GameObject.hpp"
 
-
-GameObject::~GameObject() {
-    DBG_PRINT("~GameObject()\n");
-}
-
 void Axis3d_draw() {
     glPushMatrix();
 
@@ -42,23 +37,28 @@ void GameObject::draw() {
 #endif
 }
 
-void GameObject::setDrawAsWireframe(bool value)
-{
-    drawAsWireframe = value;
-}
-
-bool GameObject::getDrawAsWireframe()
-{
-    return drawAsWireframe;
-}
-
-void GameObject::setWireframeState()
-{
-    DBG_PRINT("GameObject::setWireframeState()\n");
-
-}
-
 void GameObject::update(GLdouble delta_t ) {
     DBG_PRINT("update()\n");
-    setWireframeState();
+}
+
+void GameObject::toggleWiredSolid() {
+    if (_wired) {
+        setSolid();
+    } else {
+        setWired();
+    }
+}
+
+void GameObject::setWired() {
+    _wired     = true;
+    drawCube   = glutWireCube;
+    drawSphere = glutWireSphere;
+    drawTorus  = glutWireTorus;
+}
+
+void GameObject::setSolid() {
+    _wired     = false;
+    drawCube   = glutSolidCube;
+    drawSphere = glutSolidSphere;
+    drawTorus  = glutSolidTorus;
 }

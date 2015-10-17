@@ -11,10 +11,7 @@ class Butter : public Obstacle
 {
 public:
     Butter( GLdouble x, GLdouble y, GLdouble z );
-    virtual ~Butter();
     virtual void draw();
-
-    virtual void setWireframeState() override;
 
     static constexpr GLfloat box_width  = cm(4);
     static constexpr GLfloat box_length = cm(6);
@@ -23,10 +20,6 @@ public:
     static constexpr GLfloat lid_width  = cm(5);
     static constexpr GLfloat lid_length = cm(7);
     static constexpr GLfloat lid_height = cm(1);
-
-private:
-    void (_STDCALL* drawCube) (GLdouble size);
-
 };
 
 
