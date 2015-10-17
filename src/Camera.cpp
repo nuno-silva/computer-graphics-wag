@@ -4,6 +4,9 @@
 Camera::Camera( GLdouble near, GLdouble far ) : Entity(),
     _up(0.0f, 1.0f, 1.0f), _center(0.0f, 0.0f, 0.0f), _near(near), _far(far) {}
 
+Camera::Camera(Vector3 up, Vector3 center, GLdouble near, GLdouble far)
+    : Entity(), _up(up), _center(center), _near(near), _far(far) {}
+
 void Camera::update() {
     // TODO
 }

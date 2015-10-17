@@ -13,6 +13,7 @@ protected:
     GLsizei  _width, _height;
 public:
     Camera( GLdouble near, GLdouble far );
+    Camera(Vector3 up, Vector3 center, GLdouble near, GLdouble far);
 
     void update();
     void reshape( GLsizei width, GLsizei height );

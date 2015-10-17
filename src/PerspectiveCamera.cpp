@@ -1,14 +1,12 @@
 #include "PerspectiveCamera.hpp"
+#include "Vector3.hpp"
 
 
-PerspectiveCamera::PerspectiveCamera(GLdouble fovy,  GLdouble aspect,
+PerspectiveCamera::PerspectiveCamera(Vector3 up,     Vector3 center,  
+                                     GLdouble fovy,  GLdouble aspect, 
                                      GLdouble zNear, GLdouble zFar)
     : _fovy(fovy), _aspect(aspect), _zNear(zNear), _zFar(zFar),
-      Camera(zNear, zFar) {}
-
-PerspectiveCamera::PerspectiveCamera() : Camera(1, 2) {
-    // Empty.
-}
+      Camera(up, center, zNear, zFar) {}
 
 void PerspectiveCamera::update() {
     Camera::update();

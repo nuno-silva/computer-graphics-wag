@@ -85,7 +85,7 @@ void GameManager::update(GLdouble delta) {
 void GameManager::init() {
     // Cameras
     _cameras.push_back(std::make_shared<OrthogonalCamera>(-1.2f, 1.2f, -1.2f, 1.2f, -1.2f,1.2f));
-    _cameras.push_back(std::make_shared<PerspectiveCamera>(45, 2, .1, 5));
+    _cameras.push_back(std::make_shared<PerspectiveCamera>(Vector3(0, 1, 1), nullVector, 45, 2, 0.1, 5));
 
     _activeCamera = _cameras.at(1);
     _activeCamera->setPosition( 0.0f, -2.0f, 2.0f );
