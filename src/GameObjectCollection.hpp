@@ -12,6 +12,10 @@ private:
 public:
     virtual void draw();
     virtual void update( GLdouble delta_t );
+
     virtual void toggleWiredSolid();
+    virtual void setWired();
+    virtual void setSolid();
+
     void add ( std::shared_ptr<GameObject> g );
 };

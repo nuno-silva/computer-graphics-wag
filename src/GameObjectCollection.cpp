@@ -26,6 +26,18 @@ void GameObjectCollection::toggleWiredSolid() {
     }
 }
 
+void GameObjectCollection::setWired() {
+    for (auto x : _children) {
+        x->setWired();
+    }
+}
+
+void GameObjectCollection::setSolid() {
+    for (auto x : _children) {
+        x->setSolid();
+    }
+}
+
 void GameObjectCollection::add( std::shared_ptr<GameObject> g) {
     DBG_PRINTF("addGameObject( %p )\n", (void*)g.get() );
 

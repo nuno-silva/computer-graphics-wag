@@ -11,9 +11,9 @@ public:
     virtual void draw() = 0;
     virtual void update(GLdouble delta_t );
 
-    void toggleWiredSolid();
-    void setWired();
-    void setSolid();
+    virtual void toggleWiredSolid();
+    virtual void setWired();
+    virtual void setSolid();
 
 protected:
     bool _wired = false;

@@ -17,6 +17,8 @@ class GameManager {
     std::shared_ptr<Camera>              _activeCamera;
     std::shared_ptr<Car>                 _car;
 
+    bool _wired = false;
+
     /* std::vector<LightSource> _light_source; */
 public:
     GameManager();
