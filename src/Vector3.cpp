@@ -1,6 +1,9 @@
 #include "Vector3.hpp"
+#include <cmath>
+#include <iostream>
+#include "global.hpp"
 
-Vector3::Vector3() : _x(0), _y(0), _z(0) {}
+Vector3::Vector3() : _x(0), _y(0), _z(0) { }
 
 Vector3::Vector3(GLdouble x, GLdouble y, GLdouble z) {
     _x = x;
@@ -15,6 +18,47 @@ GLdouble Vector3::getY() const { return _y; }
 GLdouble Vector3::getZ() const { return _z; }
 
 void Vector3::set(GLdouble x, GLdouble y, GLdouble z) { _x = x; _y = y; _z = z; }
+
+
+GLdouble Vector3::norm() const {
+    GLdouble nrm;
+#define pow2(x) pow(x, 2.0f)
+    nrm = sqrt(  pow2(_x) + pow2(_y) + pow2(_z) );
+    return nrm;
+}
+
+Vector3 Vector3::normalized() const {
+    GLdouble inverse_norm = 1.0f / norm();
+    Vector3 n = *this * inverse_norm;
+    return n;
+}
+
+Vector3 Vector3::crossProduct(Vector3 &v) const {
+    Vector3 cross;
+    /* @see https://en.wikipedia.org/wiki/Cross_product#Mnemonic */
+    GLdouble x = ( this->getY() * v.getZ() - v.getY() * this->getZ() );
+    GLdouble y = ( this->getZ() * v.getX() - v.getZ() * this->getX() );
+    GLdouble z = ( this->getX() * v.getY() - v.getX() * this->getY() );
+    cross.set( x, y, z );
+    return cross;
+}
+
+GLdouble Vector3::angleBetween(Vector3 & v) const
+{/*
+    GLdouble dot = getX()*v.getX() + getY()*v.getY() + getZ()*v.getZ();
+    GLdouble lenSq1 = getX()*getX() + getY()*getY() + getZ()*getZ();
+    GLdouble lenSq2 = v.getX()*v.getX() + v.getY()*v.getY() + v.getZ()*v.getZ();
+    */
+    // quick fix, should do this using z
+    GLdouble angle = atan2(getY(), getX()) - atan2(v.getY(), v.getX());
+    angle = angle * 360 / (2*PI);
+    if (angle < 0){
+        angle = angle + 360;
+    }
+    return angle; //IT WORKS!
+    //return acos(dot / sqrt(lenSq1 * lenSq2))*180/PI;
+}
+
 
 Vector3 Vector3::operator=(const Vector3 & vec) {
     _x = vec.getX();
@@ -36,6 +80,22 @@ Vector3 Vector3::operator-(const Vector3& vec) const {
     return Vector3(getX() - vec.getX(), getY() - vec.getY(), getZ() - vec.getZ());
 }
 
+bool Vector3::operator==(const Vector3 & v) const {
+    return _x == v.getX() && _y == v.getY() && _z == v.getZ();
+}
+
+bool Vector3::operator!=(const Vector3 & v) const {
+    return !(*this == v);
+}
+
 void Vector3::glTranslate() const {
     glTranslatef( _x, _y, _z );
+}
+
+std::ostream & operator<<(std::ostream & os, const Vector3 & v) {
+    auto x = v.getX();
+    auto y = v.getY();
+    auto z = v.getZ();
+
+    return os << "(" << x << ", " << y << ", " << z << ")";
 }

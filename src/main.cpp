@@ -24,6 +24,10 @@ void keyPressed(unsigned char key, int x, int y) {
     game.keyPressed(key, x, y);
 }
 
+void specialPressed(int key, int x, int y) {
+    game.specialPressed(key, x, y);
+}
+
 void onTimer(int value) {
     game.onTimer(value, onTimer);
 }
@@ -45,6 +49,7 @@ int main( int argc, char *argv[] ) {
     glutReshapeFunc(reshape);
     glutDisplayFunc(display);
     glutKeyboardFunc(keyPressed);
+    glutSpecialFunc(specialPressed);
     glutTimerFunc(TIMER_PERIOD, onTimer, TIMER_PERIOD);
 
     glutMainLoop();
