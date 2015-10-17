@@ -13,7 +13,10 @@ protected:
     GLsizei  _width, _height;
 public:
     Camera( GLdouble near, GLdouble far );
-    Camera(Vector3 up, Vector3 center, GLdouble near, GLdouble far);
+    Camera(const Vector3 &at, GLdouble near, GLdouble far );
+    Camera(const Vector3 &up, const Vector3 &center, GLdouble near, GLdouble far);
+    Camera(const Vector3 &at, const Vector3 &up, const Vector3 &center, GLdouble near, GLdouble far);
+
 
     void update();
     void reshape( GLsizei width, GLsizei height );
@@ -23,4 +26,6 @@ public:
 
     const Vector3& getUp()     const;
     const Vector3& getCenter() const;
+
+    void setCenter(const Vector3 &center);
 };

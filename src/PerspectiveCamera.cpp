@@ -2,9 +2,9 @@
 #include "Vector3.hpp"
 
 
-PerspectiveCamera::PerspectiveCamera(Vector3 up,     Vector3 center,  
-                                     GLdouble fovy,  GLdouble aspect, 
-                                     GLdouble zNear, GLdouble zFar)
+PerspectiveCamera::PerspectiveCamera(const Vector3 &up, const Vector3 &center,
+                                     GLdouble fovy,     GLdouble aspect,
+                                     GLdouble zNear,    GLdouble zFar)
     : _fovy(fovy), _aspect(aspect), _zNear(zNear), _zFar(zFar),
       Camera(up, center, zNear, zFar) {}
 
@@ -31,8 +31,7 @@ void PerspectiveCamera::computeVisualizationMatrix() {
     center = getCenter();
     up     = getUp();
 
-    gluLookAt( at.getX(),     at.getY(),     at.getZ(),     
-               center.getX(), center.getY(), center.getZ(), 
+    gluLookAt( at.getX(),     at.getY(),     at.getZ(),
+               center.getX(), center.getY(), center.getZ(),
                up.getX(),     up.getY(),     up.getZ() );
 }
-
