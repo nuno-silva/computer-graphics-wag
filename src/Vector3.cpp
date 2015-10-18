@@ -43,20 +43,17 @@ Vector3 Vector3::crossProduct(Vector3 &v) const {
     return cross;
 }
 
-GLdouble Vector3::angleBetween(Vector3 & v) const
-{/*
-    GLdouble dot = getX()*v.getX() + getY()*v.getY() + getZ()*v.getZ();
-    GLdouble lenSq1 = getX()*getX() + getY()*getY() + getZ()*getZ();
-    GLdouble lenSq2 = v.getX()*v.getX() + v.getY()*v.getY() + v.getZ()*v.getZ();
-    */
-    // quick fix, should do this using z
+/** Computes the angle between two vectors in 2D, ignoring their Z value.
+ *  @returns an angle in degrees
+ */
+GLdouble Vector3::angleBetweenZ(Vector3 & v) const
+{
     GLdouble angle = atan2(getY(), getX()) - atan2(v.getY(), v.getX());
-    angle = angle * 360 / (2*PI);
+    angle = angle * 180 / PI;
     if (angle < 0){
         angle = angle + 360;
     }
-    return angle; //IT WORKS!
-    //return acos(dot / sqrt(lenSq1 * lenSq2))*180/PI;
+    return angle;
 }
 
 

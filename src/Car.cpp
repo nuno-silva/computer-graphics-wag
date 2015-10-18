@@ -66,11 +66,11 @@ void Car::draw() {
     glPopMatrix();
 }
 
-void Car::update(GLdouble a) {
-    DynamicObject::update(a);
+void Car::update(GLdouble delta_t) {
+    DynamicObject::update( delta_t );
 
     for (int i = 0; i < NUM_WHEELS; i++) {
-        wheels[i].update(a);
+        wheels[i].update( delta_t );
         if (_wired) {
             wheels[i].setWired();
         } else {

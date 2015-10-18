@@ -26,13 +26,13 @@ void DynamicObject::update(GLdouble delta_t) {
         _turnRight = false;
         Vector3 left = _orientation.crossProduct(unitZ);
         Vector3 newOrient = _orientation + left * 8 * delta_t_s;
-        angle = newOrient.angleBetween(neg_x);
+        angle = newOrient.angleBetweenZ(neg_x);
         _orientation = newOrient;
     } else if (_turnLeft) {
         _turnLeft = false;
         Vector3 right = unitZ.crossProduct(_orientation);
         Vector3 newOrient = _orientation + right * 8 * delta_t_s;
-        angle = newOrient.angleBetween(neg_x);
+        angle = newOrient.angleBetweenZ(neg_x);
         _orientation = newOrient;
     }
 
