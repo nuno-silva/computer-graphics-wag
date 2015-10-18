@@ -10,7 +10,8 @@
 #define MAX_SPEED cm(200)
 
 DynamicObject::DynamicObject() : _accel(0.0f), _speed(0.0f),
-                                 _orientation(-1.0f, 0.0f, 0.0f) { }
+                                 _orientation(-1.0f, 0.0f, 0.0f), 
+                                _turnRight(false), _turnLeft(false) { }
 
 DynamicObject::DynamicObject(Vector3 orientation) : DynamicObject()
 {
