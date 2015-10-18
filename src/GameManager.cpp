@@ -59,22 +59,24 @@ void GameManager::keyPressed(unsigned char key, int x, int y) {
     }
 }
 
-void GameManager::specialPressed(int key, int x, int y) {
+/** handles key state changes
+ * @param pressed whether the key is down or not */
+void GameManager::specialPressed(int key, int x, int y, bool pressed) {
     (void) x; // var is not used, but we don't want a unused-parameter warning
     (void) y; // var is not used, but we don't want a unused-parameter warning
 
     switch ( key ) {
         case GLUT_KEY_UP:
-            _car->speedUp();
+            _car->setSpeedUp( pressed );
             break;
         case GLUT_KEY_DOWN:
-            _car->slowDown();
+            _car->setSlowDown( pressed );
             break;
         case GLUT_KEY_RIGHT:
-            _car->turnRight();
+            _car->setTurnRight( pressed );
             break;
         case GLUT_KEY_LEFT:
-            _car->turnLeft();
+            _car->setTurnLeft( pressed );
             break;
         default:
             DBG_PRINTF( "ignoring unknown special key '%s'\n", key );
@@ -105,8 +107,6 @@ void GameManager::update(GLdouble delta) {
 
     _activeCamera->computeProjectionMatrix();
     _activeCamera->computeVisualizationMatrix();
-
-    std::cout << "Orientation: " << _car->getOrientation() << std::endl;
 }
 
 void GameManager::init() {

@@ -5,7 +5,7 @@
 
 #include <iostream>
 
-#define ACCEL cm(300)
+#define ACCEL cm(100)
 
 #define MAX_SPEED cm(200)
 
@@ -23,15 +23,13 @@ void DynamicObject::update(GLdouble delta_t) {
     Vector3 neg_x(-1.0f, 0.0f, 0.0f);
     Vector3 unitZ = Vector3(0.0f, 0.0f, 1.0f);
     if (_turnRight) {
-        _turnRight = false;
         Vector3 left = _orientation.crossProduct(unitZ);
-        Vector3 newOrient = _orientation + left * 8 * delta_t_s;
+        Vector3 newOrient = _orientation + left * 3.0f * delta_t_s;
         angle = newOrient.angleBetweenZ(neg_x);
         _orientation = newOrient;
     } else if (_turnLeft) {
-        _turnLeft = false;
         Vector3 right = unitZ.crossProduct(_orientation);
-        Vector3 newOrient = _orientation + right * 8 * delta_t_s;
+        Vector3 newOrient = _orientation + right * 3.0f * delta_t_s;
         angle = newOrient.angleBetweenZ(neg_x);
         _orientation = newOrient;
     }
@@ -51,26 +49,24 @@ void DynamicObject::update(GLdouble delta_t) {
     if (fabs(_speed) < cm(2)) {
         _speed = 0;
     }
-
-    _accel = 0.0f;
 }
 
-void DynamicObject::speedUp() {
-    _accel = ACCEL;
+void DynamicObject::setSpeedUp( bool value ) {
+    _accel = value ? ACCEL : 0.0f;
 }
 
-void DynamicObject::slowDown() {
-    _accel = -1 *ACCEL;
+void DynamicObject::setSlowDown( bool value ) {
+    _accel = value ? -1 * ACCEL : 0.0f;
 }
 
-void DynamicObject::turnRight()
+void DynamicObject::setTurnRight( bool value )
 {
-    _turnRight = true;
+    _turnRight = value;
 }
 
-void DynamicObject::turnLeft()
+void DynamicObject::setTurnLeft( bool value )
 {
-    _turnLeft = true;
+    _turnLeft = value;
 }
 
 
