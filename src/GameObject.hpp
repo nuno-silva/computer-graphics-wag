@@ -15,6 +15,8 @@ public:
     virtual void draw() = 0;
     virtual void update(GLdouble delta_t );
 
+    virtual bool checkCollisionWith(const GameObject &);
+
     virtual void toggleWiredSolid();
     virtual void setWired();
     virtual void setSolid();
