@@ -38,7 +38,8 @@ public:
     virtual void draw() override;
 
     virtual void update(GLdouble delta_t) override;
-    virtual void drawWheels(GLdouble inner, GLdouble outer, GLdouble scal);
+    virtual void drawWheels();
+    virtual void setWheelsState(GLdouble inner, GLdouble outer, GLdouble scale);
 
 private:
     Wheel wheels[NUM_WHEELS] = { Wheel(), Wheel(), Wheel(), Wheel() };

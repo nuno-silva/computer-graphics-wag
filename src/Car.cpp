@@ -8,6 +8,7 @@ Car::Car(GLdouble scale, GLdouble x, GLdouble y, GLdouble z) :
     DynamicObject::DynamicObject(), _scale(scale)
 {
     setPosition(x, y, z);
+    setWheelsState(_wheel_inner_radius, _wheel_outer_radius, _scale);
 }
 
 Car::Car(GLdouble scale) : Car::Car(scale, 0, 0, 0) {}
@@ -16,17 +17,19 @@ GLdouble Car::getScale() const {
     return _scale;
 }
 
-void Car::drawWheels(GLdouble inner, GLdouble outer, GLdouble scale) {
-
-    wheels[0].setState(inner, outer, scale * cm(2.75), scale * cm(-1), inner + outer);
-    wheels[1].setState(inner, outer, scale * cm(2.75), scale * cm(1),  inner + outer);
-    wheels[2].setState(inner, outer, scale * cm(0),    scale * cm(-1), inner + outer);
-    wheels[3].setState(inner, outer, scale * cm(0),    scale * cm(1),  inner + outer);
-
+void Car::drawWheels() {
     for (int i = 0; i < NUM_WHEELS; i++) {
         wheels[i].draw();
     }
 
+}
+
+void Car::setWheelsState(GLdouble inner, GLdouble outer, GLdouble scale)
+{
+    wheels[0].setState(inner, outer, scale * cm(2.75), scale * cm(-1), inner + outer);
+    wheels[1].setState(inner, outer, scale * cm(2.75), scale * cm(1), inner + outer);
+    wheels[2].setState(inner, outer, scale * cm(0), scale * cm(-1), inner + outer);
+    wheels[3].setState(inner, outer, scale * cm(0), scale * cm(1), inner + outer);
 }
 
 void Car::draw() {
@@ -62,7 +65,7 @@ void Car::draw() {
         glPopMatrix();
 
         glColor3f( components3(CarColors::wheels) );
-        drawWheels(_wheel_inner_radius, _wheel_outer_radius, _scale);
+        drawWheels();
     }
     glPopMatrix();
 }
