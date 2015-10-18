@@ -83,18 +83,6 @@ void GameManager::specialPressed(int key, int x, int y, bool pressed) {
     }
 }
 
-
-void GameManager::onTimer(int value, onTimerCallback onTimer) {
-    int newElapsedTime = glutGet(GLUT_ELAPSED_TIME);
-    GLdouble delta = newElapsedTime - lastElapsedTime;
-    lastElapsedTime = newElapsedTime;
-
-    update(delta);
-
-    glutPostRedisplay();
-    glutTimerFunc(TIMER_PERIOD, onTimer, TIMER_PERIOD);
-}
-
 void GameManager::update(GLdouble delta) {
     if (_wired) {
         _game_objects.setWired();

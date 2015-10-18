@@ -35,9 +35,17 @@ void specialUp(int key, int x, int y) {
 }
 
 void onTimer(int value) {
-    game.onTimer(value, onTimer);
-}
+    (void) value; // remove unused variable warning
+    static int lastElapsedTime = 0;
+    int newElapsedTime = glutGet( GLUT_ELAPSED_TIME );
+    GLdouble delta = newElapsedTime - lastElapsedTime;
+    lastElapsedTime = newElapsedTime;
 
+    game.update(delta);
+
+    glutPostRedisplay();
+    glutTimerFunc(TIMER_PERIOD, onTimer, TIMER_PERIOD);
+}
 
 int main( int argc, char *argv[] ) {
     glutInit( &argc, argv );

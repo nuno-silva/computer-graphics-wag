@@ -31,10 +31,6 @@ public:
     void reshape        (  GLsizei w,        GLsizei h               );
     void keyPressed     ( unsigned char key, int x, int y            );
     void specialPressed ( int key,           int x, int y, bool pressed );
-    void onTimer        ( int value,         onTimerCallback onTimer );
     void update         ( GLdouble delta                             );
     void init();
-
-public:
-    unsigned int lastElapsedTime = 0;
 };
