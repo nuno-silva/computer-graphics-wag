@@ -16,7 +16,7 @@ void Cheerio::draw()
     glPushMatrix();
     GameObject::draw();
 
-    glColor3f( 1.0f, 0.33f, 0.0f );
+    glColor3f( components3(CheerioColors::cheerio) );
     drawTorus( _innerRadius, _outerRadius, 10, 10 );
 
     glPopMatrix();

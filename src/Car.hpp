@@ -5,6 +5,13 @@
 #include "Wheel.hpp"
 
 #define NUM_WHEELS 4
+
+namespace CarColors {
+    static constexpr GLfloat wheels[3] = { 0.1f, 0.1f, 0.1f }; // grey-black-ish
+    static constexpr GLfloat top[3]    = { 0.118f, 0.565f, 1.000f }; // DodgerBlue
+    static constexpr GLfloat bottom[3] = { 0.255f, 0.412f, 0.882f }; // RoyalBlue
+}
+
 class Car : public DynamicObject {
     GLdouble _scale = 1.0f;
 public:

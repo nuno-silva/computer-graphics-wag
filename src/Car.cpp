@@ -44,7 +44,7 @@ void Car::draw() {
         // Car bottom
         glPushMatrix();
         {
-            glColor3f(1, 0, 0);
+            glColor3f( components3(CarColors::bottom) );
             glTranslated(_scale * cm(1.625), 0, _wheel_inner_radius + _scale * cm(1));
             glScaled(_bottom_length, _bottom_width, _bottom_height);
             drawCube(1);
@@ -54,13 +54,14 @@ void Car::draw() {
         // Car top
         glPushMatrix();
         {
-            glColor3f(1, 1, 0);
+            glColor3f( components3(CarColors::top) );
             glTranslated(_scale * cm(2.25), 0, _wheel_inner_radius + _scale * cm(1.875));
             glScaled(_top_length, _top_width, _top_height);
             drawCube(1);
         }
         glPopMatrix();
 
+        glColor3f( components3(CarColors::wheels) );
         drawWheels(_wheel_inner_radius, _wheel_outer_radius, _scale);
     }
     glPopMatrix();
