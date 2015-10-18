@@ -47,7 +47,7 @@ void DynamicObject::update(GLdouble delta_t) {
         _speed -= _accel * delta_t_s;
     }
 
-    if (fabs(_speed) < cm(2)) {
+    if ((fabs(_speed) < cm(2)) && !isAccelerating()) {
         _speed = 0;
     }
 }
@@ -101,6 +101,11 @@ void DynamicObject::setOrientation(GLdouble x, GLdouble y, GLdouble z) {
     Vector3 v;
     v.set(x, y, z);
     _orientation = v;
+}
+
+bool DynamicObject::isAccelerating()
+{
+    return _accel != 0.0f;
 }
 
 Vector3 DynamicObject::getOrientation() const {

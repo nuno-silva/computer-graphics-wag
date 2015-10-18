@@ -30,6 +30,7 @@ public:
 
     void setOrientation(const Vector3& orientation);
     void setOrientation(GLdouble x, GLdouble y, GLdouble z);
+    bool isAccelerating();
 
     GLdouble getAccel() const;
     GLdouble getSpeed() const;
