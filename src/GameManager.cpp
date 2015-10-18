@@ -122,7 +122,7 @@ void GameManager::init() {
 
     // Cameras
     _orthogonal_cam  = std::make_shared<OrthogonalCamera>( -1.2f, 1.2f, -1.2f, 1.2f, -1.2f, 1.2f );
-    _perspective_cam = std::make_shared<PerspectiveCamera>( Vector3(0, -2, 2), Vector3(0, 1, 1), nullVector,
+    _perspective_cam = std::make_shared<PerspectiveCamera>( Vector3(0, -2, 2), Vector3(0, 1, 1), zeroVector,
                                                            P_CAM_FOV_Y, 2, 0.1, 10 );
     _car_cam         = std::make_shared<CarCamera>(_car);
 

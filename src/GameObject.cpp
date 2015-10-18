@@ -4,7 +4,7 @@
 #include "GameObject.hpp"
 #include "Vector3.hpp"
 
-GameObject::GameObject() : GameObject::GameObject(nullVector) {}
+GameObject::GameObject() : GameObject::GameObject(zeroVector) {}
 
 GameObject::GameObject(const Vector3 & boundingBox)
     : _boundingBox(boundingBox), Entity() {}

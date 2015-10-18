@@ -37,4 +37,4 @@ public:
     void glTranslate() const;
 };
 
-const Vector3 nullVector(0,0,0);
+const Vector3 zeroVector(0,0,0);
