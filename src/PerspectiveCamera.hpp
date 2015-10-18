@@ -9,7 +9,7 @@ class PerspectiveCamera : public Camera {
     GLdouble _zNear  = 1;
     GLdouble _zFar   = 1;
 public:
-    PerspectiveCamera(const Vector3 &up, const Vector3 &center,
+    PerspectiveCamera(const Vector3 &at, const Vector3 &up, const Vector3 &center,
                       GLdouble fovy,  GLdouble aspect,
                       GLdouble zNear, GLdouble zFar);
     PerspectiveCamera();

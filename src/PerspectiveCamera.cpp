@@ -2,11 +2,11 @@
 #include "Vector3.hpp"
 
 
-PerspectiveCamera::PerspectiveCamera(const Vector3 &up, const Vector3 &center,
+PerspectiveCamera::PerspectiveCamera(const Vector3 &at, const Vector3 &up, const Vector3 &center,
                                      GLdouble fovy,     GLdouble aspect,
                                      GLdouble zNear,    GLdouble zFar)
     : _fovy(fovy), _aspect(aspect), _zNear(zNear), _zFar(zFar),
-      Camera(up, center, zNear, zFar) {}
+      Camera(at, up, center, zNear, zFar) {}
 
 void PerspectiveCamera::update() {
     Camera::update();

@@ -40,6 +40,8 @@ void GameManager::reshape( GLsizei w, GLsizei h ) {
 void GameManager::keyPressed(unsigned char key, int x, int y) {
     if (key == 'a') {
         _wired = !_wired;
+    } else if (key >= '1' && key <= '3') {
+        _activeCamera = _cameras[key - '1'];
     }
 }
 
@@ -109,8 +111,9 @@ void GameManager::init() {
 
     // Cameras
     _cameras.push_back(std::make_shared<OrthogonalCamera>(-1.2f, 1.2f, -1.2f, 1.2f, -1.2f,1.2f));
-    _cameras.push_back(std::make_shared<PerspectiveCamera>(Vector3(0, 1, 1), nullVector, 45, 2, 0.1, 5));
+    _cameras.push_back(std::make_shared<PerspectiveCamera>(Vector3(0, -2, 2), Vector3(0, 1, 1), nullVector,
+                                                           45, 2, 0.1, 10));
     _cameras.push_back(std::make_shared<CarCamera>(*_car));
-    _activeCamera = _cameras[2];
+    _activeCamera = _cameras[0];
 }
 
