@@ -29,7 +29,7 @@ public:
 
     virtual void draw() override;
 
-    virtual void update(GLdouble a) override;
+    virtual void update(GLdouble delta_t) override;
     virtual void drawWheels(GLdouble inner, GLdouble outer, GLdouble scal);
 
 private:
