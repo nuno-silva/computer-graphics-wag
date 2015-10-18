@@ -4,7 +4,6 @@ Wheel::Wheel(GLdouble inner_radius, GLdouble outer_radius,
              GLdouble x, GLdouble y, GLdouble z) : _inner_radius(inner_radius),
                                                    _outer_radius(outer_radius)
 {
-    setWireframeState();
     setPosition(x, y, z);
 }
 
@@ -15,21 +14,9 @@ void Wheel::draw() {
     {
         getPosition().glTranslate();
         glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
-        drawTorus(_inner_radius, _outer_radius, 40, 40);
+        drawTorus(_inner_radius, _outer_radius, 10, 10);
     }
     glPopMatrix();
-}
-
-void Wheel::setWireframeState()
-{
-    // NOTE: duplicate code, consider deriving Cheerio and Wheel from
-    // same base class.
-    if (drawAsWireframe) {
-        drawTorus = glutWireTorus;
-    }
-    else {
-        drawTorus = glutSolidTorus;
-    }
 }
 
 void Wheel::setState(GLdouble inner_radius, GLdouble outer_radius, GLdouble x, GLdouble y, GLdouble z)

@@ -12,7 +12,7 @@ public:
 
 	Vector3 getPosition() const;
 
-	void setPosition(GLdouble n, GLdouble y, GLdouble z);
+	void setPosition(GLdouble x, GLdouble y, GLdouble z);
 	void setPosition(const Vector3& p);
 
 };

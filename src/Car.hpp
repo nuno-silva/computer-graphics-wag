@@ -6,7 +6,6 @@
 
 #define NUM_WHEELS 4
 class Car : public DynamicObject {
-    GLdouble _acceleration;
     GLdouble _scale = 1.0f;
 public:
     // Car wheels radii
@@ -23,20 +22,14 @@ public:
     const GLdouble _top_length         = 3      * _bottom_height;
     const GLdouble _top_width          = 2      * _top_height;
 
-    Car(GLdouble accel, GLdouble scale, GLdouble x, GLdouble y, GLdouble z);
-    Car(GLdouble accel, GLdouble x, GLdouble y, GLdouble z);
-    Car(GLdouble accel, GLdouble scale);
-    Car(GLdouble accel);
+    Car( GLdouble scale, GLdouble x, GLdouble y, GLdouble z );
+    Car( GLdouble scale );
 
     GLdouble getScale() const;
 
     virtual void draw() override;
 
-    void (_STDCALL*drawCube) (GLdouble size);
-
-    virtual void setWireframeState() override;
-    virtual void update(GLdouble a) override;
-    virtual void setDrawAsWireframe(bool value) override;
+    virtual void update(GLdouble delta_t) override;
     virtual void drawWheels(GLdouble inner, GLdouble outer, GLdouble scal);
 
 private:

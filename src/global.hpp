@@ -1,5 +1,7 @@
 #pragma once
 
+#define PI 3.14159265358979323846
+
 // we need glut in almost all files...
 #ifdef __MACH__
 # include <GLUT/glut.h>
