@@ -13,6 +13,7 @@ namespace CarColors {
 }
 
 class Car : public DynamicObject {
+private:
     GLdouble _scale = 1.0f;
 public:
     // Car wheels radii

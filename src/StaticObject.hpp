@@ -6,6 +6,6 @@
 class StaticObject : public GameObject
 {
 public:
-    virtual void draw();
-    void update( GLdouble delta_t );
+    virtual void draw() override;
+    virtual void update( GLdouble delta_t ) override;
 };

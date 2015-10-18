@@ -4,6 +4,7 @@
 #include "Camera.hpp"
 
 class PerspectiveCamera : public Camera {
+private:
     GLdouble _fovy   = 90;
     GLdouble _aspect = 1;
     GLdouble _zNear  = 1;
@@ -14,7 +15,7 @@ public:
                       GLdouble zNear, GLdouble zFar);
     PerspectiveCamera();
 
-    virtual void update();
-    virtual void computeProjectionMatrix();
-    virtual void computeVisualizationMatrix();
+    virtual void update() override;
+    virtual void computeProjectionMatrix() override;
+    virtual void computeVisualizationMatrix() override;
 };

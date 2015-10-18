@@ -12,7 +12,7 @@ public:
     Cheerio( GLdouble innerRadius,  GLdouble outerRadius );
     Cheerio( GLdouble innerRadius,  GLdouble outerRadius,
                     GLdouble x, GLdouble y, GLdouble z );
-    virtual void draw();
+    virtual void draw() override;
 private:
     GLdouble _innerRadius;
     GLdouble _outerRadius;

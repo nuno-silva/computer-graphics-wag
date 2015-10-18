@@ -12,7 +12,7 @@ class Table : public StaticObject {
 public:
     Table( GLdouble size );
     Table( GLdouble size, GLdouble x, GLdouble y, GLdouble z );
-    virtual void draw();
+    virtual void draw() override;
 private:
     GLdouble _size;
 };

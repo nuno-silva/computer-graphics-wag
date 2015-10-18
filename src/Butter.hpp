@@ -11,7 +11,7 @@ class Butter : public Obstacle
 {
 public:
     Butter( GLdouble x, GLdouble y, GLdouble z );
-    virtual void draw();
+    virtual void draw() override;
 
     static constexpr GLfloat box_width  = cm(4);
     static constexpr GLfloat box_length = cm(6);

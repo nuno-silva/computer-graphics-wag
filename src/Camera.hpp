@@ -7,6 +7,7 @@
 
 
 class Camera : public Entity {
+private:
     Vector3 _up, _center;
 protected:
     GLdouble _near,  _far;

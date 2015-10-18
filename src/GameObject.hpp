@@ -7,6 +7,7 @@
 #include "Entity.hpp"
 
 class GameObject : public Entity {
+private:
     Vector3 _boundingBox;
 public:
     GameObject();

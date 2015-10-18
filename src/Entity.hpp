@@ -5,6 +5,7 @@
 
 
 class Entity {
+private:
 	Vector3 _position;
 public:
 	Entity();

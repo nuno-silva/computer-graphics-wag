@@ -14,5 +14,5 @@ private:
 public:
     Orange(GLdouble radius);
     Orange(GLdouble radius, GLdouble x, GLdouble y, GLdouble z);
-    virtual void draw();
+    virtual void draw() override;
 };
