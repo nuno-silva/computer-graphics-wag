@@ -14,8 +14,11 @@ typedef void(*onTimerCallback) (int);
 class GameManager {
     GameObjectCollection                 _game_objects;
     std::vector<std::shared_ptr<Camera>> _cameras;
-    std::shared_ptr<Camera>              _activeCamera;
     std::shared_ptr<Car>                 _car;
+    std::shared_ptr<Camera>              _activeCamera;
+    std::shared_ptr<Camera>              _orthogonal_cam;
+    std::shared_ptr<Camera>              _perspective_cam;
+    std::shared_ptr<Camera>              _car_cam;
 
     bool _wired = false;
 

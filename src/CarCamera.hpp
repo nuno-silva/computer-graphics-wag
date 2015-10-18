@@ -3,10 +3,12 @@
 #include "Car.hpp"
 #include "PerspectiveCamera.hpp"
 
+#include <memory>
+
 class CarCamera : public PerspectiveCamera
 {
-    Car * _car;
+    std::shared_ptr<Car> _car;
 public:
-    CarCamera(Car & car);
+    CarCamera( std::shared_ptr<Car> car );
     virtual void update();
 };

@@ -38,24 +38,46 @@ void GameManager::reshape( GLsizei w, GLsizei h ) {
 
 
 void GameManager::keyPressed(unsigned char key, int x, int y) {
-    if (key == 'a') {
-        _wired = !_wired;
-    } else if (key >= '1' && key <= '3') {
-        _activeCamera = _cameras[key - '1'];
+    (void) x; // var is not used, but we don't want a unused-parameter warning
+    (void) y; // var is not used, but we don't want a unused-parameter warning
+
+    switch ( key ) {
+        case 'a':
+            _wired = !_wired;
+            break;
+        case '1':
+            _activeCamera = _orthogonal_cam;
+            break;
+        case '2':
+            _activeCamera = _perspective_cam;
+            break;
+        case '3':
+            _activeCamera = _car_cam;
+            break;
+        default:
+            DBG_PRINTF( "ignoring unknown key '%s'\n", key );
     }
 }
 
 void GameManager::specialPressed(int key, int x, int y) {
-    if (key == 101) { // Up arrow
-        _car->speedUp();
-    } else if (key == 103) { // Down arrow
-        _car->slowDown();
-    }
-    else if (key == GLUT_KEY_RIGHT) {
-        _car->turnRight();
-    }
-    else if (key == GLUT_KEY_LEFT) {
-        _car->turnLeft();
+    (void) x; // var is not used, but we don't want a unused-parameter warning
+    (void) y; // var is not used, but we don't want a unused-parameter warning
+
+    switch ( key ) {
+        case GLUT_KEY_UP:
+            _car->speedUp();
+            break;
+        case GLUT_KEY_DOWN:
+            _car->slowDown();
+            break;
+        case GLUT_KEY_RIGHT:
+            _car->turnRight();
+            break;
+        case GLUT_KEY_LEFT:
+            _car->turnLeft();
+            break;
+        default:
+            DBG_PRINTF( "ignoring unknown special key '%s'\n", key );
     }
 }
 
@@ -111,10 +133,15 @@ void GameManager::init() {
     _game_objects.add( _car );
 
     // Cameras
-    _cameras.push_back(std::make_shared<OrthogonalCamera>(-1.2f, 1.2f, -1.2f, 1.2f, -1.2f,1.2f));
-    _cameras.push_back(std::make_shared<PerspectiveCamera>(Vector3(0, -2, 2), Vector3(0, 1, 1), nullVector,
-                                                           45, 2, 0.1, 10));
-    _cameras.push_back(std::make_shared<CarCamera>(*_car));
-    _activeCamera = _cameras[0];
+    _orthogonal_cam  = std::make_shared<OrthogonalCamera>( -1.2f, 1.2f, -1.2f, 1.2f, -1.2f, 1.2f );
+    _perspective_cam = std::make_shared<PerspectiveCamera>( Vector3(0, -2, 2), Vector3(0, 1, 1), nullVector,
+                                                           P_CAM_FOV_Y, 2, 0.1, 10 );
+    _car_cam         = std::make_shared<CarCamera>(_car);
+
+    _cameras.push_back(_orthogonal_cam);
+    _cameras.push_back(_perspective_cam);
+    _cameras.push_back(_car_cam);
+
+    _activeCamera = _orthogonal_cam;
 }
 

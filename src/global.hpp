@@ -1,5 +1,7 @@
 #pragma once
 
+#define P_CAM_FOV_Y  45
+
 #define PI 3.14159265358979323846
 
 // we need glut in almost all files...
