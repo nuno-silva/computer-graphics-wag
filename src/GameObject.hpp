@@ -7,7 +7,11 @@
 #include "Entity.hpp"
 
 class GameObject : public Entity {
+    Vector3 _boundingBox;
 public:
+    GameObject();
+    GameObject(const Vector3 &boundingBox);
+
     virtual void draw() = 0;
     virtual void update(GLdouble delta_t );
 

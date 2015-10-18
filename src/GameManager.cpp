@@ -84,6 +84,7 @@ void GameManager::update(GLdouble delta) {
     _activeCamera->computeProjectionMatrix();
     _activeCamera->computeVisualizationMatrix();
 
+    std::cout << "Orientation: " << _car->getOrientation() << std::endl;
 }
 
 void GameManager::init() {

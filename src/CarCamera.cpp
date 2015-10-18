@@ -19,5 +19,5 @@ void CarCamera::update() {
     const auto z_offset  = Vector3(0, 0, (_car->_bottom_height + _car->_top_height) * 2);
 
     setPosition(_car->getPosition() + xy_offset + z_offset);
-    setCenter(_car->getOrientation());
+    setCenter(_car->getPosition() + _car->getOrientation());
 }

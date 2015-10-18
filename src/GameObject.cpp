@@ -1,4 +1,11 @@
+#include "Entity.hpp"
 #include "GameObject.hpp"
+#include "Vector3.hpp"
+
+GameObject::GameObject() : GameObject::GameObject(nullVector) {}
+
+GameObject::GameObject(const Vector3 & boundingBox)
+    : _boundingBox(boundingBox), Entity() {}
 
 void Axis3d_draw() {
     glPushMatrix();
