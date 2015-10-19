@@ -47,6 +47,7 @@
     #define TIMER_PERIOD 10
 #endif
 
+
 /* terminal colors for DEBUG_COLORS */
 #define KNRM  "\x1B[0;0m"
 #define KRED  "\x1B[0;31m"

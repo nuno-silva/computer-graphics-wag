@@ -50,7 +50,12 @@ void onTimer(int value) {
 int main( int argc, char *argv[] ) {
     glutInit( &argc, argv );
 
+    #ifdef SINGLEBUF
     glutInitDisplayMode( GLUT_RGBA | GLUT_SINGLE );
+    DBG_PRINT("Using single buffer (-DSINGLEBUF)\n");
+    #else
+    glutInitDisplayMode( GLUT_RGBA | GLUT_DOUBLE );
+    #endif
 
     glutInitWindowSize( WINDOW_SIZE );
     glutInitWindowPosition( -1, -1 );

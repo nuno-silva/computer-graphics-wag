@@ -23,7 +23,11 @@ void GameManager::display() {
 
     _game_objects.draw();
 
+    #ifdef SINGLEBUF
     glFlush();
+    #else
+    glutSwapBuffers();
+    #endif
 }
 
 /** called when the window size changes
