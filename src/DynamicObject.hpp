@@ -19,10 +19,10 @@ public:
     DynamicObject(Vector3 orientation);
     void update(GLdouble delta_t) override;
 
-    void speedUp();
-    void slowDown();
-    void turnRight();
-    void turnLeft();
+    void setSpeedUp( bool value );
+    void setSlowDown( bool value );
+    void setTurnRight( bool value );
+    void setTurnLeft( bool value );
 
     void setAccel(GLdouble accel);
 
@@ -30,6 +30,7 @@ public:
 
     void setOrientation(const Vector3& orientation);
     void setOrientation(GLdouble x, GLdouble y, GLdouble z);
+    bool isAccelerating();
 
     GLdouble getAccel() const;
     GLdouble getSpeed() const;

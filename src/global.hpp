@@ -1,5 +1,7 @@
 #pragma once
 
+#define P_CAM_FOV_Y  45
+
 #define PI 3.14159265358979323846
 
 // we need glut in almost all files...
@@ -44,6 +46,7 @@
 #ifndef TIMER_PERIOD
     #define TIMER_PERIOD 10
 #endif
+
 
 /* terminal colors for DEBUG_COLORS */
 #define KNRM  "\x1B[0;0m"

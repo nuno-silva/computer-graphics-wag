@@ -7,9 +7,16 @@
 #include "Entity.hpp"
 
 class GameObject : public Entity {
+private:
+    Vector3 _boundingBox;
 public:
+    GameObject();
+    GameObject(const Vector3 &boundingBox);
+
     virtual void draw() = 0;
     virtual void update(GLdouble delta_t );
+
+    virtual bool checkCollisionWith(const GameObject &);
 
     virtual void toggleWiredSolid();
     virtual void setWired();

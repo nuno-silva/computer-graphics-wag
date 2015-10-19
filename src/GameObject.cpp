@@ -1,4 +1,13 @@
+#include <cmath>
+
+#include "Entity.hpp"
 #include "GameObject.hpp"
+#include "Vector3.hpp"
+
+GameObject::GameObject() : GameObject::GameObject(zeroVector) {}
+
+GameObject::GameObject(const Vector3 & boundingBox)
+    : _boundingBox(boundingBox), Entity() {}
 
 void Axis3d_draw() {
     glPushMatrix();
@@ -39,6 +48,12 @@ void GameObject::draw() {
 
 void GameObject::update(GLdouble delta_t ) {
     DBG_PRINT("update()\n");
+}
+
+bool GameObject::checkCollisionWith(const GameObject & other) {
+    return fabs(getPosition().getX() - other.getPosition().getX()) > 0 &&
+           fabs(getPosition().getY() - other.getPosition().getY()) > 0 &&
+           fabs(getPosition().getZ() - other.getPosition().getZ()) > 0;
 }
 
 void GameObject::toggleWiredSolid() {

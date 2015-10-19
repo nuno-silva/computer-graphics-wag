@@ -24,19 +24,38 @@ void keyPressed(unsigned char key, int x, int y) {
     game.keyPressed(key, x, y);
 }
 
+/** spacial key is down */
 void specialPressed(int key, int x, int y) {
-    game.specialPressed(key, x, y);
+    game.specialPressed(key, x, y, true);
+}
+
+/** spacial key is up */
+void specialUp(int key, int x, int y) {
+    game.specialPressed(key, x, y, false);
 }
 
 void onTimer(int value) {
-    game.onTimer(value, onTimer);
-}
+    (void) value; // remove unused variable warning
+    static int lastElapsedTime = 0;
+    int newElapsedTime = glutGet( GLUT_ELAPSED_TIME );
+    GLdouble delta = newElapsedTime - lastElapsedTime;
+    lastElapsedTime = newElapsedTime;
 
+    game.update(delta);
+
+    glutPostRedisplay();
+    glutTimerFunc(TIMER_PERIOD, onTimer, TIMER_PERIOD);
+}
 
 int main( int argc, char *argv[] ) {
     glutInit( &argc, argv );
 
+    #ifdef SINGLEBUF
     glutInitDisplayMode( GLUT_RGBA | GLUT_SINGLE );
+    DBG_PRINT("Using single buffer (-DSINGLEBUF)\n");
+    #else
+    glutInitDisplayMode( GLUT_RGBA | GLUT_DOUBLE );
+    #endif
 
     glutInitWindowSize( WINDOW_SIZE );
     glutInitWindowPosition( -1, -1 );
@@ -50,6 +69,7 @@ int main( int argc, char *argv[] ) {
     glutDisplayFunc(display);
     glutKeyboardFunc(keyPressed);
     glutSpecialFunc(specialPressed);
+    glutSpecialUpFunc(specialUp);
     glutTimerFunc(TIMER_PERIOD, onTimer, TIMER_PERIOD);
 
     glutMainLoop();

@@ -5,12 +5,13 @@
 
 #include <iostream>
 
-#define ACCEL cm(300)
+#define ACCEL cm(100)
 
 #define MAX_SPEED cm(200)
 
 DynamicObject::DynamicObject() : _accel(0.0f), _speed(0.0f),
-                                 _orientation(-1.0f, 0.0f, 0.0f) { }
+                                 _orientation(-1.0f, 0.0f, 0.0f), 
+                                _turnRight(false), _turnLeft(false) { }
 
 DynamicObject::DynamicObject(Vector3 orientation) : DynamicObject()
 {
@@ -23,15 +24,13 @@ void DynamicObject::update(GLdouble delta_t) {
     Vector3 neg_x(-1.0f, 0.0f, 0.0f);
     Vector3 unitZ = Vector3(0.0f, 0.0f, 1.0f);
     if (_turnRight) {
-        _turnRight = false;
         Vector3 left = _orientation.crossProduct(unitZ);
-        Vector3 newOrient = _orientation + left * 8 * delta_t_s;
+        Vector3 newOrient = _orientation + left * 3.0f * delta_t_s;
         angle = newOrient.angleBetweenZ(neg_x);
         _orientation = newOrient;
     } else if (_turnLeft) {
-        _turnLeft = false;
         Vector3 right = unitZ.crossProduct(_orientation);
-        Vector3 newOrient = _orientation + right * 8 * delta_t_s;
+        Vector3 newOrient = _orientation + right * 3.0f * delta_t_s;
         angle = newOrient.angleBetweenZ(neg_x);
         _orientation = newOrient;
     }
@@ -48,29 +47,27 @@ void DynamicObject::update(GLdouble delta_t) {
         _speed -= _accel * delta_t_s;
     }
 
-    if (fabs(_speed) < cm(2)) {
+    if ((fabs(_speed) < cm(2)) && !isAccelerating()) {
         _speed = 0;
     }
-
-    _accel = 0.0f;
 }
 
-void DynamicObject::speedUp() {
-    _accel = ACCEL;
+void DynamicObject::setSpeedUp( bool value ) {
+    _accel = value ? ACCEL : 0.0f;
 }
 
-void DynamicObject::slowDown() {
-    _accel = -1 *ACCEL;
+void DynamicObject::setSlowDown( bool value ) {
+    _accel = value ? -1 * ACCEL : 0.0f;
 }
 
-void DynamicObject::turnRight()
+void DynamicObject::setTurnRight( bool value )
 {
-    _turnRight = true;
+    _turnRight = value;
 }
 
-void DynamicObject::turnLeft()
+void DynamicObject::setTurnLeft( bool value )
 {
-    _turnLeft = true;
+    _turnLeft = value;
 }
 
 
@@ -104,6 +101,11 @@ void DynamicObject::setOrientation(GLdouble x, GLdouble y, GLdouble z) {
     Vector3 v;
     v.set(x, y, z);
     _orientation = v;
+}
+
+bool DynamicObject::isAccelerating()
+{
+    return _accel != 0.0f;
 }
 
 Vector3 DynamicObject::getOrientation() const {

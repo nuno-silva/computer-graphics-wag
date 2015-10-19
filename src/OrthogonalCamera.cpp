@@ -2,23 +2,11 @@
 
 OrthogonalCamera::OrthogonalCamera( GLdouble left, GLdouble right,
                                     GLdouble bottom, GLdouble top,
-                                    GLdouble near, GLdouble far ) :
-                                    Camera( near, far )
-{
-    _left = left;
-    _right = right;
-    _bottom = bottom;
-    _top = top;
-}
+                                    GLdouble near, GLdouble far )
+    : Camera( Vector3(0, 0, 1), near, far ), _left(left), _right(right),
+      _bottom(bottom), _top(top) {}
 
-OrthogonalCamera::~OrthogonalCamera() {
 
-}
-
-void OrthogonalCamera::update() {
-    Camera::update();
-    // TODO
-}
 
 void OrthogonalCamera::computeProjectionMatrix() {
     Camera::computeProjectionMatrix();
