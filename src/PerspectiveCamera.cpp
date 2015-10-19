@@ -3,9 +3,9 @@
 
 
 PerspectiveCamera::PerspectiveCamera(const Vector3 &at, const Vector3 &up, const Vector3 &center,
-                                     GLdouble fovy,     GLdouble aspect,
+                                     GLdouble fovy,
                                      GLdouble zNear,    GLdouble zFar)
-    : _fovy(fovy), _aspect(aspect), _zNear(zNear), _zFar(zFar),
+    : _fovy(fovy), _zNear(zNear), _zFar(zFar),
       Camera(at, up, center, zNear, zFar) {}
 
 
@@ -14,7 +14,8 @@ void PerspectiveCamera::computeProjectionMatrix() {
     Camera::computeProjectionMatrix();
     DBG_PRINT("computeProjectionMatrix()\n");
 
-    gluPerspective(_fovy, _aspect, _zNear, _zFar);
+    GLfloat ratio = (GLfloat) Camera::_width / (GLfloat) Camera::_height;
+    gluPerspective(_fovy, ratio, _zNear, _zFar);
 }
 
 

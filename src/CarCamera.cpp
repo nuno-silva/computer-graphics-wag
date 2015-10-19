@@ -8,7 +8,7 @@ Vector3 v1(0,0,1);
 
 CarCamera::CarCamera(std::shared_ptr<Car> car) : _car(car),
                                   PerspectiveCamera(zeroVector, v1, zeroVector,
-                                                    45, 2, 0.1, 5)
+                                                    45, 0.1, 5)
 {
     update();
 }

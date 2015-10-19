@@ -11,7 +11,7 @@ private:
     GLdouble _zFar   = 1;
 public:
     PerspectiveCamera(const Vector3 &at, const Vector3 &up, const Vector3 &center,
-                      GLdouble fovy,  GLdouble aspect,
+                      GLdouble fovy,
                       GLdouble zNear, GLdouble zFar);
     PerspectiveCamera();
 
