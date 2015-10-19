@@ -12,6 +12,8 @@ private:
 protected:
     GLdouble _near,  _far;
     GLsizei  _width, _height;
+    virtual void computeProjectionMatrix();
+    virtual void computeVisualizationMatrix();
 public:
     Camera( GLdouble near, GLdouble far );
     Camera(const Vector3 &at, GLdouble near, GLdouble far );
@@ -21,9 +23,6 @@ public:
 
     virtual void update();
     virtual void reshape( GLsizei width, GLsizei height );
-
-    virtual void computeProjectionMatrix();
-    virtual void computeVisualizationMatrix();
 
     const Vector3& getUp()     const;
     const Vector3& getCenter() const;

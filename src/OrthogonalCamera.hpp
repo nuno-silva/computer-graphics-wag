@@ -13,7 +13,6 @@ private:
 public:
     OrthogonalCamera( GLdouble left, GLdouble right, GLdouble bottom,
                       GLdouble top, GLdouble near, GLdouble far );
-    virtual void update() override;
     virtual void computeProjectionMatrix() override;
     virtual void computeVisualizationMatrix() override;
 };

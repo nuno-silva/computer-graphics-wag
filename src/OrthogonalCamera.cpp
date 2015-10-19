@@ -6,10 +6,7 @@ OrthogonalCamera::OrthogonalCamera( GLdouble left, GLdouble right,
     : Camera( Vector3(0, 0, 1), near, far ), _left(left), _right(right),
       _bottom(bottom), _top(top) {}
 
-void OrthogonalCamera::update() {
-    Camera::update();
-    // TODO
-}
+
 
 void OrthogonalCamera::computeProjectionMatrix() {
     Camera::computeProjectionMatrix();

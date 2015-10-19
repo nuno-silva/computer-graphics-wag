@@ -15,7 +15,6 @@ public:
                       GLdouble zNear, GLdouble zFar);
     PerspectiveCamera();
 
-    virtual void update() override;
     virtual void computeProjectionMatrix() override;
     virtual void computeVisualizationMatrix() override;
 };

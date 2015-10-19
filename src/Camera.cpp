@@ -20,7 +20,8 @@ Camera::Camera(const Vector3 &at, const Vector3 &up, const Vector3 &center, GLdo
 }
 
 void Camera::update() {
-    // TODO
+    computeProjectionMatrix();
+    computeVisualizationMatrix();
 }
 
 void Camera::reshape( GLsizei w, GLsizei h ) {

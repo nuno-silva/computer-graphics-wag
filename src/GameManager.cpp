@@ -92,9 +92,6 @@ void GameManager::update(GLdouble delta) {
 
     _game_objects.update(delta);
     _activeCamera->update();
-
-    _activeCamera->computeProjectionMatrix();
-    _activeCamera->computeVisualizationMatrix();
 }
 
 void GameManager::init() {

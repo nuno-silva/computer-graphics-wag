@@ -8,10 +8,7 @@ PerspectiveCamera::PerspectiveCamera(const Vector3 &at, const Vector3 &up, const
     : _fovy(fovy), _aspect(aspect), _zNear(zNear), _zFar(zFar),
       Camera(at, up, center, zNear, zFar) {}
 
-void PerspectiveCamera::update() {
-    Camera::update();
-    // TODO
-}
+
 
 void PerspectiveCamera::computeProjectionMatrix() {
     Camera::computeProjectionMatrix();
