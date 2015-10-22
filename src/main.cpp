@@ -34,17 +34,14 @@ void specialUp(int key, int x, int y) {
     game.specialPressed(key, x, y, false);
 }
 
-void onTimer(int value) {
-    (void) value; // remove unused variable warning
-    static int lastElapsedTime = 0;
+void onTimer(int lastElapsedTime) {
     int newElapsedTime = glutGet( GLUT_ELAPSED_TIME );
-    GLdouble delta = newElapsedTime - lastElapsedTime;
-    lastElapsedTime = newElapsedTime;
+    int delta = newElapsedTime - lastElapsedTime;
 
     game.update(delta);
 
     glutPostRedisplay();
-    glutTimerFunc(TIMER_PERIOD, onTimer, TIMER_PERIOD);
+    glutTimerFunc(TIMER_PERIOD, onTimer, newElapsedTime);
 }
 
 int main( int argc, char *argv[] ) {
@@ -70,7 +67,7 @@ int main( int argc, char *argv[] ) {
     glutKeyboardFunc(keyPressed);
     glutSpecialFunc(specialPressed);
     glutSpecialUpFunc(specialUp);
-    glutTimerFunc(TIMER_PERIOD, onTimer, TIMER_PERIOD);
+    glutTimerFunc(TIMER_PERIOD, onTimer, 0);
 
     glutMainLoop();
 
