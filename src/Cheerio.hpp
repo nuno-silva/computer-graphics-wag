@@ -1,12 +1,12 @@
 #pragma once
 
-#include "StaticObject.hpp"
+#include "DynamicObject.hpp"
 
 namespace CheerioColors {
     static constexpr GLfloat cheerio[3] = { 1.000f, 0.973f, 0.863f }; // Cornsilk
 }
 
-class Cheerio : public StaticObject
+class Cheerio : public DynamicObject
 {
 public:
     Cheerio( GLdouble innerRadius,  GLdouble outerRadius );
