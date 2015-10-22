@@ -13,9 +13,24 @@ void reshape( int width, int height ) {
 }
 
 /** called when the screen needs updating
+ * Draws a game frame and updates the window title showing FPS
  * */
 void display() {
+    static int frames = 0;
+    static int start = glutGet( GLUT_ELAPSED_TIME );
+
     game.display(); // this calls flush
+    frames++;
+
+    int now = glutGet( GLUT_ELAPSED_TIME );
+    if( now - start >= 1000 ) {
+        char title[128];
+        sprintf(title, "%s (%d fps)", WINDOW_TITLE, frames);
+        glutSetWindowTitle( title );
+
+        start  = now;
+        frames = 0;
+    }
 }
 
 /** called when a key is pressed
