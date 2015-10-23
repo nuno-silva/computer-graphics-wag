@@ -26,3 +26,5 @@ void Wheel::setState(GLdouble inner_radius, GLdouble outer_radius, GLdouble x, G
     setPosition(x, y, z);
 }
 
+
+void Wheel::processCollision(GameObject &go) { }

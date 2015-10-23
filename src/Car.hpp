@@ -36,8 +36,10 @@ public:
     GLdouble getScale() const;
 
     virtual void draw() override;
-
     virtual void update(GLdouble delta_t) override;
+
+    virtual void processCollision(GameObject &go) override;
+
     virtual void drawWheels();
     virtual void setWheelsState(GLdouble inner, GLdouble outer, GLdouble scale);
 

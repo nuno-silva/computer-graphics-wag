@@ -82,3 +82,7 @@ void Car::update(GLdouble delta_t) {
         }
     }
 }
+
+void Car::processCollision(GameObject &go) {
+
+}
