@@ -31,3 +31,7 @@ void Orange::draw() {
 
     glPopMatrix();
 }
+
+void Orange::processCollision(GameObject &go) {
+    // Not yet implemented (or overloaded).
+}

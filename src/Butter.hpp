@@ -20,6 +20,6 @@ public:
     static constexpr GLfloat lid_width  = cm(5);
     static constexpr GLfloat lid_length = cm(7);
     static constexpr GLfloat lid_height = cm(1);
+
+    virtual void processCollision(GameObject &go) override;
 };
-
-

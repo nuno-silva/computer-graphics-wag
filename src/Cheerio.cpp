@@ -21,3 +21,7 @@ void Cheerio::draw()
 
     glPopMatrix();
 }
+
+void Cheerio::processCollision(GameObject &go) {
+    // Not yet implemented (or overloaded).
+}

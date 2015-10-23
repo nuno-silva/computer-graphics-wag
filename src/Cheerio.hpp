@@ -13,6 +13,8 @@ public:
     Cheerio( GLdouble innerRadius,  GLdouble outerRadius,
                     GLdouble x, GLdouble y, GLdouble z );
     virtual void draw() override;
+    virtual void processCollision(GameObject &go) override;
+
 private:
     GLdouble _innerRadius;
     GLdouble _outerRadius;

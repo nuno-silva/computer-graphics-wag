@@ -29,3 +29,7 @@ void Butter::draw()
 
     glPopMatrix();
 }
+
+void Butter::processCollision(GameObject &go) {
+    // Empty;
+}

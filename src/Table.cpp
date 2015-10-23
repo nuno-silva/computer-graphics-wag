@@ -20,3 +20,7 @@ void Table::draw() {
 #endif
     glPopMatrix();
 }
+
+void Table::processCollision(GameObject &go) {
+    // Empty;
+}
