@@ -9,6 +9,9 @@ Car::Car(GLdouble scale, GLdouble x, GLdouble y, GLdouble z) :
 {
     setPosition(x, y, z);
     setWheelsState(_wheel_inner_radius, _wheel_outer_radius, _scale);
+
+    _boundingSphere._radius = _bottom_length / 2.0f;
+    _boundingSphere._center = getPosition() + getOrientation() * cm(1.625);
 }
 
 Car::Car(GLdouble scale) : Car::Car(scale, 0, 0, 0) {}

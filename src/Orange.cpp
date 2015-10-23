@@ -4,8 +4,12 @@ Orange::Orange(GLdouble radius) : Orange(radius, 0, 0, 0) {}
 
 Orange::Orange(GLdouble radius, GLdouble x, GLdouble y, GLdouble z) : _radius(radius) {
     setPosition(x, y, z);
+
     _stalk_width  = radius / 20.0f;
     _stalk_height = radius / 3.0f;
+
+    _boundingSphere._radius = radius;
+    _boundingSphere._center = getPosition();
 }
 
 

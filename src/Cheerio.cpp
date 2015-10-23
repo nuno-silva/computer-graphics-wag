@@ -1,13 +1,13 @@
 #include "Cheerio.hpp"
 
-Cheerio::Cheerio( GLdouble innerRadius,  GLdouble outerRadius ) :
-                    _innerRadius(innerRadius), _outerRadius(outerRadius) {}
-
 Cheerio::Cheerio( GLdouble innerRadius,  GLdouble outerRadius,
                     GLdouble x, GLdouble y, GLdouble z ) :
                     _innerRadius(innerRadius), _outerRadius(outerRadius)
 {
     setPosition( x, y, z );
+
+    _boundingSphere._radius = outerRadius;
+    _boundingSphere._center = getPosition();
 }
 
 
