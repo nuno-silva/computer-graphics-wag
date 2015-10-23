@@ -20,6 +20,21 @@ void GameObjectCollection::update( GLdouble delta_t ) {
     }
 }
 
+bool GameObjectCollection::checkCollision(const GameObject &go) {
+    for (auto & c: _children) {
+        if (c->checkCollision(go)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+void GameObjectCollection::processCollision(GameObject &go) {
+    for (auto & c: _children) {
+        c->processCollision(go);
+    }
+}
+
 void GameObjectCollection::toggleWiredSolid() {
     for (auto x : _children) {
         x->toggleWiredSolid();

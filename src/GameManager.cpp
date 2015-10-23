@@ -94,6 +94,8 @@ void GameManager::update(GLdouble delta) {
         _game_objects.setSolid();
     }
 
+    _game_objects.processCollisions(*_car);
+
     _game_objects.update(delta);
     _activeCamera->update();
 }
