@@ -4,11 +4,6 @@
 #include "GameObject.hpp"
 #include "Vector3.hpp"
 
-GameObject::GameObject() : GameObject::GameObject(zeroVector) {}
-
-GameObject::GameObject(const Vector3 & boundingBox)
-    : _boundingBox(boundingBox), Entity() {}
-
 void Axis3d_draw() {
     glPushMatrix();
 
@@ -50,10 +45,14 @@ void GameObject::update(GLdouble delta_t ) {
     DBG_PRINT("update()\n");
 }
 
-bool GameObject::checkCollisionWith(const GameObject & other) {
-    return fabs(getPosition().getX() - other.getPosition().getX()) > 0 &&
-           fabs(getPosition().getY() - other.getPosition().getY()) > 0 &&
-           fabs(getPosition().getZ() - other.getPosition().getZ()) > 0;
+bool GameObject::checkCollision(const GameObject &go) {
+    // Line connecting the center of the bounding spheres.
+    const Vector3 line = _boundingSphere._center - go._boundingSphere._center;
+    // Square of the length of the line, to avoid computing the sqrt.
+    const auto sq_distance = std::pow(line.getX(), 2) + std::pow(line.getY(), 2);
+
+    const auto radii_sum = _boundingSphere._radius + go._boundingSphere._radius;
+    return sq_distance < std::pow(radii_sum, 2);
 }
 
 void GameObject::toggleWiredSolid() {
