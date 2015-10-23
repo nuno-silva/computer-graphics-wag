@@ -23,6 +23,7 @@ void DynamicObject::update(GLdouble delta_t) {
 
     Vector3 neg_x(-1.0f, 0.0f, 0.0f);
     Vector3 unitZ = Vector3(0.0f, 0.0f, 1.0f);
+
     if (_turnRight) {
         Vector3 left = _orientation.crossProduct(unitZ);
         Vector3 newOrient = _orientation + left * 3.0f * delta_t_s;
@@ -37,9 +38,12 @@ void DynamicObject::update(GLdouble delta_t) {
 
     _orientation = _orientation.normalized();
 
-    setPosition(getPosition() +
-                _orientation * _speed * delta_t_s +
-                _orientation * _accel * 0.5f * pow(delta_t_s, 2));
+    const Vector3 position_offset = getPosition() +
+        _orientation * _speed * delta_t_s +
+        _orientation * _accel * 0.5f * pow(delta_t_s, 2);
+
+    setPosition(position_offset);
+    _boundingSphere._center = _boundingSphere._center + position_offset;
 
     _speed = _speed + _accel * delta_t_s;
     if(fabs(_speed) > MAX_SPEED) {
