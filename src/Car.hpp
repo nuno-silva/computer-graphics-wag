@@ -3,7 +3,7 @@
 #include "DynamicObject.hpp"
 #include "global.hpp"
 #include "Wheel.hpp"
-#include "IOnCollision.hpp"
+#include "IOnCollisionObserver.hpp"
 
 #define NUM_WHEELS 4
 
