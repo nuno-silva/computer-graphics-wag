@@ -8,6 +8,8 @@ private:
     GLdouble _accel;
     GLdouble _speed;
     Vector3  _orientation;
+    Vector3 _initPosition;
+    Vector3 _initOrientation;
 
 protected:
     bool _turnLeft;
@@ -17,6 +19,9 @@ protected:
 public:
     DynamicObject();
     DynamicObject(Vector3 orientation);
+    DynamicObject(Vector3 orientation, GLdouble x, GLdouble y, GLdouble z);
+    DynamicObject(Vector3 orientation, Vector3 position);
+    DynamicObject(GLdouble x, GLdouble y, GLdouble z);
     void update(GLdouble delta_t) override;
 
     void setSpeedUp( bool value );
@@ -37,4 +42,7 @@ public:
     Vector3 getOrientation() const;
 
     virtual void draw() = 0;
+
+    virtual void resetInitPosition();
+    virtual void resetInitOrientation();
 };

@@ -10,12 +10,30 @@
 #define MAX_SPEED cm(200)
 
 DynamicObject::DynamicObject() : _accel(0.0f), _speed(0.0f),
-                                 _orientation(-1.0f, 0.0f, 0.0f), 
+                                 _orientation(-1.0f, 0.0f, 0.0f),
+                                 _initOrientation(-1.0f, 0.0f, 0.0f),
                                 _turnRight(false), _turnLeft(false) { }
 
-DynamicObject::DynamicObject(Vector3 orientation) : DynamicObject()
+DynamicObject::DynamicObject(Vector3 orientation) : DynamicObject(orientation)
 {
-    _orientation = orientation;
+    _initOrientation = _orientation = orientation;
+    setPosition(0.0f, 0.0f, 0.0f);
+    _initPosition = getPosition();
+}
+
+DynamicObject::DynamicObject(Vector3 orientation, GLdouble x, GLdouble y, GLdouble z) : DynamicObject(orientation) 
+{
+    setPosition(x, y, z);
+    _initPosition = getPosition();
+}
+
+DynamicObject::DynamicObject(Vector3 orientation, Vector3 position) : DynamicObject(orientation, 
+                                                                      position.getX(), position.getY(), position.getZ()) { }
+
+DynamicObject::DynamicObject(GLdouble x, GLdouble y, GLdouble z) : DynamicObject()
+{
+    setPosition(x, y, z);
+    _initPosition = getPosition();
 }
 
 void DynamicObject::update(GLdouble delta_t) {
@@ -114,6 +132,16 @@ bool DynamicObject::isAccelerating()
 
 Vector3 DynamicObject::getOrientation() const {
     return _orientation;
+}
+
+void DynamicObject::resetInitPosition()
+{
+    setPosition(_initPosition);
+}
+
+void DynamicObject::resetInitOrientation()
+{
+    setOrientation(_initOrientation);
 }
 
 

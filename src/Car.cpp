@@ -5,9 +5,8 @@
 #include <iostream>
 
 Car::Car(GLdouble scale, GLdouble x, GLdouble y, GLdouble z) :
-    DynamicObject::DynamicObject(), _scale(scale)
+    DynamicObject::DynamicObject(x, y, z), _scale(scale)
 {
-    setPosition(x, y, z);
     setWheelsState(_wheel_inner_radius, _wheel_outer_radius, _scale);
 
     _boundingSphere._radius = _bottom_length / 2.0f;
@@ -33,6 +32,19 @@ void Car::setWheelsState(GLdouble inner, GLdouble outer, GLdouble scale)
     wheels[1].setState(inner, outer, scale * cm(2.75), scale * cm(1), inner + outer);
     wheels[2].setState(inner, outer, scale * cm(0), scale * cm(-1), inner + outer);
     wheels[3].setState(inner, outer, scale * cm(0), scale * cm(1), inner + outer);
+}
+
+void Car::onStopCollision(GameObject & otherObj)
+{
+    // TODO: move car back if necessary
+    setSpeed(0.0f);
+}
+
+void Car::onResetCollision(GameObject & otherObj)
+{
+    setSpeed(0.0f);
+    resetInitPosition();
+    resetInitOrientation();
 }
 
 void Car::draw() {
