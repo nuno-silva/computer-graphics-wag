@@ -1,7 +1,7 @@
 #pragma once
-#include "GameObject.hpp"
+#include "IOnCollisionObserver.hpp"
 
 class IOnCollisionObservable {
-    virtual void registerOnStopCollisonObserver(GameObject &obj) = 0;
-    virtual void registerOnResetCollisonObserver(GameObject &obj) = 0;
+    virtual void registerOnStopCollisonObserver(IOnCollisionObserver& obj) = 0;
+    virtual void registerOnResetCollisonObserver(IOnCollisionObserver &obj) = 0;
 };

@@ -34,13 +34,12 @@ void Car::setWheelsState(GLdouble inner, GLdouble outer, GLdouble scale)
     wheels[3].setState(inner, outer, scale * cm(0), scale * cm(1), inner + outer);
 }
 
-void Car::onStopCollision(GameObject & otherObj)
+void Car::onStopCollision(const GameObject & otherObj)
 {
-    // TODO: move car back if necessary
     setSpeed(0.0f);
 }
 
-void Car::onResetCollision(GameObject & otherObj)
+void Car::onResetCollision(const GameObject & otherObj)
 {
     setSpeed(0.0f);
     resetInitPosition();

@@ -94,7 +94,9 @@ void GameManager::update(GLdouble delta) {
         _game_objects.setSolid();
     }
 
-    _game_objects.processCollision(*_car);
+    // NOTE: commented out since it causes the car to be reset
+    // needs to be fixed before uncommenting
+    //_game_objects.processCollision(*_car);
 
     _game_objects.update(delta);
     _activeCamera->update();
@@ -108,11 +110,7 @@ void GameManager::init() {
     _game_objects.add(std::make_shared<Roadside>( 0.92f ) );
 
     // Butters
-    _game_objects.add(std::make_shared<Butter>(cm(40),  cm(57),  cm(0)));
-    _game_objects.add(std::make_shared<Butter>(cm(-35), cm(-60), cm(0)));
-    _game_objects.add(std::make_shared<Butter>(cm(-73), cm(0),   cm(0)));
-    _game_objects.add(std::make_shared<Butter>(cm(30),  cm(20),  cm(0)));
-    _game_objects.add(std::make_shared<Butter>(cm(-80), cm(70),  cm(0)));
+    createButters();
 
     // Oranges
     const GLfloat orange_radius = cm(2.5);
@@ -134,5 +132,28 @@ void GameManager::init() {
     _cameras.push_back(_car_cam);
 
     _activeCamera = _orthogonal_cam;
+}
+
+void GameManager::createButters()
+{
+    std::shared_ptr<Butter> b = std::make_shared<Butter>(cm(40), cm(57), cm(0));
+    b->registerOnResetCollisonObserver(*_car);
+    _game_objects.add(b);
+    
+    b = std::make_shared<Butter>(cm(-35), cm(-60), cm(0));
+    b->registerOnResetCollisonObserver(*_car);
+    _game_objects.add(b);
+
+    b = std::make_shared<Butter>(cm(-73), cm(0), cm(0));
+    b->registerOnResetCollisonObserver(*_car);
+    _game_objects.add(b);
+
+    b = std::make_shared<Butter>(cm(30), cm(20), cm(0));
+    b->registerOnResetCollisonObserver(*_car);
+    _game_objects.add(b);
+
+    b = std::make_shared<Butter>(cm(-80), cm(70), cm(0));
+    b->registerOnResetCollisonObserver(*_car);
+    _game_objects.add(b);
 }
 

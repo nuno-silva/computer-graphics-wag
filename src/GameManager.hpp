@@ -33,4 +33,5 @@ public:
     void specialPressed ( int key,           int x, int y, bool pressed );
     void update         ( GLdouble delta                             );
     void init();
+    void createButters();
 };

@@ -1,7 +1,6 @@
 #include "PerspectiveCamera.hpp"
 #include "Vector3.hpp"
 
-
 PerspectiveCamera::PerspectiveCamera(const Vector3 &at, const Vector3 &up, const Vector3 &center,
                                      GLdouble fovy,
                                      GLdouble zNear,    GLdouble zFar)
