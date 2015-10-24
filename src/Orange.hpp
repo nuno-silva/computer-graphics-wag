@@ -3,6 +3,7 @@
 #include "global.hpp"
 #include "Obstacle.hpp"
 
+#define STALK_ROTATION 40
 
 namespace OrangeColors {
     static constexpr GLfloat skin[3]  = { 1.0f, 0.627451f, 0.0f }; // Orange
@@ -11,7 +12,8 @@ namespace OrangeColors {
 
 class Orange : public Obstacle {
 private:
-    GLdouble _radius, _stalk_width, _stalk_height;
+    GLdouble _radius, _stalk_width, _stalk_height, _stalk_z_offset;
+
 public:
     Orange(GLdouble radius);
     Orange(GLdouble radius, GLdouble x, GLdouble y, GLdouble z);

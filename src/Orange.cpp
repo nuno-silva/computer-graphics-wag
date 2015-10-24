@@ -7,6 +7,8 @@ Orange::Orange(GLdouble radius, GLdouble x, GLdouble y, GLdouble z) : _radius(ra
 
     _stalk_width  = radius / 20.0f;
     _stalk_height = radius / 3.0f;
+    // compute z axis offset (due to rotation)
+    _stalk_z_offset = std::sin(STALK_ROTATION) * _stalk_width;
 
     _boundingSphere._radius = radius;
     _boundingSphere._center = getPosition();
@@ -26,8 +28,9 @@ void Orange::draw() {
 
     glPushMatrix();
     { // draw orange stalk
-        glTranslatef( 0.0f, 0.0f, _stalk_height / 2.0f + _radius );
+        glTranslatef( 0.0f, 0.0f, _stalk_height / 2.0f + _radius - _stalk_z_offset);
         glColor3f( components3( OrangeColors::stalk ));
+        glRotatef(STALK_ROTATION, 0.0f, 1.0f, 0.0f);
         glScalef( _stalk_width, _stalk_width, _stalk_height );
         drawCube( 1.0f );
     }
