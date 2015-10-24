@@ -13,7 +13,7 @@ namespace CarColors {
     static constexpr GLfloat bottom[3] = { 0.255f, 0.412f, 0.882f }; // RoyalBlue
 }
 
-class Car : public DynamicObject, IOnCollision {
+class Car : public DynamicObject, IOnCollisionObserver {
 private:
     GLdouble _scale = 1.0f;
 public:
@@ -47,7 +47,7 @@ public:
 private:
     Wheel wheels[NUM_WHEELS] = { Wheel(), Wheel(), Wheel(), Wheel() };
 
-    // Inherited via IOnCollision
+    // Inherited via IOnCollisionObserver
     virtual void onStopCollision(GameObject & otherObj) override;
     virtual void onResetCollision(GameObject & otherObj) override;
 };
