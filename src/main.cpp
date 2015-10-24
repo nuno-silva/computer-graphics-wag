@@ -60,7 +60,6 @@ void onTimer(int lastElapsedTime) {
 
 int main( int argc, char *argv[] ) {
     glutInit( &argc, argv );
-    glEnable(GL_DEPTH_TEST);
         
     #ifdef SINGLEBUF
     glutInitDisplayMode( GLUT_RGBA | GLUT_SINGLE | GLUT_DEPTH);
@@ -73,9 +72,11 @@ int main( int argc, char *argv[] ) {
     glutInitWindowPosition( -1, -1 );
 
     glutCreateWindow( WINDOW_TITLE );
-
-
+    
+    glEnable(GL_DEPTH_TEST);
+    
     game.init();
+
 
     glutReshapeFunc(reshape);
     glutDisplayFunc(display);
