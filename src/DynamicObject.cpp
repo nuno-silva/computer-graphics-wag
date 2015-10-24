@@ -14,10 +14,11 @@ DynamicObject::DynamicObject() : _accel(0.0f), _speed(0.0f),
                                  _initOrientation(-1.0f, 0.0f, 0.0f),
                                 _turnRight(false), _turnLeft(false) { }
 
-DynamicObject::DynamicObject(Vector3 orientation) : DynamicObject(orientation)
+DynamicObject::DynamicObject(Vector3 orientation) : _accel(0.0f), _speed(0.0f),
+                                                    _orientation(orientation),
+                                                    _initOrientation(orientation),
+                                                    _turnRight(false), _turnLeft(false)
 {
-    _initOrientation = _orientation = orientation;
-    setPosition(0.0f, 0.0f, 0.0f);
     _initPosition = getPosition();
 }
 
@@ -41,7 +42,7 @@ void DynamicObject::update(GLdouble delta_t) {
 
     Vector3 neg_x(-1.0f, 0.0f, 0.0f);
     Vector3 unitZ = Vector3(0.0f, 0.0f, 1.0f);
-
+    
     if (_turnRight) {
         Vector3 left = _orientation.crossProduct(unitZ);
         Vector3 newOrient = _orientation + left * 3.0f * delta_t_s;
@@ -56,13 +57,17 @@ void DynamicObject::update(GLdouble delta_t) {
 
     _orientation = _orientation.normalized();
 
-    const Vector3 position_offset = getPosition() +
+    const Vector3 sphere_offset = 
         _orientation * _speed * delta_t_s +
         _orientation * _accel * 0.5f * pow(delta_t_s, 2);
 
-    setPosition(position_offset);
-    _boundingSphere._center = _boundingSphere._center + position_offset;
+    const Vector3 position_offset = getPosition() +
+        sphere_offset;
 
+    setPosition(position_offset);
+    if (getSpeed() != 0) {
+        _boundingSphere._center = _boundingSphere._center + sphere_offset;
+    }
     _speed = _speed + _accel * delta_t_s;
     if(fabs(_speed) > MAX_SPEED) {
         std::cout << "MAX_SPEED" << std::endl;
@@ -144,4 +149,7 @@ void DynamicObject::resetInitOrientation()
     setOrientation(_initOrientation);
 }
 
+void DynamicObject::resetColSphereInitPosition()
+{
+}
 

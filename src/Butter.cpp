@@ -34,7 +34,8 @@ void Butter::draw()
 }
 
 void Butter::processCollision(GameObject &go) {
-
+    // TODO: for now it will stop/reset all objects, only stop/rest
+    // if object is go.
     for (unsigned int i = 0; i < onStopCollisionListeners.size(); i++) {
         onStopCollisionListeners[i]->onStopCollision((*this));
     }
@@ -42,6 +43,7 @@ void Butter::processCollision(GameObject &go) {
     for (unsigned int i = 0; i < onResetCollisionListeners.size(); i++) {
         onResetCollisionListeners[i]->onResetCollision((*this));
     }
+
 }
 
 void Butter::registerOnStopCollisonObserver(IOnCollisionObserver& obj)

@@ -45,12 +45,13 @@ public:
     virtual void setWheelsState(GLdouble inner, GLdouble outer, GLdouble scale);
 
 private:
-    Wheel wheels[NUM_WHEELS] = { Wheel(), Wheel(), Wheel(), Wheel() };
+    Wheel wheels[NUM_WHEELS] = { Wheel(), Wheel(), Wheel(), Wheel() }; 
 
+
+    virtual void resetColSphereInitPosition() override;
 
     // Inherited via IOnCollisionObserver
     virtual void onStopCollision(const GameObject & otherObj) override;
-
     virtual void onResetCollision(const GameObject & otherObj) override;
 
 };

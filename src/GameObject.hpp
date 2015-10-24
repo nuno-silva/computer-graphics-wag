@@ -16,8 +16,10 @@ struct BoundingSphere {
 };
 
 class GameObject : public Entity {
+
 protected:
     BoundingSphere _boundingSphere;
+    Vector3 _boundingSpehereInitPosition;
     bool _wired = false;
 
     std::function<void(GLdouble)>                         drawCube   = glutSolidCube;
@@ -27,7 +29,7 @@ public:
     virtual void draw() = 0;
     virtual void update(GLdouble delta_t );
 
-    virtual bool checkCollision(const GameObject &go);
+    virtual bool checkCollision(GameObject &go);
     virtual void processCollision(GameObject &go) = 0;
 
     virtual void toggleWiredSolid();

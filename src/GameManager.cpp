@@ -96,7 +96,7 @@ void GameManager::update(GLdouble delta) {
 
     // NOTE: commented out since it causes the car to be reset
     // needs to be fixed before uncommenting
-    //_game_objects.processCollision(*_car);
+    _game_objects.checkCollision(*_car);
 
     _game_objects.update(delta);
     _activeCamera->update();
@@ -139,7 +139,7 @@ void GameManager::createButters()
     std::shared_ptr<Butter> b = std::make_shared<Butter>(cm(40), cm(57), cm(0));
     b->registerOnResetCollisonObserver(*_car);
     _game_objects.add(b);
-    
+   
     b = std::make_shared<Butter>(cm(-35), cm(-60), cm(0));
     b->registerOnResetCollisonObserver(*_car);
     _game_objects.add(b);
@@ -155,5 +155,6 @@ void GameManager::createButters()
     b = std::make_shared<Butter>(cm(-80), cm(70), cm(0));
     b->registerOnResetCollisonObserver(*_car);
     _game_objects.add(b);
+    
 }
 

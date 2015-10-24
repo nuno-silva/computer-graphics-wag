@@ -10,7 +10,7 @@ Car::Car(GLdouble scale, GLdouble x, GLdouble y, GLdouble z) :
     setWheelsState(_wheel_inner_radius, _wheel_outer_radius, _scale);
 
     _boundingSphere._radius = _bottom_length / 2.0f;
-    _boundingSphere._center = getPosition() + getOrientation() * cm(1.625);
+    _boundingSpehereInitPosition = _boundingSphere._center = getPosition() + getOrientation() * cm(1.625);
 }
 
 Car::Car(GLdouble scale) : Car::Car(scale, 0, 0, 0) {}
@@ -34,17 +34,26 @@ void Car::setWheelsState(GLdouble inner, GLdouble outer, GLdouble scale)
     wheels[3].setState(inner, outer, scale * cm(0), scale * cm(1), inner + outer);
 }
 
+void Car::resetColSphereInitPosition()
+{
+    _boundingSphere._center = _boundingSpehereInitPosition;
+}
+
 void Car::onStopCollision(const GameObject & otherObj)
 {
     setSpeed(0.0f);
+    setAccel(0.0f);
 }
 
 void Car::onResetCollision(const GameObject & otherObj)
 {
     setSpeed(0.0f);
+    setAccel(0.0f);
     resetInitPosition();
     resetInitOrientation();
+    resetColSphereInitPosition();
 }
+
 
 void Car::draw() {
     glPushMatrix();

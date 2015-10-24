@@ -45,4 +45,5 @@ public:
 
     virtual void resetInitPosition();
     virtual void resetInitOrientation();
+    virtual void resetColSphereInitPosition();
 };

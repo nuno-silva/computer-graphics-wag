@@ -20,10 +20,10 @@ void GameObjectCollection::update( GLdouble delta_t ) {
     }
 }
 
-bool GameObjectCollection::checkCollision(const GameObject &go) {
+bool GameObjectCollection::checkCollision(GameObject &go) {
     for (auto & c: _children) {
         if (c->checkCollision(go)) {
-            return true;
+            c->processCollision(go);
         }
     }
     return false;
