@@ -27,7 +27,6 @@ void display() {
         char title[128];
         sprintf(title, "%s (%d fps)", WINDOW_TITLE, frames);
         glutSetWindowTitle( title );
-
         start  = now;
         frames = 0;
     }
@@ -61,12 +60,13 @@ void onTimer(int lastElapsedTime) {
 
 int main( int argc, char *argv[] ) {
     glutInit( &argc, argv );
-
+    glEnable(GL_DEPTH_TEST);
+        
     #ifdef SINGLEBUF
-    glutInitDisplayMode( GLUT_RGBA | GLUT_SINGLE );
+    glutInitDisplayMode( GLUT_RGBA | GLUT_SINGLE | GLUT_DEPTH);
     DBG_PRINT("Using single buffer (-DSINGLEBUF)\n");
     #else
-    glutInitDisplayMode( GLUT_RGBA | GLUT_DOUBLE );
+    glutInitDisplayMode( GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
     #endif
 
     glutInitWindowSize( WINDOW_SIZE );
