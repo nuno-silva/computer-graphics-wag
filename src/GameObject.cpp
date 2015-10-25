@@ -5,7 +5,13 @@
 #include "Vector3.hpp"
 #include "Butter.hpp"
 
-void Axis3d_draw() {
+GameObject::GameObject() {
+#if defined DEBUG
+    _axis_size = 1.5f;
+#endif
+}
+
+void Axis3d_draw( GLdouble size ) {
     glPushMatrix();
 
     glBegin( GL_LINES);
@@ -13,17 +19,17 @@ void Axis3d_draw() {
 
     glColor3f( 1.0f, 0.0f, 0.0f );
     glVertex3f( 0.0f, 0.0f, 0.0f );
-    glVertex3f( 1.1f, 0.0f, 0.0f );
+    glVertex3f( size, 0.0f, 0.0f );
 
     // green Y axis
     glColor3f( 0.0f, 1.0f, 0.0f );
     glVertex3f( 0.0f, 0.0f, 0.0f );
-    glVertex3f( 0.0f, 1.1f, 0.0f );
+    glVertex3f( 0.0f, size, 0.0f );
 
     // blue Z axis
     glColor3f( 0.0f, 0.0f, 1.0f );
     glVertex3f( 0.0f, 0.0f, 0.0f );
-    glVertex3f( 0.0f, 0.0f, 1.1f );
+    glVertex3f( 0.0f, 0.0f, size );
 
     glEnd();
 
@@ -31,14 +37,14 @@ void Axis3d_draw() {
 }
 
 void GameObject::draw() {
-    DBG_PRINT( "draw() " KCYN "translate\n");
+    //DBG_PRINT( "draw() " KCYN "translate\n");
 
     // translate to the object's position
     // subclasses should call gl[Push|Pop]Matrix
     getPosition().glTranslate();
 
 #if defined DEBUG
-    Axis3d_draw();
+    Axis3d_draw(_axis_size);
 #endif
 }
 

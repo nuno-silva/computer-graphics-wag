@@ -4,7 +4,9 @@
 Butter::Butter( GLdouble x, GLdouble y, GLdouble z )
 {
     setPosition( x, y, z );
-
+#if defined DEBUG
+    _axis_size = box_length * 1.5f;
+#endif
     _boundingSphere._radius = box_length;
     _boundingSphere._center = getPosition();
 }

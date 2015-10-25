@@ -26,6 +26,7 @@ protected:
     std::function<void(GLdouble, GLint, GLint)>           drawSphere = glutSolidSphere;
     std::function<void(GLdouble, GLdouble, GLint, GLint)> drawTorus  = glutSolidTorus;
 public:
+    GameObject();
     virtual void draw() = 0;
     virtual void update(GLdouble delta_t );
 
@@ -35,5 +36,9 @@ public:
     virtual void toggleWiredSolid();
     virtual void setWired();
     virtual void setSolid();
+
+#if defined DEBUG
+    GLdouble _axis_size;
+#endif
 };
 

@@ -8,7 +8,9 @@ Car::Car(GLdouble scale, GLdouble x, GLdouble y, GLdouble z) :
     DynamicObject::DynamicObject(Vector3(-1.0f, 0.0f, 0.0f), x, y, z), _scale(scale)
 {
     setWheelsState(_wheel_inner_radius, _wheel_outer_radius, _scale);
-
+#if defined DEBUG
+    _axis_size = _bottom_length;
+#endif
     _boundingSphere._radius = _bottom_length / 2.0f;
     _boundingSpehereInitPosition = _boundingSphere._center = getPosition() + getOrientation() * cm(1.625);
 }
