@@ -4,8 +4,8 @@
 PerspectiveCamera::PerspectiveCamera(const Vector3 &at, const Vector3 &up, const Vector3 &center,
                                      GLdouble fovy,
                                      GLdouble zNear,    GLdouble zFar)
-    : _fovy(fovy), _zNear(zNear), _zFar(zFar),
-      Camera(at, up, center, zNear, zFar) {}
+    : Camera(at, up, center, zNear, zFar),
+    _fovy(fovy), _zNear(zNear), _zFar(zFar) { }
 
 
 

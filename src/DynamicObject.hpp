@@ -12,8 +12,8 @@ private:
     Vector3 _initOrientation;
 
 protected:
-    bool _turnLeft;
     bool _turnRight;
+    bool _turnLeft;
     GLdouble _angleZ = 0;
 
 public:

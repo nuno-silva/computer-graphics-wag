@@ -48,10 +48,6 @@ void GameObject::draw() {
 #endif
 }
 
-void GameObject::update(GLdouble delta_t ) {
-    DBG_PRINT("update()\n");
-}
-
 bool GameObject::checkCollision(GameObject &go) {
     // Line connecting the center of the bounding spheres.
     const Vector3 line = _boundingSphere._center - go._boundingSphere._center;

@@ -28,7 +28,7 @@ protected:
 public:
     GameObject();
     virtual void draw() = 0;
-    virtual void update(GLdouble delta_t );
+    virtual void update(GLdouble delta_t ) = 0;
 
     virtual bool checkCollision(GameObject &go);
     virtual void processCollision(GameObject &go) = 0;

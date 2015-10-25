@@ -11,8 +11,6 @@ void GameObjectCollection::draw() {
 }
 
 void GameObjectCollection::update( GLdouble delta_t ) {
-    GameObject::update( delta_t );
-
     DBG_PRINT("update()\n");
 
     for (auto c : _children) {

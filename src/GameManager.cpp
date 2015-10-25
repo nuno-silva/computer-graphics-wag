@@ -59,7 +59,7 @@ void GameManager::keyPressed(unsigned char key, int x, int y) {
             _activeCamera = _car_cam;
             break;
         default:
-            DBG_PRINTF( "ignoring unknown key '%s'\n", key );
+            DBG_PRINTF( "ignoring unknown key '%u'\n", key );
     }
 }
 
@@ -83,7 +83,7 @@ void GameManager::specialPressed(int key, int x, int y, bool pressed) {
             _car->setTurnLeft( pressed );
             break;
         default:
-            DBG_PRINTF( "ignoring unknown special key '%s'\n", key );
+            DBG_PRINTF( "ignoring unknown special key '%u'\n", key );
     }
 }
 
@@ -139,7 +139,7 @@ void GameManager::createButters()
     std::shared_ptr<Butter> b = std::make_shared<Butter>(cm(40), cm(57), cm(0));
     b->registerOnResetCollisonObserver(*_car);
     _game_objects.add(b);
-   
+
     b = std::make_shared<Butter>(cm(-35), cm(-60), cm(0));
     b->registerOnResetCollisonObserver(*_car);
     _game_objects.add(b);
@@ -155,6 +155,6 @@ void GameManager::createButters()
     b = std::make_shared<Butter>(cm(-80), cm(70), cm(0));
     b->registerOnResetCollisonObserver(*_car);
     _game_objects.add(b);
-    
+
 }
 
