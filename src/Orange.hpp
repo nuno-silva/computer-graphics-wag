@@ -17,11 +17,13 @@ class Orange : public Obstacle {
 private:
     GLdouble _radius, _stalk_width, _stalk_height;
     GLdouble _stalk_x, _stalk_y, _stalk_z;
-
+    GLdouble _isActive = false;
 public:
     Orange(GLdouble radius);
     Orange(GLdouble radius, GLdouble x, GLdouble y, GLdouble z);
+    virtual void setPosition(const Vector3& p) override;
     virtual void draw() override;
+    void setActive( bool value );
+    bool isActive( );
     virtual void processCollision(GameObject &go) override;
-
 };

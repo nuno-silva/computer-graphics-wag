@@ -10,8 +10,9 @@
 #include "Table.hpp"
 
 #include <iostream>
+#include <cstdlib>
 
-GameManager::GameManager() : _game_objects(), _cameras() {
+GameManager::GameManager() : _game_objects(), _oranges(), _cameras() {
     _car = std::make_shared<Car>(1.0);
 }
 
@@ -99,7 +100,59 @@ void GameManager::update(GLdouble delta) {
     _game_objects.checkCollision(*_car);
 
     _game_objects.update(delta);
+
+    // update oranges if ORANGES_UPDATE_PERIOD_MS ms have passed
+    _msSinceStart += delta;
+    if( _msSinceStart - _msSinceLastOrangeUpdate >= ORANGES_UPDATE_PERIOD_MS ) {
+        _msSinceLastOrangeUpdate = _msSinceStart;
+        updateOranges( _msSinceStart );
+    }
+
     _activeCamera->update();
+}
+
+/** returns -1 or +1 randomly */
+GLdouble random_sign() {
+    if( rand() % 2 == 0) {
+        return 1.0f;
+    }
+    return -1.0f;
+}
+
+/** returns a random number in the interval [min ; max] */
+GLdouble random( GLdouble min, GLdouble max ) {
+    GLdouble r = (GLdouble) rand() / (GLdouble) RAND_MAX;
+    r = r * (max - min) + min;
+    return r;
+}
+
+void GameManager::updateOranges( GLdouble msSinceStart ) {
+    DBG_PRINTF( "updateOranges( '%f' )\n", msSinceStart );
+    GLdouble newSpeed = cm(3) + msSinceStart / ORANGES_UPDATE_PERIOD_MS * cm(3); // 3 cm/s per 10s of game
+
+    for( auto orange : _oranges ) {
+        //if( orange->isActive() ) {
+            //TODO: deactivate orange if it's outside the table (using collisions?)
+        //} else {
+            Vector3 pos = orange->getPosition();
+            GLdouble newX = random_sign() * random( 0.1f, 0.81f );
+            GLdouble newY = random_sign() * random( 0.11f, 0.7f );
+
+            /* setPosition will also rotate the orange as if it moved to the new
+             * position. That's not intended, but it won't hurt. */
+            pos.set( newX, newY, pos.getZ() );
+            orange->setPosition( pos );
+
+            newX = random_sign() * random( 0.01f, 1.0f );
+            newY = random_sign() * random( 0.01f, 1.0f );
+
+            // TODO: make orientation random
+            orange->setOrientation( newX, newY, 0.0f );
+
+            orange->setSpeed( newSpeed );
+            orange->setActive( true );
+        //}
+    }
 }
 
 void GameManager::init() {
@@ -114,9 +167,11 @@ void GameManager::init() {
 
     // Oranges
     const GLfloat orange_radius = cm(2.5);
-    _game_objects.add(std::make_shared<Orange>(orange_radius, cm(70),  cm(20),  orange_radius));
-    _game_objects.add(std::make_shared<Orange>(orange_radius, cm(60),  cm(60),  orange_radius));
-    _game_objects.add(std::make_shared<Orange>(orange_radius, cm(-70), cm(-50), orange_radius));
+    for( int i = 0; i < ORANGE_COUNT; i++ ) {
+        auto orange = std::make_shared<Orange>(orange_radius, m(3),  m(3),  orange_radius);
+        _oranges.push_back( orange );
+        _game_objects.add( orange );
+    }
 
     // Car
     _game_objects.add( _car );
@@ -132,6 +187,12 @@ void GameManager::init() {
     _cameras.push_back(_car_cam);
 
     _activeCamera = _orthogonal_cam;
+
+    // initiate random seed
+    srand (time(NULL));
+
+    // place the first oranges
+    updateOranges( 0 );
 }
 
 void GameManager::createButters()

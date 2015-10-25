@@ -4,16 +4,19 @@
 #include <vector>
 
 #include "Camera.hpp"
+#include "Orange.hpp"
 #include "Car.hpp"
 #include "GameObject.hpp"
 #include "GameObjectCollection.hpp"
 #include "global.hpp"
 
-typedef void(*onTimerCallback) (int);
+#define ORANGE_COUNT 5
+#define ORANGES_UPDATE_PERIOD_MS (5.0f * 1000.0f)
 
 class GameManager {
 private:
     GameObjectCollection                 _game_objects;
+    std::vector<std::shared_ptr<Orange>> _oranges;
     std::vector<std::shared_ptr<Camera>> _cameras;
     std::shared_ptr<Car>                 _car;
     std::shared_ptr<Camera>              _activeCamera;
@@ -23,6 +26,11 @@ private:
 
     bool _wired = false;
 
+    void updateOranges( GLdouble msSinceStart );
+    /** number of milliseconds since the game was init'ed */
+    GLdouble _msSinceStart = 0;
+    /** number of milliseconds since the last time the oranges where updated */
+    GLdouble _msSinceLastOrangeUpdate = 0;
     /* std::vector<LightSource> _light_source; */
 public:
     GameManager();
