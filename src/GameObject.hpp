@@ -39,6 +39,7 @@ public:
 
 #if defined DEBUG
     GLdouble _axis_size;
+    void Axis3d_draw( GLdouble size );
 #endif
 };
 

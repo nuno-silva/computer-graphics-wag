@@ -27,7 +27,7 @@ Roadside::Roadside( GLdouble size ) : _size(size) {
 
 void Roadside::draw()
 {
-    DBG_PRINT("draw()\n");
+    //DBG_PRINT("draw()\n");
     glPushMatrix();
     GameObjectCollection::draw();
     glPopMatrix();

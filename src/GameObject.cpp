@@ -11,7 +11,7 @@ GameObject::GameObject() {
 #endif
 }
 
-void Axis3d_draw( GLdouble size ) {
+void GameObject::Axis3d_draw( GLdouble size ) {
     glPushMatrix();
 
     glBegin( GL_LINES);

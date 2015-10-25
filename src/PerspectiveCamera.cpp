@@ -11,7 +11,7 @@ PerspectiveCamera::PerspectiveCamera(const Vector3 &at, const Vector3 &up, const
 
 void PerspectiveCamera::computeProjectionMatrix() {
     Camera::computeProjectionMatrix();
-    DBG_PRINT("computeProjectionMatrix()\n");
+    //DBG_PRINT("computeProjectionMatrix()\n");
 
     GLfloat ratio = (GLfloat) Camera::_width / (GLfloat) Camera::_height;
     gluPerspective(_fovy, ratio, _zNear, _zFar);
@@ -20,7 +20,7 @@ void PerspectiveCamera::computeProjectionMatrix() {
 
 void PerspectiveCamera::computeVisualizationMatrix() {
     Camera::computeVisualizationMatrix();
-    DBG_PRINT("computeVisualizationMatrix()\n");
+    //DBG_PRINT("computeVisualizationMatrix()\n");
 
     Vector3 at, center, up;
 

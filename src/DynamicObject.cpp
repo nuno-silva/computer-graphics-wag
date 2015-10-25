@@ -132,6 +132,20 @@ Vector3 DynamicObject::getOrientation() const {
     return _orientation;
 }
 
+/** should be used by objects which need either _angleX or _angleZ */
+void DynamicObject::draw() {
+    // translate to the object's position
+    // subclasses should call gl[Push|Pop]Matrix
+    getPosition().glTranslate();
+
+    glRotatef(_angleX, 1.0f, 0.0f, 0.0f);
+    glRotatef(_angleZ, 0.0f, 0.0f, 1.0f);
+
+#if defined DEBUG
+    Axis3d_draw(_axis_size);
+#endif
+}
+
 void DynamicObject::resetInitPosition()
 {
     setPosition(_initPosition);

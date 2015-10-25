@@ -15,6 +15,7 @@ protected:
     bool _turnRight;
     bool _turnLeft;
     GLdouble _angleZ = 0;
+    GLdouble _angleX = 0;
 
 public:
     DynamicObject();
@@ -41,7 +42,7 @@ public:
     GLdouble getSpeed() const;
     Vector3 getOrientation() const;
 
-    virtual void draw() = 0;
+    virtual void draw() override;
 
     virtual void resetInitPosition();
     virtual void resetInitOrientation();

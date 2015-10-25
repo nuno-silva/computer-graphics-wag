@@ -3,7 +3,7 @@
 void GameObjectCollection::draw() {
     GameObject::draw();
 
-    DBG_PRINT("draw()\n");
+    //DBG_PRINT("draw()\n");
 
     for (auto c : _children) {
         c->draw();
