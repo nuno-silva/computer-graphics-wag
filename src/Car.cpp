@@ -5,7 +5,7 @@
 #include <iostream>
 
 Car::Car(GLdouble scale, GLdouble x, GLdouble y, GLdouble z) :
-    DynamicObject::DynamicObject(x, y, z), _scale(scale)
+    DynamicObject::DynamicObject(Vector3(-1.0f, 0.0f, 0.0f), x, y, z), _scale(scale)
 {
     setWheelsState(_wheel_inner_radius, _wheel_outer_radius, _scale);
 
@@ -64,7 +64,7 @@ void Car::draw() {
         //std::cout << "Angle:: " << angle << std::endl;
 
         //glTranslatef(getPosition().getX(), getPosition().getY(), getPosition().getZ());
-        glRotatef(angle, 0.0f, 0.0f, 1.0f);
+        glRotatef(_angleZ, 0.0f, 0.0f, 1.0f);
         //glTranslatef(getPosition().getX() * (-1), getPosition().getY() * (-1), getPosition().getZ() * (-1));
 
         // Car bottom

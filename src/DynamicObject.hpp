@@ -14,7 +14,7 @@ private:
 protected:
     bool _turnLeft;
     bool _turnRight;
-    GLdouble angle = 0;
+    GLdouble _angleZ = 0;
 
 public:
     DynamicObject();

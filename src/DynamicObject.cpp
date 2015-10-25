@@ -9,10 +9,7 @@
 
 #define MAX_SPEED cm(200)
 
-DynamicObject::DynamicObject() : _accel(0.0f), _speed(0.0f),
-                                 _orientation(-1.0f, 0.0f, 0.0f),
-                                 _initOrientation(-1.0f, 0.0f, 0.0f),
-                                _turnRight(false), _turnLeft(false) { }
+DynamicObject::DynamicObject() : DynamicObject(Vector3(-1.0f, 0.0f, 0.0f)) { }
 
 DynamicObject::DynamicObject(Vector3 orientation) : _accel(0.0f), _speed(0.0f),
                                                     _orientation(orientation),
@@ -22,13 +19,13 @@ DynamicObject::DynamicObject(Vector3 orientation) : _accel(0.0f), _speed(0.0f),
     _initPosition = getPosition();
 }
 
-DynamicObject::DynamicObject(Vector3 orientation, GLdouble x, GLdouble y, GLdouble z) : DynamicObject(orientation) 
+DynamicObject::DynamicObject(Vector3 orientation, GLdouble x, GLdouble y, GLdouble z) : DynamicObject(orientation)
 {
     setPosition(x, y, z);
     _initPosition = getPosition();
 }
 
-DynamicObject::DynamicObject(Vector3 orientation, Vector3 position) : DynamicObject(orientation, 
+DynamicObject::DynamicObject(Vector3 orientation, Vector3 position) : DynamicObject(orientation,
                                                                       position.getX(), position.getY(), position.getZ()) { }
 
 DynamicObject::DynamicObject(GLdouble x, GLdouble y, GLdouble z) : DynamicObject()
@@ -40,24 +37,19 @@ DynamicObject::DynamicObject(GLdouble x, GLdouble y, GLdouble z) : DynamicObject
 void DynamicObject::update(GLdouble delta_t) {
     GLdouble delta_t_s = delta_t/1000.0f;
 
-    Vector3 neg_x(-1.0f, 0.0f, 0.0f);
     Vector3 unitZ = Vector3(0.0f, 0.0f, 1.0f);
-    
+
     if (_turnRight) {
         Vector3 left = _orientation.crossProduct(unitZ);
         Vector3 newOrient = _orientation + left * 3.0f * delta_t_s;
-        angle = newOrient.angleBetweenZ(neg_x);
-        _orientation = newOrient;
+        setOrientation( newOrient );
     } else if (_turnLeft) {
         Vector3 right = unitZ.crossProduct(_orientation);
         Vector3 newOrient = _orientation + right * 3.0f * delta_t_s;
-        angle = newOrient.angleBetweenZ(neg_x);
-        _orientation = newOrient;
+        setOrientation( newOrient );
     }
 
-    _orientation = _orientation.normalized();
-
-    const Vector3 sphere_offset = 
+    const Vector3 sphere_offset =
         _orientation * _speed * delta_t_s +
         _orientation * _accel * 0.5f * pow(delta_t_s, 2);
 
@@ -121,13 +113,14 @@ GLdouble DynamicObject::getSpeed() const {
 
 /* orientation */
 void DynamicObject::setOrientation(const Vector3 & orientation) {
-    _orientation = orientation;
+    _orientation = orientation.normalized();
+    _angleZ = _orientation.angleBetweenZ( _initOrientation );
 }
 
 void DynamicObject::setOrientation(GLdouble x, GLdouble y, GLdouble z) {
     Vector3 v;
     v.set(x, y, z);
-    _orientation = v;
+    setOrientation(v);
 }
 
 bool DynamicObject::isAccelerating()
