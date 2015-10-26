@@ -32,6 +32,9 @@ public:
     virtual void draw() = 0;
     virtual void update(GLdouble delta_t ) = 0;
 
+    GLdouble getBoundingSphereRadius();
+    Vector3 getBoundingSphereCenter();
+
     virtual bool checkCollision(GameObject &go);
     virtual void processCollision(Car &car);
 

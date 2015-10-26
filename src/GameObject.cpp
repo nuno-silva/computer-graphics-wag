@@ -65,6 +65,15 @@ void GameObject::draw() {
 #endif
 }
 
+GLdouble GameObject::getBoundingSphereRadius() {
+    return _boundingSphere._radius;
+}
+
+Vector3 GameObject::getBoundingSphereCenter() {
+    return _boundingSphere._center;
+}
+
+
 bool GameObject::checkCollision(GameObject &go) {
     // Line connecting the center of the bounding spheres.
     const Vector3 line = _boundingSphere._center - go._boundingSphere._center;

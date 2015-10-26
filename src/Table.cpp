@@ -1,4 +1,7 @@
 #include "Table.hpp"
+#include "Car.hpp"
+
+#define TABLE_LENGTH 2.0f
 
 Table::Table( GLdouble size ) : Table(size, 0.0f, 0.0f, 0.0f) {}
 
@@ -16,8 +19,26 @@ void Table::draw() {
 
 #ifdef DEBUG
     glColor3f( 1.0f, 0.5f, 0.0f );
-    glutWireCube( 2.0f );
+    glutWireCube( _size );
 #endif
     glPopMatrix();
 }
 
+bool Table::checkCollision(GameObject &go) {
+    Vector3 pos = go.getBoundingSphereCenter();
+    GLdouble sphRadius = go.getBoundingSphereRadius();
+    GLdouble tableRadius = _size / 2.0f;
+
+    GLdouble x = pos.getX();
+    GLdouble y = pos.getY();
+    return abs(x) + sphRadius >= tableRadius || abs(y) + sphRadius >= tableRadius;
+}
+
+
+void Table::processCollision(Car &car) {
+    DBG_PRINTF("processCollision(Car %p)\n", (void*)&car);
+
+    if( car.getSpeed() > 0.0f ) {
+        car.stop();
+    }
+}
