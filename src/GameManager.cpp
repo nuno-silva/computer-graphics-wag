@@ -98,6 +98,14 @@ void GameManager::update(GLdouble delta) {
     // check for and process collisions with the car
     _game_objects.processCollision(*_car);
 
+    // check for Orange collisions with table borders
+    for( auto o : _oranges ) {
+        if( _table->checkCollision( *o ) ) {
+            o->setActive(false);
+            o->stop(); // not really needed
+        }
+    }
+
     _game_objects.update(delta);
 
     // update oranges if ORANGES_UPDATE_PERIOD_MS ms have passed
@@ -127,12 +135,10 @@ GLdouble random( GLdouble min, GLdouble max ) {
 
 void GameManager::updateOranges( GLdouble msSinceStart ) {
     DBG_PRINTF( "updateOranges( '%f' )\n", msSinceStart );
-    GLdouble newSpeed = cm(3) + msSinceStart / ORANGES_UPDATE_PERIOD_MS * cm(3); // 3 cm/s per 10s of game
+    GLdouble newSpeed = cm(3) + msSinceStart * ORANGES_SPEED_INCREMENT_MS;
 
     for( auto orange : _oranges ) {
-        //if( orange->isActive() ) {
-            //TODO: deactivate orange if it's outside the table (using collisions?)
-        //} else {
+        if( ! orange->isActive() ) {
             Vector3 pos = orange->getPosition();
             GLdouble newX = random_sign() * random( 0.1f, 0.81f );
             GLdouble newY = random_sign() * random( 0.11f, 0.7f );
@@ -150,13 +156,14 @@ void GameManager::updateOranges( GLdouble msSinceStart ) {
 
             orange->setSpeed( newSpeed );
             orange->setActive( true );
-        //}
+        }
     }
 }
 
 void GameManager::init() {
     // Table
-    _game_objects.add(std::make_shared<Table>( m(2), m(0), m(0), m(0) ) );
+    _table = std::make_shared<Table>( m(2), m(0), m(0), m(0) );
+    _game_objects.add( _table );
 
     // Road
     _game_objects.add(std::make_shared<Roadside>( 0.92f ) );
