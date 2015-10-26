@@ -11,7 +11,7 @@ Cheerio::Cheerio( GLdouble innerRadius,  GLdouble outerRadius,
 #endif
 
     _boundingSphere._radius = outerRadius + innerRadius;
-    _boundingSphere._center = getPosition();
+    _boundingSphere._initCenter = _boundingSphere._center = getPosition();
 }
 
 

@@ -4,15 +4,17 @@
 
 #include <iostream>
 
+const Vector3 initialOrientation = Vector3(-1.0f, 0.0f, 0.0f);
+
 Car::Car(GLdouble scale, GLdouble x, GLdouble y, GLdouble z) :
-    DynamicObject::DynamicObject(Vector3(-1.0f, 0.0f, 0.0f), x, y, z), _scale(scale)
+    DynamicObject::DynamicObject(initialOrientation, x, y, z), _scale(scale)
 {
     setWheelsState(_wheel_inner_radius, _wheel_outer_radius, _scale);
 #if defined DEBUG
     _axis_size = _bottom_length;
 #endif
     _boundingSphere._radius = _bottom_length / 2.0f;
-    _boundingSpehereInitPosition = _boundingSphere._center = getPosition() + getOrientation() * cm(1.625);
+    _boundingSphere._initCenter = _boundingSphere._center = getPosition() - getOrientation() * cm(1.625);
 }
 
 Car::Car(GLdouble scale) : Car::Car(scale, 0, 0, 0) {}
@@ -36,10 +38,13 @@ void Car::setWheelsState(GLdouble inner, GLdouble outer, GLdouble scale)
     wheels[3].setState(inner, outer, scale * cm(0), scale * cm(1), inner + outer);
 }
 
-void Car::resetColSphereInitPosition()
-{
-    _boundingSphere._center = _boundingSpehereInitPosition;
+void Car::reset() {
+    DBG_PRINT( "reset()\n" );
+    stop();
+    resetInitPosition();
+    resetInitOrientation();
 }
+
 
 void Car::draw() {
     glPushMatrix();

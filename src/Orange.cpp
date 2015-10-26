@@ -9,7 +9,7 @@ Orange::Orange(GLdouble radius, GLdouble x, GLdouble y, GLdouble z) :
                 Obstacle( Vector3(0.0f, 1.0f, 0.0f) ),
                 _radius(radius)
  {
-    Entity::setPosition(x, y, z); // set position without updating _angleX
+    Entity::setPosition(x, y, z); // set position without updating _angleX nor updating boundingSphere
 
     _stalk_width  = radius / 20.0f;
     _stalk_height = radius / 3.0f;
@@ -25,7 +25,7 @@ Orange::Orange(GLdouble radius, GLdouble x, GLdouble y, GLdouble z) :
 #endif
 
     _boundingSphere._radius = radius;
-    _boundingSphere._center = getPosition();
+    _boundingSphere._initCenter = _boundingSphere._center = getPosition();
 }
 
 /** sets the Orange's position and rotates it */
@@ -35,7 +35,7 @@ void Orange::setPosition(const Vector3& p) {
     GLdouble distance = (p - oldPos).norm();
     // The X axis and _orientation are orthogonal, so we only need to rotate around X.
     _angleX -= fmod( RAD_TO_DEG( distance / _radius ), (GLdouble)360.0f );
-    Entity::setPosition(p);
+    DynamicObject::setPosition(p);
 }
 
 void Orange::draw() {
@@ -84,6 +84,7 @@ bool Orange::isActive( ) {
 }
 
 
-void Orange::processCollision(Car &go) {
-    // TODO
+void Orange::processCollision(Car &car) {
+    DBG_PRINTF( "processCollision( Car %p )\n", (void*)&car );
+    car.reset();
 }

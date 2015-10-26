@@ -38,12 +38,12 @@ public:
     virtual void draw() override;
     virtual void update(GLdouble delta_t) override;
 
+    /** stops the car and moves it to its initial position */
+    void reset();
 
     virtual void drawWheels();
     virtual void setWheelsState(GLdouble inner, GLdouble outer, GLdouble scale);
 
-    //TODO: is this needed here?
-    void resetColSphereInitPosition();
 private:
     Wheel wheels[NUM_WHEELS] = { Wheel(), Wheel(), Wheel(), Wheel() };
 };

@@ -26,5 +26,5 @@ public:
     virtual void draw() override;
     void setActive( bool value );
     bool isActive( );
-    virtual void processCollision(Car &go) override;
+    virtual void processCollision(Car &car) override;
 };

@@ -25,6 +25,9 @@ public:
     DynamicObject(GLdouble x, GLdouble y, GLdouble z);
     void update(GLdouble delta_t) override;
 
+	virtual void setPosition(GLdouble x, GLdouble y, GLdouble z) override;
+	virtual void setPosition(const Vector3& p) override;
+
     void setSpeedUp( bool value );
     void setSlowDown( bool value );
     void setTurnRight( bool value );
@@ -49,5 +52,5 @@ public:
 
     virtual void resetInitPosition();
     virtual void resetInitOrientation();
-    virtual void resetColSphereInitPosition();
+
 };

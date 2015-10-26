@@ -57,9 +57,7 @@ void DynamicObject::update(GLdouble delta_t) {
         sphere_offset;
 
     setPosition(position_offset);
-    if (getSpeed() != 0) {
-        _boundingSphere._center = _boundingSphere._center + sphere_offset;
-    }
+
     _speed = _speed + _accel * delta_t_s;
     if(fabs(_speed) > MAX_SPEED) {
         std::cout << "MAX_SPEED" << std::endl;
@@ -158,17 +156,29 @@ void DynamicObject::draw() {
 #endif
 }
 
+
+void DynamicObject::setPosition(GLdouble x, GLdouble y, GLdouble z) {
+    Vector3 newPos = Vector3(x, y, z);
+    Vector3 offset = newPos - getPosition();
+    _boundingSphere._center = _boundingSphere._center + offset;
+
+    Entity::setPosition( newPos );
+}
+
+void DynamicObject::setPosition(const Vector3 & p) {
+    Vector3 offset = p - getPosition();
+    _boundingSphere._center = _boundingSphere._center + offset;
+
+    Entity::setPosition( p );
+}
+
 void DynamicObject::resetInitPosition()
 {
-    setPosition(_initPosition);
+    _boundingSphere._center = _boundingSphere._initCenter;
+    Entity::setPosition(_initPosition);
 }
 
 void DynamicObject::resetInitOrientation()
 {
     setOrientation(_initOrientation);
 }
-
-void DynamicObject::resetColSphereInitPosition()
-{
-}
-

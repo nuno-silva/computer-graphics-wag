@@ -15,13 +15,13 @@ struct BoundingSphere {
 
     GLdouble _radius;
     Vector3  _center;
+    Vector3  _initCenter;
 };
 
 class GameObject : public Entity {
 
 protected:
     BoundingSphere _boundingSphere;
-    Vector3 _boundingSpehereInitPosition;
     bool _wired = false;
 
     std::function<void(GLdouble)>                         drawCube   = glutSolidCube;

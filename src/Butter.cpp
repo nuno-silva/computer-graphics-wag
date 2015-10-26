@@ -8,7 +8,7 @@ Butter::Butter( GLdouble x, GLdouble y, GLdouble z )
     _axis_size = box_length * 1.5f;
 #endif
     _boundingSphere._radius = box_length / 2.0f;
-    _boundingSphere._center = getPosition() + Vector3( 0.0f, 0.0f, box_height/2 + lid_height/2 );
+    _boundingSphere._initCenter = _boundingSphere._center = getPosition() + Vector3( 0.0f, 0.0f, box_height/2 + lid_height/2 );
 }
 
 void Butter::draw()
