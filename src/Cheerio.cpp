@@ -26,14 +26,22 @@ void Cheerio::draw()
     glPopMatrix();
 }
 
+void Cheerio::update(GLdouble delta_t) {
+    DynamicObject::update(delta_t);
+    if (getSpeed() < 0.0f) {
+        stop();
+    }
+}
 
 void Cheerio::processCollision(Car &car) {
     GLdouble speed = car.getSpeed() * 0.5f;
 
     if( speed > 0.0f ) {
         Vector3 orientation = car.getOrientation();
-        setSpeed( speed );
+
+        setAccel(cm(-40));
         setOrientation( orientation );
+        setSpeed( speed );
 
         car.stop();
     }

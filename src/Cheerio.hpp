@@ -13,6 +13,7 @@ public:
     Cheerio( GLdouble innerRadius,  GLdouble outerRadius,
                     GLdouble x, GLdouble y, GLdouble z );
     virtual void draw() override;
+    virtual void update(GLdouble delta_t) override;
 
     virtual void processCollision(Car &car) override;
 

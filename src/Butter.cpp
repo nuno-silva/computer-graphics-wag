@@ -35,13 +35,22 @@ void Butter::draw()
     glPopMatrix();
 }
 
+void Butter::update(GLdouble delta_t) {
+    DynamicObject::update(delta_t);
+    if (getSpeed() < 0.0f) {
+        stop();
+    }
+}
+
 void Butter::processCollision(Car &car) {
     GLdouble speed = car.getSpeed() * 0.5f;
 
     if( speed > 0.0f ) {
         Vector3 orientation = car.getOrientation();
-        setSpeed( speed );
+
+        setAccel(cm(-80));
         setOrientation( orientation );
+        setSpeed( speed );
 
         car.stop();
     }

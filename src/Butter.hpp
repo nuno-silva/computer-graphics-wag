@@ -23,5 +23,6 @@ public:
     static constexpr GLfloat lid_length = cm(7);
     static constexpr GLfloat lid_height = cm(1);
 
+    virtual void update(GLdouble delta_t) override;
     virtual void processCollision(Car &car) override;
 };
