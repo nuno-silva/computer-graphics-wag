@@ -1,5 +1,6 @@
 #include "Table.hpp"
 #include "Car.hpp"
+#include <cmath>
 
 #define TABLE_LENGTH 2.0f
 
@@ -25,13 +26,14 @@ void Table::draw() {
 }
 
 bool Table::checkCollision(GameObject &go) {
+    DBG_PRINTF("checkCollision(Car %p)\n", (void*)&go);
     Vector3 pos = go.getBoundingSphereCenter();
     GLdouble sphRadius = go.getBoundingSphereRadius();
     GLdouble tableRadius = _size / 2.0f;
 
     GLdouble x = pos.getX();
     GLdouble y = pos.getY();
-    return abs(x) + sphRadius >= tableRadius || abs(y) + sphRadius >= tableRadius;
+    return fabs(x) + sphRadius >= tableRadius || fabs(y) + sphRadius >= tableRadius;
 }
 
 
