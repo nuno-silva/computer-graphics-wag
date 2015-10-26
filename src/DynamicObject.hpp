@@ -25,23 +25,22 @@ public:
     DynamicObject(GLdouble x, GLdouble y, GLdouble z);
     void update(GLdouble delta_t) override;
 
-	virtual void setPosition(GLdouble x, GLdouble y, GLdouble z) override;
-	virtual void setPosition(const Vector3& p) override;
+    virtual void setPosition(GLdouble x, GLdouble y, GLdouble z) override;
+    virtual void setPosition(const Vector3& p) override;
 
-    void setSpeedUp( bool value );
-    void setSlowDown( bool value );
-    void setTurnRight( bool value );
-    void setTurnLeft( bool value );
+    virtual void setSpeedUp( bool value );
+    virtual void setSlowDown( bool value );
+    virtual void setTurnRight( bool value );
+    virtual void setTurnLeft( bool value );
 
     /** stops the object (speed and accel = 0) */
     void stop();
 
-    void setAccel(GLdouble accel);
+    virtual void setAccel(GLdouble accel);
+    virtual void setSpeed(GLdouble speed);
+    virtual void setOrientation(const Vector3& orientation);
+    virtual void setOrientation(GLdouble x, GLdouble y, GLdouble z);
 
-    void setSpeed(GLdouble speed);
-
-    void setOrientation(const Vector3& orientation);
-    void setOrientation(GLdouble x, GLdouble y, GLdouble z);
     bool isAccelerating();
 
     GLdouble getAccel() const;
