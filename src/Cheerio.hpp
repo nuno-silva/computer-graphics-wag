@@ -17,7 +17,11 @@ public:
 
     virtual void processCollision(Car &car) override;
 
+    void setActive( bool value );
+    bool isActive( );
+
 private:
     GLdouble _innerRadius;
     GLdouble _outerRadius;
+    GLdouble _isActive = true;
 };

@@ -18,6 +18,10 @@ Cheerio::Cheerio( GLdouble innerRadius,  GLdouble outerRadius,
 
 void Cheerio::draw()
 {
+    if( !_isActive ) {
+        return; // ignore inactive Cheerio
+    }
+
     glPushMatrix();
     GameObject::draw();
 
@@ -31,6 +35,13 @@ void Cheerio::update(GLdouble delta_t) {
     DynamicObject::update(delta_t);
     if (getSpeed() < 0.0f) {
         stop();
+    }
+
+    const auto x = getPosition().getX();
+    const auto y = getPosition().getY();
+
+    if ( x < -1.0f || x > 1.0f || y < -1.0f || y > 1.0f) {
+        setActive(false);
     }
 }
 
@@ -52,4 +63,13 @@ void Cheerio::processCollision(Car &car) {
         setAccel( cm(-40) );
         car.stop();
     }
+}
+
+void Cheerio::setActive( bool value ) {
+    DBG_PRINTF( "%p -> setActive( %s )\n", (void*)this, value ? "true":"false" );
+    _isActive = value;
+}
+
+bool Cheerio::isActive( ) {
+    return _isActive;
 }
