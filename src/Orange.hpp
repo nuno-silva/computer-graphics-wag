@@ -2,6 +2,7 @@
 
 #include "global.hpp"
 #include "Obstacle.hpp"
+#include "Car.hpp"
 
 #define STALK_ROTATION  40 // in degrees
 
@@ -25,5 +26,5 @@ public:
     virtual void draw() override;
     void setActive( bool value );
     bool isActive( );
-    virtual void processCollision(GameObject &go) override;
+    virtual void processCollision(Car &go) override;
 };

@@ -21,15 +21,17 @@ void GameObjectCollection::update( GLdouble delta_t ) {
 bool GameObjectCollection::checkCollision(GameObject &go) {
     for (auto & c: _children) {
         if (c->checkCollision(go)) {
-            c->processCollision(go);
+            return true;
         }
     }
     return false;
 }
 
-void GameObjectCollection::processCollision(GameObject &go) {
+void GameObjectCollection::processCollision(Car &go) {
     for (auto & c: _children) {
-        c->processCollision(go);
+        if (c->checkCollision(go)) {
+            c->processCollision(go);
+        }
     }
 }
 

@@ -41,22 +41,6 @@ void Car::resetColSphereInitPosition()
     _boundingSphere._center = _boundingSpehereInitPosition;
 }
 
-void Car::onStopCollision(const GameObject & otherObj)
-{
-    setSpeed(0.0f);
-    setAccel(0.0f);
-}
-
-void Car::onResetCollision(const GameObject & otherObj)
-{
-    setSpeed(0.0f);
-    setAccel(0.0f);
-    resetInitPosition();
-    resetInitOrientation();
-    resetColSphereInitPosition();
-}
-
-
 void Car::draw() {
     glPushMatrix();
     {
@@ -108,6 +92,3 @@ void Car::update(GLdouble delta_t) {
     }
 }
 
-void Car::processCollision(GameObject &go) {
-
-}

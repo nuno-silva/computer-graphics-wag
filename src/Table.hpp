@@ -13,7 +13,6 @@ public:
     Table( GLdouble size );
     Table( GLdouble size, GLdouble x, GLdouble y, GLdouble z );
     virtual void draw() override;
-    virtual void processCollision(GameObject &) override;
 private:
     GLdouble _size;
 };

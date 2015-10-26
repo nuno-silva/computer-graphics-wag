@@ -66,6 +66,11 @@ bool GameObject::checkCollision(GameObject &go) {
     return sq_distance < std::pow(radii_sum, 2);
 }
 
+
+void GameObject::processCollision(Car &go) {
+    (void) go; // do nothing
+}
+
 void GameObject::toggleWiredSolid() {
     if (_wired) {
         setSolid();

@@ -11,7 +11,6 @@
 
 #include <iostream>
 #include <cstdlib>
-#include <ctime>
 
 GameManager::GameManager() : _game_objects(), _oranges(), _cameras() {
     _car = std::make_shared<Car>(1.0);
@@ -199,23 +198,18 @@ void GameManager::init() {
 void GameManager::createButters()
 {
     std::shared_ptr<Butter> b = std::make_shared<Butter>(cm(40), cm(57), cm(0));
-    b->registerOnResetCollisonObserver(*_car);
     _game_objects.add(b);
 
     b = std::make_shared<Butter>(cm(-35), cm(-60), cm(0));
-    b->registerOnResetCollisonObserver(*_car);
     _game_objects.add(b);
 
     b = std::make_shared<Butter>(cm(-73), cm(0), cm(0));
-    b->registerOnResetCollisonObserver(*_car);
     _game_objects.add(b);
 
     b = std::make_shared<Butter>(cm(30), cm(20), cm(0));
-    b->registerOnResetCollisonObserver(*_car);
     _game_objects.add(b);
 
     b = std::make_shared<Butter>(cm(-80), cm(70), cm(0));
-    b->registerOnResetCollisonObserver(*_car);
     _game_objects.add(b);
 
 }

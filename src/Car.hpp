@@ -3,7 +3,6 @@
 #include "DynamicObject.hpp"
 #include "global.hpp"
 #include "Wheel.hpp"
-#include "IOnCollisionObserver.hpp"
 
 #define NUM_WHEELS 4
 
@@ -13,7 +12,7 @@ namespace CarColors {
     static constexpr GLfloat bottom[3] = { 0.255f, 0.412f, 0.882f }; // RoyalBlue
 }
 
-class Car : public DynamicObject, public IOnCollisionObserver {
+class Car : public DynamicObject {
 private:
     GLdouble _scale = 1.0f;
 public:
@@ -39,19 +38,12 @@ public:
     virtual void draw() override;
     virtual void update(GLdouble delta_t) override;
 
-    virtual void processCollision(GameObject &go) override;
 
     virtual void drawWheels();
     virtual void setWheelsState(GLdouble inner, GLdouble outer, GLdouble scale);
 
+    //TODO: is this needed here?
+    void resetColSphereInitPosition();
 private:
-    Wheel wheels[NUM_WHEELS] = { Wheel(), Wheel(), Wheel(), Wheel() }; 
-
-
-    virtual void resetColSphereInitPosition() override;
-
-    // Inherited via IOnCollisionObserver
-    virtual void onStopCollision(const GameObject & otherObj) override;
-    virtual void onResetCollision(const GameObject & otherObj) override;
-
+    Wheel wheels[NUM_WHEELS] = { Wheel(), Wheel(), Wheel(), Wheel() };
 };

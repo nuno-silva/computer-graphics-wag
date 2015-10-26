@@ -2,6 +2,7 @@
 
 #include "global.hpp"
 #include "GameObject.hpp"
+#include "Car.hpp"
 
 #include <memory>
 #include <vector>
@@ -14,7 +15,7 @@ public:
     virtual void update( GLdouble delta_t ) override;
 
     virtual bool checkCollision(GameObject &go) override;
-    virtual void processCollision(GameObject &go)     override;
+    void processCollision(Car &go);
 
     virtual void toggleWiredSolid();
     virtual void setWired();

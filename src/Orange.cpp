@@ -84,6 +84,6 @@ bool Orange::isActive( ) {
 }
 
 
-void Orange::processCollision(GameObject &go) {
-    // Not yet implemented (or overloaded).
+void Orange::processCollision(Car &go) {
+    // TODO
 }

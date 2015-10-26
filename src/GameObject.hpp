@@ -7,6 +7,8 @@
 #include "Entity.hpp"
 #include "Vector3.hpp"
 
+class Car;
+
 struct BoundingSphere {
     BoundingSphere(GLdouble r, const Vector3 & c) : _radius(r), _center(c) {}
     BoundingSphere() : BoundingSphere(0, zeroVector) {}
@@ -31,7 +33,7 @@ public:
     virtual void update(GLdouble delta_t ) = 0;
 
     virtual bool checkCollision(GameObject &go);
-    virtual void processCollision(GameObject &go) = 0;
+    virtual void processCollision(Car &go);
 
     virtual void toggleWiredSolid();
     virtual void setWired();

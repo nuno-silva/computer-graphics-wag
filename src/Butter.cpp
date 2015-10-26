@@ -35,25 +35,6 @@ void Butter::draw()
     glPopMatrix();
 }
 
-void Butter::processCollision(GameObject &go) {
-    // TODO: for now it will stop/reset all objects, only stop/rest
-    // if object is go.
-    for (unsigned int i = 0; i < onStopCollisionListeners.size(); i++) {
-        onStopCollisionListeners[i]->onStopCollision((*this));
-    }
-
-    for (unsigned int i = 0; i < onResetCollisionListeners.size(); i++) {
-        onResetCollisionListeners[i]->onResetCollision((*this));
-    }
-
-}
-
-void Butter::registerOnStopCollisonObserver(IOnCollisionObserver& obj)
-{
-    onStopCollisionListeners.push_back(&obj);
-}
-
-void Butter::registerOnResetCollisonObserver(IOnCollisionObserver & obj)
-{
-    onResetCollisionListeners.push_back(&obj);
+void Butter::processCollision(Car &go) {
+    //TODO
 }
