@@ -11,6 +11,7 @@ GameObject::GameObject() {
 #endif
 }
 
+#if defined DEBUG
 void GameObject::Axis3d_draw( GLdouble size ) {
     glPushMatrix();
 
@@ -35,6 +36,7 @@ void GameObject::Axis3d_draw( GLdouble size ) {
 
     glPopMatrix();
 }
+#endif
 
 void GameObject::draw() {
     //DBG_PRINT( "draw() " KCYN "translate\n");
