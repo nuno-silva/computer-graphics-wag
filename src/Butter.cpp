@@ -1,4 +1,5 @@
 #include "Butter.hpp"
+#include <cmath>
 
 
 Butter::Butter( GLdouble x, GLdouble y, GLdouble z )
@@ -44,14 +45,20 @@ void Butter::update(GLdouble delta_t) {
 
 void Butter::processCollision(Car &car) {
     GLdouble speed = car.getSpeed() * 0.5f;
+    const auto reverse = (speed / fabs(speed) < 0);
 
-    if( speed > 0.0f ) {
+    if( fabs(speed) > 0 ) {
         Vector3 orientation = car.getOrientation();
 
-        setAccel(cm(-80));
-        setOrientation( orientation );
-        setSpeed( speed );
+        if (reverse) {
+            setOrientation( orientation * -1 );
+            setSpeed( speed * -1 );
+        } else {
+            setOrientation( orientation );
+            setSpeed( speed );
+        }
 
+        setAccel( cm(-80) );
         car.stop();
     }
 }

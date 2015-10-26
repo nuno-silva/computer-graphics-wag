@@ -1,4 +1,5 @@
 #include "Cheerio.hpp"
+#include <cmath>
 
 Cheerio::Cheerio( GLdouble innerRadius,  GLdouble outerRadius,
                     GLdouble x, GLdouble y, GLdouble z ) :
@@ -35,14 +36,20 @@ void Cheerio::update(GLdouble delta_t) {
 
 void Cheerio::processCollision(Car &car) {
     GLdouble speed = car.getSpeed() * 0.5f;
+    const auto reverse = (speed / fabs(speed) < 0);
 
-    if( speed > 0.0f ) {
+    if( fabs(speed) > 0 ) {
         Vector3 orientation = car.getOrientation();
 
-        setAccel(cm(-40));
-        setOrientation( orientation );
-        setSpeed( speed );
+        if (reverse) {
+            setOrientation( orientation * -1 );
+            setSpeed( speed * -1 );
+        } else {
+            setOrientation( orientation );
+            setSpeed( speed );
+        }
 
+        setAccel( cm(-40) );
         car.stop();
     }
 }
