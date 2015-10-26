@@ -36,7 +36,6 @@ void GameObject::Axis3d_draw( GLdouble size ) {
 
     glPopMatrix();
 }
-#endif
 
 void GameObject::drawBoundingSphere() {
     glPushMatrix();
@@ -51,6 +50,7 @@ void GameObject::drawBoundingSphere() {
 
     glPopMatrix();
 }
+#endif
 
 void GameObject::draw() {
     //DBG_PRINT( "draw() " KCYN "translate\n");

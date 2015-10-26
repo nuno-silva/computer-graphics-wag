@@ -14,7 +14,7 @@ public:
                     GLdouble x, GLdouble y, GLdouble z );
     virtual void draw() override;
 
-    virtual void processCollision(Car &go) override;
+    virtual void processCollision(Car &car) override;
 
 private:
     GLdouble _innerRadius;

@@ -27,6 +27,14 @@ void Cheerio::draw()
 }
 
 
-void Cheerio::processCollision(Car &go) {
-    //TODO
+void Cheerio::processCollision(Car &car) {
+    GLdouble speed = car.getSpeed() * 0.5f;
+
+    if( speed > 0.0f ) {
+        Vector3 orientation = car.getOrientation();
+        setSpeed( speed );
+        setOrientation( orientation );
+
+        car.stop();
+    }
 }
