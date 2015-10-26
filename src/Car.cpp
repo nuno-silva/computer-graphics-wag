@@ -95,5 +95,15 @@ void Car::update(GLdouble delta_t) {
             wheels[i].setSolid();
         }
     }
+
+    // If out of the boundaries of the table, restart position.
+    const auto x = getPosition().getX();
+    const auto y = getPosition().getY();
+
+    if ( x < -1.0f || x > 1.0f || y < -1.0f || y > 1.0f) {
+        reset();
+    }
+
+
 }
 
