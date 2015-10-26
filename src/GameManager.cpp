@@ -95,9 +95,8 @@ void GameManager::update(GLdouble delta) {
         _game_objects.setSolid();
     }
 
-    // NOTE: commented out since it causes the car to be reset
-    // needs to be fixed before uncommenting
-    _game_objects.checkCollision(*_car);
+    // check for and process collisions with the car
+    _game_objects.processCollision(*_car);
 
     _game_objects.update(delta);
 

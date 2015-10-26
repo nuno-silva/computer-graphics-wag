@@ -7,8 +7,8 @@ Butter::Butter( GLdouble x, GLdouble y, GLdouble z )
 #if defined DEBUG
     _axis_size = box_length * 1.5f;
 #endif
-    _boundingSphere._radius = box_length;
-    _boundingSphere._center = getPosition();
+    _boundingSphere._radius = box_length / 2.0f;
+    _boundingSphere._center = getPosition() + Vector3( 0.0f, 0.0f, box_height/2 + lid_height/2 );
 }
 
 void Butter::draw()
@@ -35,6 +35,14 @@ void Butter::draw()
     glPopMatrix();
 }
 
-void Butter::processCollision(Car &go) {
-    //TODO
+void Butter::processCollision(Car &car) {
+    GLdouble speed = car.getSpeed() * 0.5f;
+
+    if( speed > 0.0f ) {
+        Vector3 orientation = car.getOrientation();
+        setSpeed( speed );
+        setOrientation( orientation );
+
+        car.stop();
+    }
 }

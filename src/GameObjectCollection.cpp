@@ -27,10 +27,10 @@ bool GameObjectCollection::checkCollision(GameObject &go) {
     return false;
 }
 
-void GameObjectCollection::processCollision(Car &go) {
+void GameObjectCollection::processCollision(Car &car) {
     for (auto & c: _children) {
-        if (c->checkCollision(go)) {
-            c->processCollision(go);
+        if (c->checkCollision( car )) {
+            c->processCollision( car );
         }
     }
 }

@@ -15,7 +15,7 @@ public:
     virtual void update( GLdouble delta_t ) override;
 
     virtual bool checkCollision(GameObject &go) override;
-    void processCollision(Car &go);
+    void processCollision(Car &car);
 
     virtual void toggleWiredSolid();
     virtual void setWired();

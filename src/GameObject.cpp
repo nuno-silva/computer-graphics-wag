@@ -38,6 +38,20 @@ void GameObject::Axis3d_draw( GLdouble size ) {
 }
 #endif
 
+void GameObject::drawBoundingSphere() {
+    glPushMatrix();
+
+    glLoadIdentity();
+    glColor3f( 0.1f, 0.8f, 1.0f );
+    glTranslatef( _boundingSphere._center.getX(),
+                  _boundingSphere._center.getY(),
+                  _boundingSphere._center.getZ() );
+
+    glutWireSphere( _boundingSphere._radius*1.001f, 10, 10 );
+
+    glPopMatrix();
+}
+
 void GameObject::draw() {
     //DBG_PRINT( "draw() " KCYN "translate\n");
 
@@ -47,6 +61,7 @@ void GameObject::draw() {
 
 #if defined DEBUG
     Axis3d_draw(_axis_size);
+    drawBoundingSphere();
 #endif
 }
 
@@ -67,8 +82,9 @@ bool GameObject::checkCollision(GameObject &go) {
 }
 
 
-void GameObject::processCollision(Car &go) {
-    (void) go; // do nothing
+void GameObject::processCollision(Car &car) {
+    (void) car; // do nothing
+    DBG_PRINTF("processCollision(Car %p) ignored\n", (void*)&car);
 }
 
 void GameObject::toggleWiredSolid() {

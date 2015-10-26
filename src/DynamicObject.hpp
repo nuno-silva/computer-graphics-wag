@@ -30,6 +30,9 @@ public:
     void setTurnRight( bool value );
     void setTurnLeft( bool value );
 
+    /** stops the object (speed and accel = 0) */
+    void stop();
+
     void setAccel(GLdouble accel);
 
     void setSpeed(GLdouble speed);

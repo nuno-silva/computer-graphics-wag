@@ -33,7 +33,7 @@ public:
     virtual void update(GLdouble delta_t ) = 0;
 
     virtual bool checkCollision(GameObject &go);
-    virtual void processCollision(Car &go);
+    virtual void processCollision(Car &car);
 
     virtual void toggleWiredSolid();
     virtual void setWired();
@@ -42,6 +42,7 @@ public:
 #if defined DEBUG
     GLdouble _axis_size;
     void Axis3d_draw( GLdouble size );
+    void drawBoundingSphere( );
 #endif
 };
 

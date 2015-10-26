@@ -89,7 +89,12 @@ void DynamicObject::setTurnLeft( bool value )
     _turnLeft = value;
 }
 
-
+void DynamicObject::stop() {
+    setTurnRight( false );
+    setTurnLeft( false );
+    setSpeed( 0.0f );
+    setAccel( 0.0f );
+}
 
 /* acceleration */
 void DynamicObject::setAccel(GLdouble accel) {
@@ -149,6 +154,7 @@ void DynamicObject::draw() {
 
 #if defined DEBUG
     Axis3d_draw(_axis_size);
+    drawBoundingSphere();
 #endif
 }
 
