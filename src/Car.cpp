@@ -60,13 +60,13 @@ void Car::onResetCollision(const GameObject & otherObj)
 void Car::draw() {
     glPushMatrix();
     {
-        GameObject::draw(); // move car to its position
+        DynamicObject::draw(); // translate to position, rotate and draw axis
 
 
         //std::cout << "Angle:: " << angle << std::endl;
 
         //glTranslatef(getPosition().getX(), getPosition().getY(), getPosition().getZ());
-        glRotatef(_angleZ, 0.0f, 0.0f, 1.0f);
+        //glRotatef(_angleZ, 0.0f, 0.0f, 1.0f);
         //glTranslatef(getPosition().getX() * (-1), getPosition().getY() * (-1), getPosition().getZ() * (-1));
 
         // Car bottom
