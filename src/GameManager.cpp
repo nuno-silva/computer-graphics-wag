@@ -13,7 +13,7 @@
 #include <cstdlib>
 
 GameManager::GameManager() : _game_objects(), _oranges(), _cameras() {
-    _car = std::make_shared<Car>(1.0);
+    _car = std::make_shared<Car>(Vector3(-1.0f, 0.0f, 0.0f), 1.0, 0.0f, -0.6f, 0.0f);
 }
 
 /** called when the screen needs updating
