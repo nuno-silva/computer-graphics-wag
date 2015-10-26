@@ -138,8 +138,14 @@ void DynamicObject::draw() {
     // subclasses should call gl[Push|Pop]Matrix
     getPosition().glTranslate();
 
-    glRotatef(_angleX, 1.0f, 0.0f, 0.0f);
-    glRotatef(_angleZ, 0.0f, 0.0f, 1.0f);
+    // Only rotate if needed
+    if (_angleX != 0) {
+        glRotatef(_angleX, 1.0f, 0.0f, 0.0f);
+    }
+    // Only rotate if needed
+    if(_angleZ != 0) {
+        glRotatef(_angleZ, 0.0f, 0.0f, 1.0f);
+    }
 
 #if defined DEBUG
     Axis3d_draw(_axis_size);
