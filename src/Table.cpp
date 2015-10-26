@@ -40,7 +40,7 @@ bool Table::checkCollision(GameObject &go) {
 void Table::processCollision(Car &car) {
     DBG_PRINTF("processCollision(Car %p)\n", (void*)&car);
 
-    if( car.getSpeed() > 0.0f ) {
+    if( fabs(car.getSpeed()) >= cm(2) ) {
         car.stop();
     }
 }

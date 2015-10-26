@@ -47,7 +47,7 @@ void Butter::processCollision(Car &car) {
     GLdouble speed = car.getSpeed() * 0.5f;
     const auto reverse = (speed / fabs(speed) < 0);
 
-    if( fabs(speed) > 0 ) {
+    if( fabs(speed) > cm(2) ) {
         Vector3 orientation = car.getOrientation();
 
         if (reverse) {

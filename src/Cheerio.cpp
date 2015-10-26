@@ -35,10 +35,10 @@ void Cheerio::update(GLdouble delta_t) {
 }
 
 void Cheerio::processCollision(Car &car) {
-    GLdouble speed = car.getSpeed() * 0.5f;
+    GLdouble speed = car.getSpeed() * 1.1f;
     const auto reverse = (speed / fabs(speed) < 0);
 
-    if( fabs(speed) > 0 ) {
+    if( fabs(speed) > cm(2) ) {
         Vector3 orientation = car.getOrientation();
 
         if (reverse) {
