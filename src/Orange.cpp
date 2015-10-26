@@ -21,7 +21,7 @@ Orange::Orange(GLdouble radius, GLdouble x, GLdouble y, GLdouble z) :
     _stalk_z = _stalk_height / 2.0f + _radius - _stalk_z_offset;
 
 #if defined DEBUG
-    _axis_size = radius * 1.5f;
+    _axis_size = radius * 2.0f;
 #endif
 
     _boundingSphere._radius = radius;
