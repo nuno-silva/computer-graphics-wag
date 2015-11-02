@@ -10,16 +10,17 @@
 #include "Table.hpp"
 
 #include <iostream>
+#include <cstdlib>
 
-GameManager::GameManager() : _game_objects(), _cameras() {
-    _car = std::make_shared<Car>(1.0);
+GameManager::GameManager() : _game_objects(), _oranges(), _cameras() {
+    _car = std::make_shared<Car>(Vector3(-1.0f, 0.0f, 0.0f), 1.0, 0.0f, -0.6f, 0.0f);
 }
 
 /** called when the screen needs updating
  * */
 void GameManager::display() {
     glClearColor( 0.0f, 0.0f, 0.0f, 1.0f );
-    glClear( GL_COLOR_BUFFER_BIT );
+    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
     _game_objects.draw();
 
@@ -59,7 +60,7 @@ void GameManager::keyPressed(unsigned char key, int x, int y) {
             _activeCamera = _car_cam;
             break;
         default:
-            DBG_PRINTF( "ignoring unknown key '%s'\n", key );
+            DBG_PRINTF( "ignoring unknown key '%u'\n", key );
     }
 }
 
@@ -83,7 +84,7 @@ void GameManager::specialPressed(int key, int x, int y, bool pressed) {
             _car->setTurnLeft( pressed );
             break;
         default:
-            DBG_PRINTF( "ignoring unknown special key '%s'\n", key );
+            DBG_PRINTF( "ignoring unknown special key '%u'\n", key );
     }
 }
 
@@ -94,29 +95,89 @@ void GameManager::update(GLdouble delta) {
         _game_objects.setSolid();
     }
 
+    // check for and process collisions with the car
+    _game_objects.processCollision(*_car);
+
+    // check for Orange collisions with table borders
+    for( auto o : _oranges ) {
+        if( _table->checkCollision( *o ) ) {
+            o->setActive(false);
+            o->stop(); // not really needed
+        }
+    }
+
     _game_objects.update(delta);
+
+    // update oranges if ORANGES_UPDATE_PERIOD_MS ms have passed
+    _msSinceStart += delta;
+    if( _msSinceStart - _msSinceLastOrangeUpdate >= ORANGES_UPDATE_PERIOD_MS ) {
+        _msSinceLastOrangeUpdate = _msSinceStart;
+        updateOranges( _msSinceStart );
+    }
+
     _activeCamera->update();
+}
+
+/** returns -1 or +1 randomly */
+GLdouble random_sign() {
+    if( rand() % 2 == 0) {
+        return 1.0f;
+    }
+    return -1.0f;
+}
+
+/** returns a random number in the interval [min ; max] */
+GLdouble random( GLdouble min, GLdouble max ) {
+    GLdouble r = (GLdouble) rand() / (GLdouble) RAND_MAX;
+    r = r * (max - min) + min;
+    return r;
+}
+
+void GameManager::updateOranges( GLdouble msSinceStart ) {
+    DBG_PRINTF( "updateOranges( '%f' )\n", msSinceStart );
+    GLdouble newSpeed = cm(3) + msSinceStart * ORANGES_SPEED_INCREMENT_MS;
+
+    for( auto orange : _oranges ) {
+        if( ! orange->isActive() ) {
+            Vector3 pos = orange->getPosition();
+            GLdouble newX = random_sign() * random( 0.1f, 0.81f );
+            GLdouble newY = random_sign() * random( 0.11f, 0.7f );
+
+            /* setPosition will also rotate the orange as if it moved to the new
+             * position. That's not intended, but it won't hurt. */
+            pos.set( newX, newY, pos.getZ() );
+            orange->setPosition( pos );
+
+            newX = random_sign() * random( 0.01f, 1.0f );
+            newY = random_sign() * random( 0.01f, 1.0f );
+
+            // TODO: make orientation random
+            orange->setOrientation( newX, newY, 0.0f );
+
+            orange->setSpeed( newSpeed );
+            orange->setActive( true );
+        }
+    }
 }
 
 void GameManager::init() {
     // Table
-    _game_objects.add(std::make_shared<Table>( m(2), m(0), m(0), m(0) ) );
+    _table = std::make_shared<Table>( m(2), m(0), m(0), m(0) );
+    _game_objects.add( _table );
 
     // Road
     _game_objects.add(std::make_shared<Roadside>( 0.92f ) );
 
     // Butters
-    _game_objects.add(std::make_shared<Butter>(cm(40),  cm(57),  cm(0)));
-    _game_objects.add(std::make_shared<Butter>(cm(-35), cm(-60), cm(0)));
-    _game_objects.add(std::make_shared<Butter>(cm(-73), cm(0),   cm(0)));
-    _game_objects.add(std::make_shared<Butter>(cm(30),  cm(20),  cm(0)));
-    _game_objects.add(std::make_shared<Butter>(cm(-80), cm(70),  cm(0)));
+    createButters();
 
     // Oranges
     const GLfloat orange_radius = cm(2.5);
-    _game_objects.add(std::make_shared<Orange>(orange_radius, cm(70),  cm(20),  orange_radius));
-    _game_objects.add(std::make_shared<Orange>(orange_radius, cm(60),  cm(60),  orange_radius));
-    _game_objects.add(std::make_shared<Orange>(orange_radius, cm(-70), cm(-50), orange_radius));
+    for( int i = 0; i < ORANGE_COUNT; i++ ) {
+        auto orange = std::make_shared<Orange>(orange_radius, m(3),  m(3),  orange_radius);
+        _oranges.push_back( orange );
+        _game_objects.add( orange );
+    }
 
     // Car
     _game_objects.add( _car );
@@ -132,5 +193,30 @@ void GameManager::init() {
     _cameras.push_back(_car_cam);
 
     _activeCamera = _orthogonal_cam;
+
+    // initiate random seed
+    srand (time(NULL));
+
+    // place the first oranges
+    updateOranges( 0 );
+}
+
+void GameManager::createButters()
+{
+    std::shared_ptr<Butter> b = std::make_shared<Butter>(cm(40), cm(57), cm(0));
+    _game_objects.add(b);
+
+    b = std::make_shared<Butter>(cm(-35), cm(-60), cm(0));
+    _game_objects.add(b);
+
+    b = std::make_shared<Butter>(cm(-73), cm(0), cm(0));
+    _game_objects.add(b);
+
+    b = std::make_shared<Butter>(cm(30), cm(20), cm(0));
+    _game_objects.add(b);
+
+    b = std::make_shared<Butter>(cm(-80), cm(70), cm(0));
+    _game_objects.add(b);
+
 }
 

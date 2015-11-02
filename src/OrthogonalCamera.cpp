@@ -10,7 +10,7 @@ OrthogonalCamera::OrthogonalCamera( GLdouble left, GLdouble right,
 
 void OrthogonalCamera::computeProjectionMatrix() {
     Camera::computeProjectionMatrix();
-    DBG_PRINT("computeProjectionMatrix()\n");
+    //DBG_PRINT("computeProjectionMatrix()\n");
 
     GLfloat ratio = (GLfloat) Camera::_width / (GLfloat) Camera::_height;
 
@@ -25,18 +25,18 @@ void OrthogonalCamera::computeProjectionMatrix() {
 
 void OrthogonalCamera::computeVisualizationMatrix() {
     Camera::computeVisualizationMatrix();
-    DBG_PRINT("computeVisualizationMatrix()\n");
+    //DBG_PRINT("computeVisualizationMatrix()\n");
 
     Vector3 at, center, up;
     at = getPosition();
     center = getCenter();
     up = getUp();
 
-    DBG_PRINTF("gluLookAt( %.3f, %.3f, %.3f,  %.3f, %.3f, %.3f,  %.3f, %.3f, %.3f );\n",
+    /*DBG_PRINTF("gluLookAt( %.3f, %.3f, %.3f,  %.3f, %.3f, %.3f,  %.3f, %.3f, %.3f );\n",
                     at.getX(), at.getY(), at.getZ(),
                     center.getX(), center.getY(), center.getZ(),
                     up.getX(), up.getY(), up.getZ() );
-
+    */
     gluLookAt( at.getX(), at.getY(), at.getZ(),
                 center.getX(), center.getY(), center.getZ(),
                 up.getX(), up.getY(), up.getZ() );

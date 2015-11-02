@@ -3,7 +3,7 @@
 void GameObjectCollection::draw() {
     GameObject::draw();
 
-    DBG_PRINT("draw()\n");
+    //DBG_PRINT("draw()\n");
 
     for (auto c : _children) {
         c->draw();
@@ -11,12 +11,27 @@ void GameObjectCollection::draw() {
 }
 
 void GameObjectCollection::update( GLdouble delta_t ) {
-    GameObject::update( delta_t );
-
     DBG_PRINT("update()\n");
 
     for (auto c : _children) {
         c->update( delta_t );
+    }
+}
+
+bool GameObjectCollection::checkCollision(GameObject &go) {
+    for (auto & c: _children) {
+        if (c->checkCollision(go)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+void GameObjectCollection::processCollision(Car &car) {
+    for (auto & c: _children) {
+        if (c->checkCollision( car )) {
+            c->processCollision( car );
+        }
     }
 }
 

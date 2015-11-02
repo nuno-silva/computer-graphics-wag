@@ -30,13 +30,13 @@ void Camera::reshape( GLsizei w, GLsizei h ) {
 }
 
 void Camera::computeProjectionMatrix() {
-    DBG_PRINT("computeProjectionMatrix()\n");
+    //DBG_PRINT("computeProjectionMatrix()\n");
     glMatrixMode( GL_PROJECTION );
     glLoadIdentity();
 }
 
 void Camera::computeVisualizationMatrix() {
-    DBG_PRINT("computeVisualizationMatrix()\n");
+    //DBG_PRINT("computeVisualizationMatrix()\n");
     glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();
 }

@@ -21,6 +21,10 @@
 /* convert a color vector to 3 parameters */
 #define components3(x) x[0],x[1],x[2]
 
+/* angle conversion macros */
+#define DEG_TO_RAD(d) ( (d) * PI / 180 )
+#define RAD_TO_DEG(r) ( (r) / PI * 180 )
+
 #if __GNUC__
 # define ATTRIBUTE_UNUSED __attribute__((unused))
 #define _STDCALL

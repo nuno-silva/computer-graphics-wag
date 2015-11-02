@@ -13,6 +13,9 @@ public:
     Table( GLdouble size );
     Table( GLdouble size, GLdouble x, GLdouble y, GLdouble z );
     virtual void draw() override;
+
+    virtual bool checkCollision(GameObject &go);
+    virtual void processCollision(Car &car);
 private:
     GLdouble _size;
 };

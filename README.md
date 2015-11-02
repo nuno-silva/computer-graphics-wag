@@ -26,4 +26,5 @@ Good luck using Visual Studio.
 
 # Coding style
 - 4 spaces indent
-
+- newline at end of file ([why?](http://stackoverflow.com/questions/729692/why-should-files-end-with-a-newline))
+- ...

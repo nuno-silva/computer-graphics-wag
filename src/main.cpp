@@ -13,9 +13,23 @@ void reshape( int width, int height ) {
 }
 
 /** called when the screen needs updating
+ * Draws a game frame and updates the window title showing FPS
  * */
 void display() {
+    static int frames = 0;
+    static int start = glutGet( GLUT_ELAPSED_TIME );
+
     game.display(); // this calls flush
+    frames++;
+
+    int now = glutGet( GLUT_ELAPSED_TIME );
+    if( now - start >= 1000 ) {
+        char title[128];
+        sprintf(title, "%s (%d fps)", WINDOW_TITLE, frames);
+        glutSetWindowTitle( title );
+        start  = now;
+        frames = 0;
+    }
 }
 
 /** called when a key is pressed
@@ -34,43 +48,42 @@ void specialUp(int key, int x, int y) {
     game.specialPressed(key, x, y, false);
 }
 
-void onTimer(int value) {
-    (void) value; // remove unused variable warning
-    static int lastElapsedTime = 0;
+void onTimer(int lastElapsedTime) {
     int newElapsedTime = glutGet( GLUT_ELAPSED_TIME );
-    GLdouble delta = newElapsedTime - lastElapsedTime;
-    lastElapsedTime = newElapsedTime;
+    int delta = newElapsedTime - lastElapsedTime;
 
     game.update(delta);
 
     glutPostRedisplay();
-    glutTimerFunc(TIMER_PERIOD, onTimer, TIMER_PERIOD);
+    glutTimerFunc(TIMER_PERIOD, onTimer, newElapsedTime);
 }
 
 int main( int argc, char *argv[] ) {
     glutInit( &argc, argv );
-
+        
     #ifdef SINGLEBUF
-    glutInitDisplayMode( GLUT_RGBA | GLUT_SINGLE );
+    glutInitDisplayMode( GLUT_RGBA | GLUT_SINGLE | GLUT_DEPTH);
     DBG_PRINT("Using single buffer (-DSINGLEBUF)\n");
     #else
-    glutInitDisplayMode( GLUT_RGBA | GLUT_DOUBLE );
+    glutInitDisplayMode( GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
     #endif
 
     glutInitWindowSize( WINDOW_SIZE );
     glutInitWindowPosition( -1, -1 );
 
     glutCreateWindow( WINDOW_TITLE );
-
-
+    
+    glEnable(GL_DEPTH_TEST);
+    
     game.init();
+
 
     glutReshapeFunc(reshape);
     glutDisplayFunc(display);
     glutKeyboardFunc(keyPressed);
     glutSpecialFunc(specialPressed);
     glutSpecialUpFunc(specialUp);
-    glutTimerFunc(TIMER_PERIOD, onTimer, TIMER_PERIOD);
+    glutTimerFunc(TIMER_PERIOD, onTimer, 0);
 
     glutMainLoop();
 

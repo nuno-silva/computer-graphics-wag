@@ -30,14 +30,20 @@ public:
     const GLdouble _top_length         = 3      * _bottom_height;
     const GLdouble _top_width          = 2      * _top_height;
 
-    Car( GLdouble scale, GLdouble x, GLdouble y, GLdouble z );
+    Car( const Vector3 &initialOrientation, GLdouble scale,
+         GLdouble x, GLdouble y, GLdouble z );
     Car( GLdouble scale );
 
     GLdouble getScale() const;
 
     virtual void draw() override;
-
     virtual void update(GLdouble delta_t) override;
+
+    /** stops the car and moves it to its initial position */
+    void reset();
+
+    virtual void setOrientation(const Vector3 &v) override;
+
     virtual void drawWheels();
     virtual void setWheelsState(GLdouble inner, GLdouble outer, GLdouble scale);
 

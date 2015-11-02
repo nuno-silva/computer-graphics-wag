@@ -4,17 +4,27 @@
 
 #include <iostream>
 
-Car::Car(GLdouble scale, GLdouble x, GLdouble y, GLdouble z) :
-    DynamicObject::DynamicObject(), _scale(scale)
+Car::Car(const Vector3 &initialOrientation, GLdouble scale,
+         GLdouble x, GLdouble y, GLdouble z) :
+    DynamicObject::DynamicObject(initialOrientation, x, y, z), _scale(scale)
 {
-    setPosition(x, y, z);
     setWheelsState(_wheel_inner_radius, _wheel_outer_radius, _scale);
+#if defined DEBUG
+    _axis_size = _bottom_length;
+#endif
+    _boundingSphere._radius = _bottom_length / 2.0f;
+    _boundingSphere._initCenter = _boundingSphere._center = getPosition() - getOrientation() * cm(1.625);
 }
 
-Car::Car(GLdouble scale) : Car::Car(scale, 0, 0, 0) {}
+Car::Car(GLdouble scale) : Car::Car(Vector3(-1.0f, 0.0f, 0.0f), scale, 0, 0, 0) {}
 
 GLdouble Car::getScale() const {
     return _scale;
+}
+
+void Car::setOrientation(const Vector3 &v) {
+    DynamicObject::setOrientation(v);
+    _boundingSphere._center = getPosition() - getOrientation() * cm(1.625);
 }
 
 void Car::drawWheels() {
@@ -32,16 +42,24 @@ void Car::setWheelsState(GLdouble inner, GLdouble outer, GLdouble scale)
     wheels[3].setState(inner, outer, scale * cm(0), scale * cm(1), inner + outer);
 }
 
+void Car::reset() {
+    DBG_PRINT( "reset()\n" );
+    stop();
+    resetInitPosition();
+    resetInitOrientation();
+}
+
+
 void Car::draw() {
     glPushMatrix();
     {
-        GameObject::draw(); // move car to its position
+        DynamicObject::draw(); // translate to position, rotate and draw axis
 
 
         //std::cout << "Angle:: " << angle << std::endl;
 
         //glTranslatef(getPosition().getX(), getPosition().getY(), getPosition().getZ());
-        glRotatef(angle, 0.0f, 0.0f, 1.0f);
+        //glRotatef(_angleZ, 0.0f, 0.0f, 1.0f);
         //glTranslatef(getPosition().getX() * (-1), getPosition().getY() * (-1), getPosition().getZ() * (-1));
 
         // Car bottom
@@ -82,3 +100,4 @@ void Car::update(GLdouble delta_t) {
         }
     }
 }
+

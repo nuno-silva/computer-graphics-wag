@@ -8,33 +8,48 @@ private:
     GLdouble _accel;
     GLdouble _speed;
     Vector3  _orientation;
+    Vector3 _initPosition;
+    Vector3 _initOrientation;
 
 protected:
-    bool _turnLeft;
     bool _turnRight;
-    GLdouble angle = 0;
+    bool _turnLeft;
+    GLdouble _angleZ = 0;
+    GLdouble _angleX = 0;
 
 public:
     DynamicObject();
     DynamicObject(Vector3 orientation);
+    DynamicObject(Vector3 orientation, GLdouble x, GLdouble y, GLdouble z);
+    DynamicObject(Vector3 orientation, Vector3 position);
+    DynamicObject(GLdouble x, GLdouble y, GLdouble z);
     void update(GLdouble delta_t) override;
 
-    void setSpeedUp( bool value );
-    void setSlowDown( bool value );
-    void setTurnRight( bool value );
-    void setTurnLeft( bool value );
+    virtual void setPosition(GLdouble x, GLdouble y, GLdouble z) override;
+    virtual void setPosition(const Vector3& p) override;
 
-    void setAccel(GLdouble accel);
+    virtual void setSpeedUp( bool value );
+    virtual void setSlowDown( bool value );
+    virtual void setTurnRight( bool value );
+    virtual void setTurnLeft( bool value );
 
-    void setSpeed(GLdouble speed);
+    /** stops the object (speed and accel = 0) */
+    void stop();
 
-    void setOrientation(const Vector3& orientation);
-    void setOrientation(GLdouble x, GLdouble y, GLdouble z);
+    virtual void setAccel(GLdouble accel);
+    virtual void setSpeed(GLdouble speed);
+    virtual void setOrientation(const Vector3& orientation);
+    virtual void setOrientation(GLdouble x, GLdouble y, GLdouble z);
+
     bool isAccelerating();
 
     GLdouble getAccel() const;
     GLdouble getSpeed() const;
     Vector3 getOrientation() const;
 
-    virtual void draw() = 0;
+    virtual void draw() override;
+
+    virtual void resetInitPosition();
+    virtual void resetInitOrientation();
+
 };

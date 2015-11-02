@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Obstacle.hpp"
+#include "Car.hpp"
+#include <vector>
 
 namespace ButterColors {
     static constexpr GLfloat lid[3] = { 1.000f, 0.843f, 0.000f }; // Gold
@@ -20,6 +22,7 @@ public:
     static constexpr GLfloat lid_width  = cm(5);
     static constexpr GLfloat lid_length = cm(7);
     static constexpr GLfloat lid_height = cm(1);
+
+    virtual void update(GLdouble delta_t) override;
+    virtual void processCollision(Car &car) override;
 };
-
-
