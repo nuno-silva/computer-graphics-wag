@@ -6,6 +6,10 @@ LightSource::LightSource(GLenum number)
     setState( true );
 }
 
+LightSource::~LightSource()
+{
+}
+
 GLboolean LightSource::getState() const
 {
     return _state;
