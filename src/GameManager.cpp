@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <ctime>
 
 GameManager::GameManager() : _game_objects(), _oranges(), _cameras() {
     _car = std::make_shared<Car>(Vector3(-1.0f, 0.0f, 0.0f), 1.0, 0.0f, -0.6f, 0.0f);

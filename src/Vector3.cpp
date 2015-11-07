@@ -22,15 +22,13 @@ void Vector3::set(GLdouble x, GLdouble y, GLdouble z) { _x = x; _y = y; _z = z; 
 
 GLdouble Vector3::norm() const {
     GLdouble nrm;
-#define pow2(x) pow(x, 2.0f)
     nrm = sqrt(  pow2(_x) + pow2(_y) + pow2(_z) );
     return nrm;
 }
 
 Vector3 Vector3::normalized() const {
     GLdouble inverse_norm = 1.0f / norm();
-    Vector3 n = *this * inverse_norm;
-    return n;
+    return *this * inverse_norm;
 }
 
 Vector3 Vector3::crossProduct(Vector3 &v) const {
@@ -58,10 +56,7 @@ GLdouble Vector3::angleBetweenZ(Vector3 & v) const
 
 
 Vector3 Vector3::operator=(const Vector3 & vec) {
-    _x = vec.getX();
-    _y = vec.getY();
-    _z = vec.getZ();
-
+    set(vec.getX(), vec.getY(), vec.getZ());
     return *this;
 }
 
@@ -90,9 +85,5 @@ void Vector3::glTranslate() const {
 }
 
 std::ostream & operator<<(std::ostream & os, const Vector3 & v) {
-    auto x = v.getX();
-    auto y = v.getY();
-    auto z = v.getZ();
-
-    return os << "(" << x << ", " << y << ", " << z << ")";
+    return os << "(" << v.getX() << ", " << v.getY() << ", " << v.getZ() << ")";
 }
