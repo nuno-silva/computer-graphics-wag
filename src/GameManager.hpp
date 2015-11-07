@@ -28,6 +28,8 @@ private:
     std::shared_ptr<Camera>              _car_cam;
 
     bool _wired = false;
+    bool _lighting        = false;
+    bool _gouraud_shading = false;
 
     void updateOranges( GLdouble msSinceStart );
     /** number of milliseconds since the game was init'ed */
