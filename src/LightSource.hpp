@@ -4,7 +4,7 @@
 #include "Vector3.hpp"
 
 class LightSource {
-private:
+protected:
     GLfloat _ambient[4] = { 0.0f, 0.0f, 0.0f, 0.0f, };
     GLfloat _diffuse[4] = { 0.0f, 0.0f, 0.0f, 0.0f, };
     GLfloat _specular[4] = { 0.0f, 0.0f, 0.0f, 0.0f, };

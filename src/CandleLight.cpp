@@ -7,31 +7,16 @@ CandleLight::CandleLight(Vector3 pos, Vector3 dir, Vector4 amb, Vector4 diffuse,
     setSpecular(specular);
     setCutoff(cut_off);
     setExponent(exponent);
-
-    // HARDCODED TEMP
-    _position_hom[0] = pos.getX();
-    _position_hom[1] = pos.getY();
-    _position_hom[2] = pos.getZ();
-    _position_hom[3] = 1;
-
-    // HARDCODED TEMP
-    _direction_hom[0] = dir.getX();
-    _direction_hom[1] = dir.getY();
-    _direction_hom[2] = dir.getZ();
-    _direction_hom[3] = 1;
-
-    glLightfv(GL_LIGHT0, GL_AMBIENT, (GLfloat*)_ambient);
-    glLightfv(GL_LIGHT0, GL_POSITION, _position_hom);
 }
 
 void CandleLight::draw()
 {
     glPushMatrix();
-    LightSource::draw(); // translate to correct position
 
-    glColor3f(1.0f, 0.0f, 0.0f);
+    glColor3f(0.0f, 0.0f, 1.0f);
     
-    glScalef(0.03f, 0.03f, 0.03f);
+    glTranslatef(_position[0] , _position[1], _position[2] + 0.5f * 0.01f);
+    glScalef(0.01f, 0.01f, 0.01f);
     glutSolidCube(CUBE_SIZE);
 
     glPopMatrix();

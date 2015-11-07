@@ -74,8 +74,10 @@ int main( int argc, char *argv[] ) {
     glutCreateWindow( WINDOW_TITLE );
     
     glEnable(GL_DEPTH_TEST);
+
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
+    //glEnable(GL_COLOR_MATERIAL);
     
     game.init();
 

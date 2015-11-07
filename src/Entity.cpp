@@ -1,7 +1,7 @@
 #include "Entity.hpp"
 
 Entity::Entity() : _position(0.0f, 0.0f, 0.0f) { }
-
+ 
 Entity::~Entity() { }
 
 Vector3 Entity::getPosition() const {

@@ -10,6 +10,7 @@
 #include "Table.hpp"
 #include "CandleLight.hpp"
 #include "Vector4.hpp"
+#include "Candle.hpp"
 
 #include <iostream>
 #include <cstdlib>
@@ -25,11 +26,12 @@ void GameManager::display() {
     glClearColor( 0.0f, 0.0f, 0.0f, 1.0f );
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
-    _game_objects.draw();
-    
     for (auto l : _light_sources) {
         l->draw();
     }
+
+    _game_objects.draw();
+    
 
     #ifdef SINGLEBUF
     glFlush();
@@ -189,6 +191,7 @@ void GameManager::updateOranges( GLdouble msSinceStart ) {
 }
 
 void GameManager::init() {
+
     // Table
     _table = std::make_shared<Table>( m(2), m(0), m(0), m(0) );
     _game_objects.add( _table );
@@ -254,8 +257,6 @@ void GameManager::createButters()
 void GameManager::createCandles()
 {
     //CandleLight::CandleLight(Vector3 pos, Vector3 dir, Vector4 amb, Vector4 diffuse, Vector4 specular, GLdouble cut_off, GLdouble exponent, GLdouble number);
-    std::shared_ptr<LightSource> ls = std::make_shared<CandleLight>(Vector3(0, 0, 0), Vector3(-1.0f, -1.0f, 0), Vector4(0, 0.1f, 0, 1.0f), Vector4(0, 1.0f, 1.0f, 1.0f), Vector4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 1.0f, 1);
-
-    _light_sources.push_back(ls);
+    _game_objects.add(std::make_shared<Candle>(Vector3(0.0f, 0.0f, 0.0f), 0.02f));
 }
 

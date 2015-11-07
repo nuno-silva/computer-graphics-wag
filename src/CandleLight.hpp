@@ -17,6 +17,4 @@ protected:
 
 private:
     const GLfloat CUBE_SIZE = 1.0f;
-    GLfloat _position_hom[4];
-    GLfloat _direction_hom[4];
 };
