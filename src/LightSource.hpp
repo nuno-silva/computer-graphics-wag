@@ -10,7 +10,7 @@ private:
     GLfloat _specular[4] = { 0.0f, 0.0f, 0.0f, 0.0f, };
     GLfloat _position[4] = { 0.0f, 0.0f, 0.0f, 0.0f, };
     GLfloat _direction[4] = { 0.0f, 0.0f, 0.0f, 0.0f, };
-    GLfloat _cut_off  = 0.0f;
+    GLfloat _cut_off  = 180.0f;
     GLfloat _exponent = 0.0f;
     GLenum _lightNumber;
     GLboolean _state;

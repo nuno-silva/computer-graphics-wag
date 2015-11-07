@@ -26,6 +26,10 @@ void GameManager::display() {
 
     _game_objects.draw();
 
+    for (auto light : _lightSources ) {
+        light->draw();
+    }
+
     #ifdef SINGLEBUF
     glFlush();
     #else
@@ -231,11 +235,12 @@ void GameManager::init() {
 
     // create the Sun
     _sun = std::make_shared<LightSource> ( GL_LIGHT0 );
-    _sun->setPosition( Vector3( 1.0f, 1.0f, 10.0f ) );
+    _sun->setPosition( Vector3( 1.0f, 1.0f, 1.0f ) );
     _sun->setDirection( Vector3( 0.0f, 0.0f, 0.0f ) );
     _sun->setAmbient( Vector4( 0.2f, 0.2f, 0.2f, 1.0f ) );
     _sun->setDiffuse( Vector4( 1.0f, 1.0f, 1.0f, 1.0f ) );
     _sun->setSpecular(Vector4( 1.0f, 1.0f, 1.0f, 1.0f ) );
+    _sun->setState( true );
     _lightSources.push_back( _sun );
 
 
