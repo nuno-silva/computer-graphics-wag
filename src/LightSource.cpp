@@ -1,8 +1,9 @@
 #include "LightSource.hpp"
 
-LightSource::LightSource(GLdouble number)
+LightSource::LightSource(GLenum number)
 {
-    _num = number;
+    _lightNumber = number;
+    setState( true );
 }
 
 LightSource::~LightSource()
@@ -17,29 +18,41 @@ GLboolean LightSource::getState() const
 void LightSource::setState(GLboolean state)
 {
     _state = state;
+
+    if( _state ) {
+        glEnable( _lightNumber );
+    } else {
+        glDisable( _lightNumber );
+    }
 }
 
 GLenum LightSource::getNum() const
 {
-    return _num;
+    return _lightNumber;
 }
 
 void LightSource::setPosition(const Vector3 & pos)
 {
-    _position = pos;
+    _position[0] = pos.getX();
+    _position[1] = pos.getY();
+    _position[2] = pos.getZ();
+    _position[3] = 0.0f;
 }
 
 void LightSource::setDirection(const Vector3 & dir)
 {
-    _direction = dir;
+    _direction[0] = dir.getX();
+    _direction[1] = dir.getY();
+    _direction[2] = dir.getZ();
+    _direction[3] = 0.0f;
 }
 
-void LightSource::setCutoff(GLdouble cut_off)
+void LightSource::setCutoff(GLfloat cut_off)
 {
     _cut_off = cut_off;
 }
 
-void LightSource::setExponent(GLdouble exp)
+void LightSource::setExponent(GLfloat exp)
 {
     _exponent = exp;
 }
@@ -68,7 +81,14 @@ void LightSource::setSpecular(const Vector4 & spec)
     _specular[3] = spec.getT();
 }
 
-void LightSource::draw()
-{
-    _position.glTranslate();
+void LightSource::draw() {
+    glLightfv( _lightNumber, GL_POSITION,  _position);
+
+    glLightfv( _lightNumber, GL_AMBIENT,  _ambient);
+    glLightfv( _lightNumber, GL_SPECULAR, _specular);
+    glLightfv( _lightNumber, GL_DIFFUSE,  _diffuse);
+
+    glLightf( _lightNumber, GL_SPOT_CUTOFF,     _cut_off);
+    glLightf( _lightNumber, GL_SPOT_EXPONENT,   _exponent);
+    glLightfv( _lightNumber,GL_SPOT_DIRECTION,  _direction);
 }

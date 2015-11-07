@@ -30,6 +30,8 @@ private:
     std::vector<std::shared_ptr<LightSource>> _light_sources;
 
     bool _wired = false;
+    bool _lighting        = false;
+    bool _gouraud_shading = false;
 
     void updateOranges( GLdouble msSinceStart );
     /** number of milliseconds since the game was init'ed */

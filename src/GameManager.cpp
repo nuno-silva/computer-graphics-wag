@@ -54,6 +54,12 @@ void GameManager::keyPressed(unsigned char key, int x, int y) {
     (void) y; // var is not used, but we don't want a unused-parameter warning
 
     switch ( key ) {
+        case 'l':
+            _lighting = ! _lighting;
+            break;
+        case 'g':
+            _gouraud_shading = ! _gouraud_shading;
+            break;
         case 'a':
             _wired = !_wired;
             break;
@@ -96,6 +102,21 @@ void GameManager::specialPressed(int key, int x, int y, bool pressed) {
 }
 
 void GameManager::update(GLdouble delta) {
+
+    /* set light state */
+    if (_lighting) {
+        glEnable(GL_LIGHTING);
+    } else {
+        glDisable(GL_LIGHTING);
+    }
+
+    /* toggle between flat shading and gouraud shading */
+    if (_gouraud_shading) {
+        glShadeModel( GL_SMOOTH );
+    } else {
+        glShadeModel( GL_FLAT );
+    }
+
     if (_wired) {
         _game_objects.setWired();
     } else {
