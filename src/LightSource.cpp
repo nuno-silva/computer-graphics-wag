@@ -5,6 +5,10 @@ LightSource::LightSource(GLdouble number)
     _num = number;
 }
 
+LightSource::~LightSource()
+{
+}
+
 GLboolean LightSource::getState() const
 {
     return _state;
@@ -62,4 +66,9 @@ void LightSource::setSpecular(const Vector4 & spec)
     _specular[1] = spec.getY();
     _specular[2] = spec.getZ();
     _specular[3] = spec.getT();
+}
+
+void LightSource::draw()
+{
+    _position.glTranslate();
 }

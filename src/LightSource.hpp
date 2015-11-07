@@ -4,7 +4,7 @@
 #include "Vector3.hpp"
 
 class LightSource {
-private:
+protected:
     GLdouble _ambient[4];
     GLdouble _diffuse[4];
     GLdouble _specular[4];
@@ -28,5 +28,5 @@ public:
     void setAmbient(const Vector4& amb);
     void setDiffuse(const Vector4& diff);
     void setSpecular(const Vector4& spec);
-    void draw();
+    virtual void draw();
 };

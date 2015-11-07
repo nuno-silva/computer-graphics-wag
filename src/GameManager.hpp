@@ -9,6 +9,7 @@
 #include "Table.hpp"
 #include "GameObject.hpp"
 #include "GameObjectCollection.hpp"
+#include "LightSource.hpp"
 #include "global.hpp"
 
 #define ORANGE_COUNT 10
@@ -26,6 +27,7 @@ private:
     std::shared_ptr<Camera>              _orthogonal_cam;
     std::shared_ptr<Camera>              _perspective_cam;
     std::shared_ptr<Camera>              _car_cam;
+    std::vector<std::shared_ptr<LightSource>> _light_sources;
 
     bool _wired = false;
 
@@ -45,4 +47,5 @@ public:
     void update         ( GLdouble delta                             );
     void init();
     void createButters();
+    void createCandles();
 };

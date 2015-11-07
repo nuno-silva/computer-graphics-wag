@@ -8,6 +8,8 @@
 #include "PerspectiveCamera.hpp"
 #include "Roadside.hpp"
 #include "Table.hpp"
+#include "CandleLight.hpp"
+#include "Vector4.hpp"
 
 #include <iostream>
 #include <cstdlib>
@@ -24,6 +26,10 @@ void GameManager::display() {
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
     _game_objects.draw();
+    
+    for (auto l : _light_sources) {
+        l->draw();
+    }
 
     #ifdef SINGLEBUF
     glFlush();
@@ -172,6 +178,9 @@ void GameManager::init() {
     // Butters
     createButters();
 
+    // Candles
+    createCandles();
+
     // Oranges
     const GLfloat orange_radius = cm(2.5);
     for( int i = 0; i < ORANGE_COUNT; i++ ) {
@@ -219,5 +228,13 @@ void GameManager::createButters()
     b = std::make_shared<Butter>(cm(-80), cm(70), cm(0));
     _game_objects.add(b);
 
+}
+
+void GameManager::createCandles()
+{
+    //CandleLight::CandleLight(Vector3 pos, Vector3 dir, Vector4 amb, Vector4 diffuse, Vector4 specular, GLdouble cut_off, GLdouble exponent, GLdouble number);
+    std::shared_ptr<LightSource> ls = std::make_shared<CandleLight>(Vector3(0, 0, 0), Vector3(-1.0f, -1.0f, 0), Vector4(0, 0.1f, 0, 1.0f), Vector4(0, 1.0f, 1.0f, 1.0f), Vector4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 1.0f, 1);
+
+    _light_sources.push_back(ls);
 }
 
