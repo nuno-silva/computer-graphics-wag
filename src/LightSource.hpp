@@ -5,28 +5,31 @@
 
 class LightSource {
 private:
-    GLdouble _ambient[4];
-    GLdouble _diffuse[4];
-    GLdouble _specular[4];
-    GLdouble _cut_off;
-    GLdouble _exponent;
-    GLenum _num;
+    GLfloat _ambient[4] = { 0.0f, 0.0f, 0.0f, 0.0f, };
+    GLfloat _diffuse[4] = { 0.0f, 0.0f, 0.0f, 0.0f, };
+    GLfloat _specular[4] = { 0.0f, 0.0f, 0.0f, 0.0f, };
+    GLfloat _position[4] = { 0.0f, 0.0f, 0.0f, 0.0f, };
+    GLfloat _direction[4] = { 0.0f, 0.0f, 0.0f, 0.0f, };
+    GLfloat _cut_off  = 0.0f;
+    GLfloat _exponent = 0.0f;
+    GLenum _lightNumber;
     GLboolean _state;
-    Vector3 _direction;
-    Vector3 _position;
 
 public:
-    LightSource(GLdouble number);
+    /** @param lightNumber of the light source, using GL_LIGHT_i constants.
+     */
+    LightSource(GLenum lightNumber);
     ~LightSource();
     GLboolean getState() const;
     void setState(GLboolean state);
     GLenum getNum() const;
     void setPosition(const Vector3& pos);
     void setDirection(const Vector3& dir);
-    void setCutoff(GLdouble cut_off);
-    void setExponent(GLdouble exp);
+    void setCutoff(GLfloat cut_off);
+    void setExponent(GLfloat exp);
     void setAmbient(const Vector4& amb);
     void setDiffuse(const Vector4& diff);
     void setSpecular(const Vector4& spec);
-    void draw();
+    virtual void draw();
 };
+
