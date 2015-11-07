@@ -9,6 +9,7 @@
 #include "Table.hpp"
 #include "GameObject.hpp"
 #include "GameObjectCollection.hpp"
+#include "LightSource.hpp"
 #include "global.hpp"
 
 #define ORANGE_COUNT 10
@@ -26,10 +27,13 @@ private:
     std::shared_ptr<Camera>              _orthogonal_cam;
     std::shared_ptr<Camera>              _perspective_cam;
     std::shared_ptr<Camera>              _car_cam;
+    std::vector<std::shared_ptr<LightSource>> _lightSources;
+    std::shared_ptr<LightSource>         _sun;
 
     bool _wired = false;
     bool _lighting        = false;
     bool _gouraud_shading = false;
+    bool _isDayTime = true;
 
     void updateOranges( GLdouble msSinceStart );
     /** number of milliseconds since the game was init'ed */
