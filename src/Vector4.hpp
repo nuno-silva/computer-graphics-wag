@@ -32,5 +32,3 @@ public:
     bool operator!=(const Vector4 &) const;
 
 };
-
-const Vector4 zeroVector(0, 0, 0, 0);
