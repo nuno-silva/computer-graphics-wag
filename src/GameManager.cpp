@@ -240,6 +240,8 @@ void GameManager::init() {
     _sun->setAmbient( Vector4( 0.2f, 0.2f, 0.2f, 1.0f ) );
     _sun->setDiffuse( Vector4( 1.0f, 1.0f, 1.0f, 1.0f ) );
     _sun->setSpecular(Vector4( 1.0f, 1.0f, 1.0f, 1.0f ) );
+    _sun->setCutoff( 180.0f );
+    _sun->setExponent( 0.0f );
     _sun->setState( true );
     _lightSources.push_back( _sun );
 
