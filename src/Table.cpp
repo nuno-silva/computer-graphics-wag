@@ -18,7 +18,17 @@ void Table::draw() {
     GameObject::draw();
 
     glColor3f( components3(TableColors::table) );
-
+    { /* green rubber */
+        GLfloat amb[]={0.0f,0.05f,0.0f,1.0f};
+        GLfloat diff[]={0.4f,0.5f,0.4f,1.0f};
+        GLfloat spec[]={0.04f,0.7f,0.04f,1.0f};
+        GLfloat shine=10.0f;
+        glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,amb);
+        glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,diff);
+        glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+        glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS,shine);
+    }
+    
     GLdouble increment = _size / 100.0f;
 
     for( double x = -_size/2; x < _size/2; x += increment ) {

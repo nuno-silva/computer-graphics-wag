@@ -57,6 +57,17 @@ void Car::draw() {
 
         // Car bottom.
         glColor3f(components3(CarColors::bottom));
+        { /* bright TURQUOISE */
+            GLfloat amb[]={0.1f,0.18725f,0.41f,1.0f};
+            GLfloat diff[]={0.396f,0.74151f,1.0f,1.0f};
+            GLfloat spec[]={0.297254f,0.30829f,1.0f,1.0f};
+            GLfloat shine=12.8f;
+            glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,amb);
+            glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,diff);
+            glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+            glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS,shine);
+        }
+        
         // Points A through H. AB stands for point A of the bottom part.
 #define AB glNormal3f(cm(-0.58), cm( 0.58), cm( 0.58)); glVertex3f(cm(-1   ), cm( 1), cm(1.5));
 #define BB glNormal3f(cm( 0.58), cm( 0.58), cm( 0.58)); glVertex3f(cm( 4.25), cm( 1), cm(1.5));
@@ -81,6 +92,16 @@ void Car::draw() {
 
         // Car top.
         glColor3f(components3(CarColors::top));
+        { /* TURQUOISE */
+            GLfloat amb[]={0.1f,0.18725f,0.1745f,1.0f};
+            GLfloat diff[]={0.396f,0.74151f,0.69102f,1.0f};
+            GLfloat spec[]={0.297254f,0.30829f,0.306678f,1.0f};
+            GLfloat shine=12.8f;
+            glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,amb);
+            glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,diff);
+            glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+            glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS,shine);
+        }
         // Points A through H. AT stands for point A of the top part.
 #define AT glNormal3f(cm(0.41), cm( 0.49), cm(0.77)); glVertex3f(cm(0.75), cm( 0.75), cm(2.25));
 #define BT glNormal3f(cm(0.5),  cm( 0.52), cm(0.69)); glVertex3f(cm(3.25), cm( 0.75), cm(2.25));
@@ -105,6 +126,16 @@ void Car::draw() {
 
         // Car front left wheel.
         glColor3f( components3(CarColors::wheels) );
+        {   /* black plastic */
+            GLfloat amb[]={0.02f,0.02f,0.02f,1.0f};
+            GLfloat diff[]={0.01f,0.01f,0.01f,1.0f};
+            GLfloat spec[]={0.4f,0.4f,0.4f,1.0f};
+            GLfloat shine=10.0f;
+            glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,amb);
+            glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,diff);
+            glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+            glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS,shine);
+        }
         // Points AX through HX. The I stands for interior, where the E stands for exterior.
         // FLW stands for front left wheel.
 #define AIFLW glNormal3f(cm(0),     cm( 0.48), cm(0.88));  glVertex3f(cm( 0),    cm(-0.75), cm(1));
