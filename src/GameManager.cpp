@@ -63,7 +63,11 @@ void GameManager::keyPressed(unsigned char key, int x, int y) {
             _isDayTime = ! _isDayTime;
             break;
         case 'l':
-            _lighting = ! _lighting;
+             if( !glIsEnabled(GL_LIGHTING) ) {
+                glEnable(GL_LIGHTING);
+            } else {
+                glDisable(GL_LIGHTING);
+            }
             break;
         case 'g':
             _gouraud_shading = ! _gouraud_shading;
@@ -110,13 +114,6 @@ void GameManager::specialPressed(int key, int x, int y, bool pressed) {
 }
 
 void GameManager::update(GLdouble delta) {
-
-    /* set light state */
-    if (_lighting) {
-        glEnable(GL_LIGHTING);
-    } else {
-        glDisable(GL_LIGHTING);
-    }
 
     /* toggle between flat shading and gouraud shading */
     if (_gouraud_shading) {
@@ -301,7 +298,7 @@ void GameManager::createButters()
 void GameManager::createCandle( Vector3 pos , GLenum lightNum) {
     auto _candle = std::make_shared<Candle>( pos );
     _game_objects.add(_candle);
-    
+
     pos = pos + Vector3( 0.0f, 0.0f, _candle->getHeight() );
     auto _spot = std::make_shared<CandleLight> ( pos, lightNum );
     _lightSources.push_back( _spot );

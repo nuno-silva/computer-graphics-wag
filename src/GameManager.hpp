@@ -33,7 +33,6 @@ private:
     std::shared_ptr<LightSource>         _sun;
 
     bool _wired = false;
-    bool _lighting        = false;
     bool _gouraud_shading = false;
     bool _isDayTime = true;
     bool _toggleCandles = false;
