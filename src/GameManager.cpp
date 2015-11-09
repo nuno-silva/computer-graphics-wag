@@ -237,7 +237,7 @@ void GameManager::init() {
     _sun = std::make_shared<LightSource> ( GL_LIGHT0 );
     _sun->setPosition( Vector3( 1.0f, 1.0f, 1.0f ) );
     _sun->setDirection( Vector3( 0.0f, 0.0f, 0.0f ) );
-    _sun->setAmbient( Vector4( 0.2f, 0.2f, 0.2f, 1.0f ) );
+    _sun->setAmbient( Vector4( 0.4f, 0.4f, 0.4f, 1.0f ) );
     _sun->setDiffuse( Vector4( 1.0f, 1.0f, 1.0f, 1.0f ) );
     _sun->setSpecular(Vector4( 1.0f, 1.0f, 1.0f, 1.0f ) );
     _sun->setCutoff( 180.0f );
