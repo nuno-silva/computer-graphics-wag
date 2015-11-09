@@ -36,7 +36,7 @@ void LightSource::setPosition(const Vector3 & pos)
     _position[0] = pos.getX();
     _position[1] = pos.getY();
     _position[2] = pos.getZ();
-    _position[3] = 0.0f;
+    _position[3] = 1.0f;
 }
 
 void LightSource::setDirection(const Vector3 & dir)
@@ -81,14 +81,28 @@ void LightSource::setSpecular(const Vector4 & spec)
     _specular[3] = spec.getT();
 }
 
+void print4(GLfloat v[4]) {
+    std::cout << v[0] << " " << v[1] << " " << v[2] << " " << v[3] << std::endl;
+}
+
 void LightSource::draw() {
+    glPushMatrix();
+    //std::cout << "pos: "; print4(_position);
+    glLightfv( _lightNumber, GL_AMBIENT,  _ambient);
+    //std::cout << "amb: "; print4(_ambient);
+    glLightfv( _lightNumber, GL_DIFFUSE,  _diffuse);
+    //std::cout << "dif: "; print4(_diffuse);
+    glLightfv( _lightNumber, GL_SPECULAR, _specular);
+    //std::cout << "spe: "; print4(_specular);
+    //std::cout << "num: " << _lightNumber << std::endl;
     glLightfv( _lightNumber, GL_POSITION,  _position);
 
-    glLightfv( _lightNumber, GL_AMBIENT,  _ambient);
-    glLightfv( _lightNumber, GL_SPECULAR, _specular);
-    glLightfv( _lightNumber, GL_DIFFUSE,  _diffuse);
-
     glLightf( _lightNumber, GL_SPOT_CUTOFF,     _cut_off);
-    glLightf( _lightNumber, GL_SPOT_EXPONENT,   _exponent);
+    //std::cout << "cut: " << _cut_off << std::endl;
     glLightfv( _lightNumber,GL_SPOT_DIRECTION,  _direction);
+    //std::cout << "dir: "; print4(_direction);
+    glLightf( _lightNumber, GL_SPOT_EXPONENT,   _exponent);
+    //std::cout << "exp: " << _exponent << std::endl;
+
+    glPopMatrix();
 }
