@@ -251,6 +251,18 @@ void GameManager::init() {
     _sun->setState( true );
     _lightSources.push_back( _sun );
 
+    // testing spot light
+    /*auto _spot = std::make_shared<LightSource> ( GL_LIGHT12 );
+    _spot->setPosition( Vector3( cm(10), cm(50), cm(10) ) );
+    _spot->setDirection( Vector3( 0.0f, 0.0f, -1.0f ) );
+    _spot->setAmbient( Vector4( 0.2f, 0.2f, 0.2f, 1.0f ) );
+    _spot->setDiffuse( Vector4( 1.0f, 1.0f, 1.0f, 1.0f ) );
+    _spot->setSpecular(Vector4( 1.0f, 1.0f, 1.0f, 1.0f ) );
+    _spot->setCutoff( 90.0f );
+    _spot->setExponent( 2.0f );
+    _spot->setState( true );
+    _lightSources.push_back( _spot );*/
+
 
 }
 
@@ -275,7 +287,6 @@ void GameManager::createButters()
 
 void GameManager::createCandles()
 {
-    //CandleLight::CandleLight(Vector3 pos, Vector3 dir, Vector4 amb, Vector4 diffuse, Vector4 specular, GLdouble cut_off, GLdouble exponent, GLdouble number);
-    _game_objects.add(std::make_shared<Candle>(Vector3(0.0f, 0.0f, 0.0f), 0.02f));
+    _game_objects.add(std::make_shared<Candle>(Vector3(0.0f, 0.0f, 0.0f), GL_LIGHT1));
 }
 
