@@ -56,6 +56,9 @@ void GameManager::keyPressed(unsigned char key, int x, int y) {
     (void) y; // var is not used, but we don't want a unused-parameter warning
 
     switch ( key ) {
+        case 'c':
+            _toggleCandles = ! _toggleCandles;
+            break;
         case 'n':
             _isDayTime = ! _isDayTime;
             break;
@@ -124,6 +127,16 @@ void GameManager::update(GLdouble delta) {
 
     /* turn the Sun on or off */
     _sun->setState(_isDayTime);
+
+    /* Turn the candles on or off.
+     * We use a toggle state to avoid doing this on every update. */
+    if( _toggleCandles) {
+        _toggleCandles = false;
+        _candleLightsOn = ! _candleLightsOn;
+        for (auto candleLight : _candleLights ) {
+            candleLight->setState( _candleLightsOn );
+        }
+    }
 
     if (_wired) {
         _game_objects.setWired();
@@ -292,6 +305,7 @@ void GameManager::createCandle( Vector3 pos , GLenum lightNum) {
     pos = pos + Vector3( 0.0f, 0.0f, _candle->getHeight() );
     auto _spot = std::make_shared<CandleLight> ( pos, lightNum );
     _lightSources.push_back( _spot );
+    _candleLights.push_back( _spot );
 }
 
 void GameManager::createCandles()
