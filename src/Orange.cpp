@@ -74,6 +74,16 @@ void Orange::draw() {
     { // draw orange stalk
         glTranslatef( _stalk_x, _stalk_y, _stalk_z );
         glColor3f( components3( OrangeColors::stalk ));
+        { /* green rubber */
+            GLfloat amb[]={0.0f,0.05f,0.0f,1.0f};
+            GLfloat diff[]={0.4f,0.5f,0.4f,1.0f};
+            GLfloat spec[]={0.04f,0.7f,0.04f,1.0f};
+            GLfloat shine=10.0f;
+            glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,amb);
+            glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,diff);
+            glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+            glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS,shine);
+        }
         glRotatef(STALK_ROTATION, 0.0f, 1.0f, 0.0f);
         glScalef( _stalk_width, _stalk_width, _stalk_height );
         drawCube( 1.0f );
