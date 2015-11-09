@@ -8,6 +8,7 @@
 #include "PerspectiveCamera.hpp"
 #include "Roadside.hpp"
 #include "Table.hpp"
+#include "LightSource.hpp"
 #include "CandleLight.hpp"
 #include "Vector4.hpp"
 #include "Candle.hpp"
@@ -26,12 +27,11 @@ void GameManager::display() {
     glClearColor( 0.0f, 0.0f, 0.0f, 1.0f );
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
-    for (auto l : _light_sources) {
-        l->draw();
-    }
-
     _game_objects.draw();
-    
+
+    for (auto light : _lightSources ) {
+        light->draw();
+    }
 
     #ifdef SINGLEBUF
     glFlush();
@@ -56,6 +56,9 @@ void GameManager::keyPressed(unsigned char key, int x, int y) {
     (void) y; // var is not used, but we don't want a unused-parameter warning
 
     switch ( key ) {
+        case 'n':
+            _isDayTime = ! _isDayTime;
+            break;
         case 'l':
             _lighting = ! _lighting;
             break;
@@ -118,6 +121,9 @@ void GameManager::update(GLdouble delta) {
     } else {
         glShadeModel( GL_FLAT );
     }
+
+    /* turn the Sun on or off */
+    _sun->setState(_isDayTime);
 
     if (_wired) {
         _game_objects.setWired();
@@ -191,7 +197,6 @@ void GameManager::updateOranges( GLdouble msSinceStart ) {
 }
 
 void GameManager::init() {
-
     // Table
     _table = std::make_shared<Table>( m(2), m(0), m(0), m(0) );
     _game_objects.add( _table );
@@ -233,6 +238,20 @@ void GameManager::init() {
 
     // place the first oranges
     updateOranges( 0 );
+
+    // create the Sun
+    _sun = std::make_shared<LightSource> ( GL_LIGHT0 );
+    _sun->setPosition( Vector3( 1.0f, 1.0f, 1.0f ) );
+    _sun->setDirection( Vector3( 0.0f, 0.0f, 0.0f ) );
+    _sun->setAmbient( Vector4( 0.4f, 0.4f, 0.4f, 1.0f ) );
+    _sun->setDiffuse( Vector4( 1.0f, 1.0f, 1.0f, 1.0f ) );
+    _sun->setSpecular(Vector4( 1.0f, 1.0f, 1.0f, 1.0f ) );
+    _sun->setCutoff( 180.0f );
+    _sun->setExponent( 0.0f );
+    _sun->setState( true );
+    _lightSources.push_back( _sun );
+
+
 }
 
 void GameManager::createButters()

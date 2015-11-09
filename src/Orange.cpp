@@ -55,6 +55,18 @@ void Orange::draw() {
     glRotatef(ORANGE_ROTATION, 0.0f, 1.0f, 0.0f);
 
     glColor3f( components3( OrangeColors::skin ));
+
+    { /* orange plastic */
+        GLfloat amb[]={0.0f,0.0f,0.0f,1.0f};
+        GLfloat diff[]={1.0f,0.55f,0.0f,1.0f};
+        GLfloat spec[]={1.0f,0.64f,0.38f,1.0f};
+        GLfloat shine=32.0f;
+        glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,amb);
+        glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,diff);
+        glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+        glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS,shine);
+    }
+    
     drawSphere(_radius, num_slices, num_slacks);
 
 

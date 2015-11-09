@@ -10,13 +10,48 @@ Table::Table( GLdouble size, GLdouble x, GLdouble y, GLdouble z ) : _size(size) 
     setPosition(x, y, z);
 }
 
+
+
 void Table::draw() {
     glPushMatrix();
-    glTranslatef( cm(0), cm(0), - _size/2 ); // table origin is on the top face
+    //glTranslatef( cm(0), cm(0), - _size/2 ); // table origin is on the top face
     GameObject::draw();
 
     glColor3f( components3(TableColors::table) );
-    glutSolidCube( _size );
+    { /* green rubber */
+        GLfloat amb[]={0.0f,0.05f,0.0f,1.0f};
+        GLfloat diff[]={0.4f,0.5f,0.4f,1.0f};
+        GLfloat spec[]={0.04f,0.7f,0.04f,1.0f};
+        GLfloat shine=10.0f;
+        glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,amb);
+        glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,diff);
+        glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+        glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS,shine);
+    }
+    
+    GLdouble increment = _size / 100.0f;
+
+    for( double x = -_size/2; x < _size/2; x += increment ) {
+
+        glPushMatrix();
+        {
+            glTranslatef( x, 0.0f, 0.0f );
+
+            glBegin(GL_QUAD_STRIP);
+            glNormal3f( 0.0f, 0.0f, 1.0f );
+
+            for( double y = -_size/2; y < _size/2+ increment; y += increment ) {
+                glVertex3f( 0.0f, y, 0.0f );
+
+#ifdef DEBUG
+                glColor3f( x*x/_size*_size, y*y/_size*_size, x*y/_size*_size );
+#endif
+                glVertex3f( increment, y, 0.0f );
+            }
+            glEnd();
+        }
+        glPopMatrix();
+    }
 
 #ifdef DEBUG
     glColor3f( 1.0f, 0.5f, 0.0f );
