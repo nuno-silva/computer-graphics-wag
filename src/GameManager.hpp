@@ -10,6 +10,7 @@
 #include "GameObject.hpp"
 #include "GameObjectCollection.hpp"
 #include "LightSource.hpp"
+#include "CandleLight.hpp"
 #include "global.hpp"
 
 #define ORANGE_COUNT 10
@@ -28,19 +29,21 @@ private:
     std::shared_ptr<Camera>              _perspective_cam;
     std::shared_ptr<Camera>              _car_cam;
     std::vector<std::shared_ptr<LightSource>> _lightSources;
+    std::vector<std::shared_ptr<CandleLight>> _candleLights;
     std::shared_ptr<LightSource>         _sun;
 
     bool _wired = false;
     bool _lighting        = false;
     bool _gouraud_shading = false;
     bool _isDayTime = true;
+    bool _toggleCandles = false;
+    bool _candleLightsOn = true;
 
     void updateOranges( GLdouble msSinceStart );
     /** number of milliseconds since the game was init'ed */
     GLdouble _msSinceStart = 0;
     /** number of milliseconds since the last time the oranges where updated */
     GLdouble _msSinceLastOrangeUpdate = 0;
-    /* std::vector<LightSource> _light_source; */
 public:
     GameManager();
 
@@ -51,4 +54,6 @@ public:
     void update         ( GLdouble delta                             );
     void init();
     void createButters();
+    void createCandles();
+    void createCandle( Vector3 pos , GLenum lightNum );
 };

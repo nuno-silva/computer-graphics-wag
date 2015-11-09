@@ -153,6 +153,8 @@
   <ItemGroup>
     <ClCompile Include="src\Butter.cpp" />
     <ClCompile Include="src\Camera.cpp" />
+    <ClCompile Include="src\Candle.cpp" />
+    <ClCompile Include="src\CandleLight.cpp" />
     <ClCompile Include="src\Car.cpp" />
     <ClCompile Include="src\CarCamera.cpp" />
     <ClCompile Include="src\Cheerio.cpp" />
@@ -178,6 +180,8 @@
   <ItemGroup>
     <ClInclude Include="src\Butter.hpp" />
     <ClInclude Include="src\Camera.hpp" />
+    <ClInclude Include="src\Candle.hpp" />
+    <ClInclude Include="src\CandleLight.hpp" />
     <ClInclude Include="src\Car.hpp" />
     <ClInclude Include="src\CarCamera.hpp" />
     <ClInclude Include="src\Cheerio.hpp" />

@@ -4,11 +4,11 @@
 #include "Vector3.hpp"
 
 class LightSource {
-private:
+protected:
     GLfloat _ambient[4] = { 0.0f, 0.0f, 0.0f, 1.0f, };
     GLfloat _diffuse[4] = { 0.0f, 0.0f, 0.0f, 1.0f, };
     GLfloat _specular[4] = { 0.0f, 0.0f, 0.0f, 1.0f, };
-    GLfloat _position[4] = { 0.0f, 0.0f, 1.0f, 0.0f, };
+    GLfloat _position[4] = { 0.0f, 0.0f, 1.0f, 1.0f, };
     GLfloat _direction[4] = { 0.0f, 0.0f, -1.0f, 0.0f, };
     GLfloat _cut_off  = 0.0f;
     GLfloat _exponent = 0.0f;
@@ -23,6 +23,8 @@ public:
     GLboolean getState() const;
     void setState(GLboolean state);
     GLenum getNum() const;
+    /** @param pos position of the light source, relative to the current translation matrix
+     * */
     void setPosition(const Vector3& pos);
     void setDirection(const Vector3& dir);
 
