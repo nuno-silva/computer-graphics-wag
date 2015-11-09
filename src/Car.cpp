@@ -67,15 +67,15 @@ void Car::draw() {
             glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
             glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS,shine);
         }
-        
+
         // Points A through H. AB stands for point A of the bottom part.
 #define AB glNormal3f(cm(-0.58), cm( 0.58), cm( 0.58)); glVertex3f(cm(-1   ), cm( 1), cm(1.5));
-#define BB glNormal3f(cm( 0.58), cm( 0.58), cm( 0.58)); glVertex3f(cm( 4.25), cm( 1), cm(1.5));
+#define BB glNormal3f(cm( 1.0), cm( 0.0), cm( 0)); glVertex3f(cm( 4.25), cm( 1), cm(1.5));
 #define CB glNormal3f(cm(-0.58), cm(-0.58), cm( 0.58)); glVertex3f(cm(-1   ), cm(-1), cm(1.5));
-#define DB glNormal3f(cm( 0.58), cm(-0.58), cm( 0.58)); glVertex3f(cm( 4.25), cm(-1), cm(1.5));
+#define DB glNormal3f(cm( 1.0), cm(0), cm( 0)); glVertex3f(cm( 4.25), cm(-1), cm(1.5));
 #define EB glNormal3f(cm(-0.58), cm( 0.58), cm(-0.58)); glVertex3f(cm(-1   ), cm( 1), cm(0.5));
-#define FB glNormal3f(cm( 0.58), cm( 0.58), cm(-0.58)); glVertex3f(cm( 4.25), cm( 1), cm(0.5));
-#define GB glNormal3f(cm(-0.58), cm(-0.58), cm(-0.58)); glVertex3f(cm(-1   ), cm(-1), cm(0.5));
+#define FB glNormal3f(cm( 1.0), cm( 0), cm(0)); glVertex3f(cm( 4.25), cm( 1), cm(0.5));
+#define GB glNormal3f(cm(1.0), cm(0), cm(0)); glVertex3f(cm(-1   ), cm(-1), cm(0.5));
 #define HB glNormal3f(cm( 0.58), cm(-0.58), cm(-0.58)); glVertex3f(cm( 4.25), cm(-1), cm(0.5));
         // Bottom.
         glBegin(GL_POLYGON); {EB FB HB GB} glEnd();
