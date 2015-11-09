@@ -52,4 +52,5 @@ public:
     void init();
     void createButters();
     void createCandles();
+    void createCandle( Vector3 pos , GLenum lightNum );
 };

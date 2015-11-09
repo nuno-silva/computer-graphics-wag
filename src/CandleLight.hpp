@@ -6,6 +6,5 @@ class CandleLight : public LightSource {
 
 public:
     CandleLight(Vector3 pos, GLenum lightNum);
-    virtual void draw() override;
 
 };

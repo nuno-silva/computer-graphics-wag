@@ -10,13 +10,12 @@ namespace CanldeColors {
 class Candle : public StaticObject {
 protected:
     GLdouble _radius;
-    CandleLight _light;
 
 public:
-    Candle(Vector3 pos, GLenum lightNum);
-    Candle(GLdouble x, GLdouble y, GLdouble z, GLenum lightNum);
-    Candle(Vector3 pos, GLdouble rad, GLenum lightNum);
-    Candle(GLdouble x, GLdouble z, GLdouble y, GLdouble rad, GLenum lightNum);
+    Candle(Vector3 pos);
+    Candle(GLdouble x, GLdouble y, GLdouble z);
+    Candle(Vector3 pos, GLdouble rad);
+    Candle(GLdouble x, GLdouble z, GLdouble y, GLdouble rad);
     virtual void draw() override;
-
+    GLdouble getHeight();
 };
