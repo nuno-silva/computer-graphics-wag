@@ -5,7 +5,7 @@
 
 #include <iostream>
 
-#define ACCEL cm(100)
+#define ACCEL cm(80)
 
 #define MAX_SPEED cm(200)
 
@@ -41,11 +41,11 @@ void DynamicObject::update(GLdouble delta_t) {
 
     if (_turnRight) {
         Vector3 left = _orientation.crossProduct(unitZ);
-        Vector3 newOrient = _orientation + left * 3.0f * delta_t_s;
+        Vector3 newOrient = _orientation + left * 2.5f * delta_t_s;
         setOrientation( newOrient );
     } else if (_turnLeft) {
         Vector3 right = unitZ.crossProduct(_orientation);
-        Vector3 newOrient = _orientation + right * 3.0f * delta_t_s;
+        Vector3 newOrient = _orientation + right * 2.5f * delta_t_s;
         setOrientation( newOrient );
     }
 

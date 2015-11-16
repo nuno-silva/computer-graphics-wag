@@ -3,7 +3,7 @@
 
 void StaticObject::draw()
 {
-    //printf("StaticObject::draw();\n");
+    getPosition().glTranslate();
 }
 void StaticObject::update(ATTRIBUTE_UNUSED GLdouble delta_t )
 {

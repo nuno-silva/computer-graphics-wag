@@ -74,6 +74,7 @@ int main( int argc, char *argv[] ) {
     glutCreateWindow( WINDOW_TITLE );
     
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_NORMALIZE);
     
     game.init();
 

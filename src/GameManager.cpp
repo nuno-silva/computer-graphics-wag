@@ -8,9 +8,14 @@
 #include "PerspectiveCamera.hpp"
 #include "Roadside.hpp"
 #include "Table.hpp"
+#include "LightSource.hpp"
+#include "CandleLight.hpp"
+#include "Vector4.hpp"
+#include "Candle.hpp"
 
 #include <iostream>
 #include <cstdlib>
+#include <ctime>
 
 GameManager::GameManager() : _game_objects(), _oranges(), _cameras() {
     _car = std::make_shared<Car>(Vector3(-1.0f, 0.0f, 0.0f), 1.0, 0.0f, -0.6f, 0.0f);
@@ -23,6 +28,10 @@ void GameManager::display() {
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
     _game_objects.draw();
+
+    for (auto light : _lightSources ) {
+        light->draw();
+    }
 
     #ifdef SINGLEBUF
     glFlush();
@@ -47,6 +56,22 @@ void GameManager::keyPressed(unsigned char key, int x, int y) {
     (void) y; // var is not used, but we don't want a unused-parameter warning
 
     switch ( key ) {
+        case 'c':
+            _toggleCandles = ! _toggleCandles;
+            break;
+        case 'n':
+            _isDayTime = ! _isDayTime;
+            break;
+        case 'l':
+             if( !glIsEnabled(GL_LIGHTING) ) {
+                glEnable(GL_LIGHTING);
+            } else {
+                glDisable(GL_LIGHTING);
+            }
+            break;
+        case 'g':
+            _gouraud_shading = ! _gouraud_shading;
+            break;
         case 'a':
             _wired = !_wired;
             break;
@@ -89,6 +114,27 @@ void GameManager::specialPressed(int key, int x, int y, bool pressed) {
 }
 
 void GameManager::update(GLdouble delta) {
+
+    /* toggle between flat shading and gouraud shading */
+    if (_gouraud_shading) {
+        glShadeModel( GL_SMOOTH );
+    } else {
+        glShadeModel( GL_FLAT );
+    }
+
+    /* turn the Sun on or off */
+    _sun->setState(_isDayTime);
+
+    /* Turn the candles on or off.
+     * We use a toggle state to avoid doing this on every update. */
+    if( _toggleCandles) {
+        _toggleCandles = false;
+        _candleLightsOn = ! _candleLightsOn;
+        for (auto candleLight : _candleLights ) {
+            candleLight->setState( _candleLightsOn );
+        }
+    }
+
     if (_wired) {
         _game_objects.setWired();
     } else {
@@ -171,6 +217,9 @@ void GameManager::init() {
     // Butters
     createButters();
 
+    // Candles
+    createCandles();
+
     // Oranges
     const GLfloat orange_radius = cm(2.5);
     for( int i = 0; i < ORANGE_COUNT; i++ ) {
@@ -199,6 +248,32 @@ void GameManager::init() {
 
     // place the first oranges
     updateOranges( 0 );
+
+    // create the Sun
+    _sun = std::make_shared<LightSource> ( GL_LIGHT0 );
+    _sun->setPosition( Vector3( 1.0f, 1.0f, 1.0f ) );
+    _sun->setDirection( Vector3( 0.0f, 0.0f, 0.0f ) );
+    _sun->setAmbient( Vector4( 0.4f, 0.4f, 0.4f, 1.0f ) );
+    _sun->setDiffuse( Vector4( 1.0f, 1.0f, 1.0f, 1.0f ) );
+    _sun->setSpecular(Vector4( 1.0f, 1.0f, 1.0f, 1.0f ) );
+    _sun->setCutoff( 180.0f );
+    _sun->setExponent( 0.0f );
+    _sun->setState( true );
+    _lightSources.push_back( _sun );
+
+    // testing spot light
+    /*auto _spot = std::make_shared<LightSource> ( GL_LIGHT12 );
+    _spot->setPosition( Vector3( cm(10), cm(50), cm(10) ) );
+    _spot->setDirection( Vector3( 0.0f, 0.0f, -1.0f ) );
+    _spot->setAmbient( Vector4( 0.2f, 0.2f, 0.2f, 1.0f ) );
+    _spot->setDiffuse( Vector4( 1.0f, 1.0f, 1.0f, 1.0f ) );
+    _spot->setSpecular(Vector4( 1.0f, 1.0f, 1.0f, 1.0f ) );
+    _spot->setCutoff( 90.0f );
+    _spot->setExponent( 2.0f );
+    _spot->setState( true );
+    _lightSources.push_back( _spot );*/
+
+
 }
 
 void GameManager::createButters()
@@ -218,5 +293,25 @@ void GameManager::createButters()
     b = std::make_shared<Butter>(cm(-80), cm(70), cm(0));
     _game_objects.add(b);
 
+}
+
+void GameManager::createCandle( Vector3 pos , GLenum lightNum) {
+    auto _candle = std::make_shared<Candle>( pos );
+    _game_objects.add(_candle);
+
+    pos = pos + Vector3( 0.0f, 0.0f, _candle->getHeight() );
+    auto _spot = std::make_shared<CandleLight> ( pos, lightNum );
+    _lightSources.push_back( _spot );
+    _candleLights.push_back( _spot );
+}
+
+void GameManager::createCandles()
+{
+	createCandle( Vector3 ( cm(63), cm(-63), 0.0f ), GL_LIGHT1 );
+	createCandle( Vector3 ( cm(-5), cm(-40), 0.0f ), GL_LIGHT2 );
+	createCandle( Vector3 ( cm(-65), cm(63), 0.0f ), GL_LIGHT3 );
+	createCandle( Vector3 ( cm(-40), cm(-5), 0.0f ), GL_LIGHT4 );
+	createCandle( Vector3 ( cm(-80), cm(-60), 0.0f ), GL_LIGHT5 );
+	createCandle( Vector3 ( cm(80), cm(60), 0.0f ), GL_LIGHT6 );
 }
 

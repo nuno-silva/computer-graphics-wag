@@ -14,14 +14,14 @@ class Butter : public Obstacle
 public:
     Butter( GLdouble x, GLdouble y, GLdouble z );
     virtual void draw() override;
+    static constexpr GLfloat butter_scale = 0.5f;
+    static constexpr GLfloat box_width  = cm(4) * butter_scale;
+    static constexpr GLfloat box_length = cm(6) * butter_scale;
+    static constexpr GLfloat box_height = cm(4) * butter_scale;
 
-    static constexpr GLfloat box_width  = cm(4);
-    static constexpr GLfloat box_length = cm(6);
-    static constexpr GLfloat box_height = cm(4);
-
-    static constexpr GLfloat lid_width  = cm(5);
-    static constexpr GLfloat lid_length = cm(7);
-    static constexpr GLfloat lid_height = cm(1);
+    static constexpr GLfloat lid_width  = cm(5) * butter_scale;
+    static constexpr GLfloat lid_length = cm(7) * butter_scale;
+    static constexpr GLfloat lid_height = cm(1) * butter_scale;
 
     virtual void update(GLdouble delta_t) override;
     virtual void processCollision(Car &car) override;

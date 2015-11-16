@@ -20,6 +20,18 @@ void Butter::draw()
 
     /* butter box */
     glColor3f( components3( ButterColors::box ) );
+    
+    {   /* white plastic */
+        GLfloat amb[]={0.0f,0.0f,0.0f,1.0f};
+        GLfloat diff[]={0.8f,0.8f,0.8f,1.0f};
+        GLfloat spec[]={0.7f,0.7f,0.7f,1.0f};
+        GLfloat shine=32.0f;
+        glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,amb);
+        glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,diff);
+        glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+        glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS,shine);
+    }
+    
     glPushMatrix();
     glScalef( box_width, box_length, box_height );
     GameObject::drawCube( 1.0f ); // draw a 1x1 cube (now scaled)
@@ -29,6 +41,19 @@ void Butter::draw()
     glPushMatrix();
     glTranslatef( cm(0), cm(0), box_height/2 + lid_height/2 );
     glColor3f( components3( ButterColors::lid ) );
+
+    
+    {   /* yellow plastic */
+        GLfloat amb[]={0.3f,0.3f,0.0f,1.0f};
+        GLfloat diff[]={0.85f,0.85f,0.0f,1.0f};
+        GLfloat spec[]={0.85f,0.85f,0.5f,1.0f};
+        GLfloat shine=32.0f;
+        glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,amb);
+        glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,diff);
+        glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+        glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS,shine);
+    }
+    
     glScalef( lid_width, lid_length, lid_height );
     GameObject::drawCube( 1.0f );
     glPopMatrix();

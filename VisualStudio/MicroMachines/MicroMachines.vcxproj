@@ -95,6 +95,9 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\ILUXONCHIK\Documents\GitHub\computer-graphics-wag\glut\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ShowProgress>LinkVerbose</ShowProgress>
+      <ForceFileOutput>
+      </ForceFileOutput>
     </Link>
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>
@@ -150,6 +153,8 @@
   <ItemGroup>
     <ClCompile Include="src\Butter.cpp" />
     <ClCompile Include="src\Camera.cpp" />
+    <ClCompile Include="src\Candle.cpp" />
+    <ClCompile Include="src\CandleLight.cpp" />
     <ClCompile Include="src\Car.cpp" />
     <ClCompile Include="src\CarCamera.cpp" />
     <ClCompile Include="src\Cheerio.cpp" />
@@ -159,7 +164,9 @@
     <ClCompile Include="src\GameManager.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\GameObjectCollection.cpp" />
+    <ClCompile Include="src\LightSource.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Obstacle.cpp" />
     <ClCompile Include="src\Orange.cpp" />
     <ClCompile Include="src\OrthogonalCamera.cpp" />
     <ClCompile Include="src\PerspectiveCamera.cpp" />
@@ -168,10 +175,13 @@
     <ClCompile Include="src\Table.cpp" />
     <ClCompile Include="src\Vector3.cpp" />
     <ClCompile Include="src\Wheel.cpp" />
+    <ClCompile Include="src\Vector4.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Butter.hpp" />
     <ClInclude Include="src\Camera.hpp" />
+    <ClInclude Include="src\Candle.hpp" />
+    <ClInclude Include="src\CandleLight.hpp" />
     <ClInclude Include="src\Car.hpp" />
     <ClInclude Include="src\CarCamera.hpp" />
     <ClInclude Include="src\Cheerio.hpp" />
@@ -180,6 +190,7 @@
     <ClInclude Include="src\GameObject.hpp" />
     <ClInclude Include="src\GameObjectCollection.hpp" />
     <ClInclude Include="src\global.hpp" />
+    <ClInclude Include="src\LightSource.hpp" />
     <ClInclude Include="src\Obstacle.hpp" />
     <ClInclude Include="src\Orange.hpp" />
     <ClInclude Include="src\OrthogonalCamera.hpp" />
@@ -189,6 +200,7 @@
     <ClInclude Include="src\Table.hpp" />
     <ClInclude Include="src\Vector3.hpp" />
     <ClInclude Include="src\Wheel.hpp" />
+    <ClInclude Include="src\Vector4.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
