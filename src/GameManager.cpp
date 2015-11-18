@@ -307,11 +307,10 @@ void GameManager::createCandle( Vector3 pos , GLenum lightNum) {
 
 void GameManager::createCandles()
 {
-	createCandle( Vector3 ( cm(63), cm(-63), 0.0f ), GL_LIGHT1 );
-	createCandle( Vector3 ( cm(-5), cm(-40), 0.0f ), GL_LIGHT2 );
-	createCandle( Vector3 ( cm(-65), cm(63), 0.0f ), GL_LIGHT3 );
-	createCandle( Vector3 ( cm(-40), cm(-5), 0.0f ), GL_LIGHT4 );
-	createCandle( Vector3 ( cm(-80), cm(-60), 0.0f ), GL_LIGHT5 );
-	createCandle( Vector3 ( cm(80), cm(60), 0.0f ), GL_LIGHT6 );
+	createCandle( Vector3 ( cm(63), cm(-63), 0.0f ),  GL_LIGHT1 );
+	createCandle( Vector3 ( cm(-5), cm(-40), 0.0f ),  GL_LIGHT2 );
+	createCandle( Vector3 ( cm(-65), cm(63), 0.0f ),  GL_LIGHT3 );
+	createCandle( Vector3 ( cm(-80), cm(-60), 0.0f ), GL_LIGHT4 );
+	createCandle( Vector3 ( cm(80), cm(60), 0.0f ),   GL_LIGHT5 );
 }
 
