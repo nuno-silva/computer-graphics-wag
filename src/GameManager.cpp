@@ -72,6 +72,10 @@ void GameManager::keyPressed(unsigned char key, int x, int y) {
         case 'g':
             _gouraud_shading = ! _gouraud_shading;
             break;
+        case 'h':
+            _car->_leftLight-> setState(!_car->_leftLight-> getState());
+            _car->_rightLight->setState(!_car->_rightLight->getState());
+            break;
         case 'a':
             _wired = !_wired;
             break;
@@ -229,6 +233,22 @@ void GameManager::init() {
     }
 
     // Car
+    _car->_leftLight  = std::make_shared<LightSource>(GL_LIGHT6);
+    _car->_rightLight = std::make_shared<LightSource>(GL_LIGHT7);
+
+    _car->_leftLight->setAmbient( Vector4( 0.3f, 0.3f, 0.3f, 1.0f ) );
+    _car->_leftLight->setDiffuse( Vector4( 1.0f, 1.0f, 1.0f, 1.0f ) );
+    _car->_leftLight->setSpecular(Vector4( 1.0f, 1.0f, 1.0f, 1.0f ) );
+    _car->_leftLight->setCutoff( 30.0f );
+    _car->_leftLight->setExponent( 1.5f );
+
+    _car->_rightLight->setAmbient( Vector4( 0.3f, 0.3f, 0.3f, 1.0f ) );
+    _car->_rightLight->setDiffuse( Vector4( 1.0f, 1.0f, 1.0f, 1.0f ) );
+    _car->_rightLight->setSpecular(Vector4( 1.0f, 1.0f, 1.0f, 1.0f ) );
+    _car->_rightLight->setCutoff( 30.0f );
+    _car->_rightLight->setExponent( 1.5f );
+
+
     _game_objects.add( _car );
 
     // Cameras

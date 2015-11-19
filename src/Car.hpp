@@ -1,6 +1,7 @@
 #pragma once
 
 #include "DynamicObject.hpp"
+#include "LightSource.hpp"
 #include "global.hpp"
 #include "Wheel.hpp"
 
@@ -15,7 +16,11 @@ namespace CarColors {
 class Car : public DynamicObject {
 private:
     GLdouble _scale = 1.0f;
+
 public:
+    std::shared_ptr<LightSource> _leftLight;
+    std::shared_ptr<LightSource> _rightLight;
+
     // Car wheels radii
     // FIXME: Why do the wheels look so big?
     const GLdouble _wheel_inner_radius = _scale * cm(0.25);

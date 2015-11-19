@@ -55,6 +55,16 @@ void Car::draw() {
     {
         DynamicObject::draw(); // translate to position, rotate and draw axis
 
+        // Car lights.
+        _leftLight->setDirection (Vector3(cm(-1), 0, 0));
+        _rightLight->setDirection(Vector3(cm(-1), 0, 0));
+
+        _leftLight->setPosition (Vector3(cm(-1), cm( 0.5), 0));
+        _rightLight->setPosition(Vector3(cm(-1), cm(-0.5), 0));
+
+        _leftLight->draw();
+        _rightLight->draw();
+
         // Car bottom.
         glColor3f(components3(CarColors::bottom));
         { /* bright TURQUOISE */
