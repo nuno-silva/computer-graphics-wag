@@ -72,8 +72,15 @@ void GameManager::keyPressed(unsigned char key, int x, int y) {
         case 'g':
             _gouraud_shading = ! _gouraud_shading;
             break;
+        case 'h':
+            _car->_leftLight-> setState(!_car->_leftLight-> getState());
+            _car->_rightLight->setState(!_car->_rightLight->getState());
+            break;
         case 'a':
             _wired = !_wired;
+            break;
+        case 's':
+            togglePause();
             break;
         case '1':
             _activeCamera = _orthogonal_cam;
@@ -114,6 +121,9 @@ void GameManager::specialPressed(int key, int x, int y, bool pressed) {
 }
 
 void GameManager::update(GLdouble delta) {
+
+    // if the game is paused, set delta to zero, to "freeze" the image
+    delta = _gamePaused ? 0 : delta;
 
     /* toggle between flat shading and gouraud shading */
     if (_gouraud_shading) {
@@ -229,6 +239,22 @@ void GameManager::init() {
     }
 
     // Car
+    _car->_leftLight  = std::make_shared<LightSource>(GL_LIGHT6);
+    _car->_rightLight = std::make_shared<LightSource>(GL_LIGHT7);
+
+    _car->_leftLight->setAmbient( Vector4( 0.3f, 0.3f, 0.3f, 1.0f ) );
+    _car->_leftLight->setDiffuse( Vector4( 1.0f, 1.0f, 1.0f, 1.0f ) );
+    _car->_leftLight->setSpecular(Vector4( 1.0f, 1.0f, 1.0f, 1.0f ) );
+    _car->_leftLight->setCutoff( 30.0f );
+    _car->_leftLight->setExponent( 1.5f );
+
+    _car->_rightLight->setAmbient( Vector4( 0.3f, 0.3f, 0.3f, 1.0f ) );
+    _car->_rightLight->setDiffuse( Vector4( 1.0f, 1.0f, 1.0f, 1.0f ) );
+    _car->_rightLight->setSpecular(Vector4( 1.0f, 1.0f, 1.0f, 1.0f ) );
+    _car->_rightLight->setCutoff( 30.0f );
+    _car->_rightLight->setExponent( 1.5f );
+
+
     _game_objects.add( _car );
 
     // Cameras
@@ -305,13 +331,25 @@ void GameManager::createCandle( Vector3 pos , GLenum lightNum) {
     _candleLights.push_back( _spot );
 }
 
+void GameManager::togglePause()
+{
+    _gamePaused = !_gamePaused;
+
+    if (_gamePaused) {
+        // TODO: show "Paused" texture
+    }
+    else {
+        // TODO: hide "Paused" texture
+    }
+    
+}
+
 void GameManager::createCandles()
 {
-	createCandle( Vector3 ( cm(63), cm(-63), 0.0f ), GL_LIGHT1 );
-	createCandle( Vector3 ( cm(-5), cm(-40), 0.0f ), GL_LIGHT2 );
-	createCandle( Vector3 ( cm(-65), cm(63), 0.0f ), GL_LIGHT3 );
-	createCandle( Vector3 ( cm(-40), cm(-5), 0.0f ), GL_LIGHT4 );
-	createCandle( Vector3 ( cm(-80), cm(-60), 0.0f ), GL_LIGHT5 );
-	createCandle( Vector3 ( cm(80), cm(60), 0.0f ), GL_LIGHT6 );
+	createCandle( Vector3 ( cm(63), cm(-63), 0.0f ),  GL_LIGHT1 );
+	createCandle( Vector3 ( cm(-5), cm(-40), 0.0f ),  GL_LIGHT2 );
+	createCandle( Vector3 ( cm(-65), cm(63), 0.0f ),  GL_LIGHT3 );
+	createCandle( Vector3 ( cm(-80), cm(-60), 0.0f ), GL_LIGHT4 );
+	createCandle( Vector3 ( cm(80), cm(60), 0.0f ),   GL_LIGHT5 );
 }
 

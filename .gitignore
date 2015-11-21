@@ -204,5 +204,8 @@ src/micromachines
 # autogenerate dependency files
 *.d
 
+#Project Specific Files
 VisualStudio/MicroMachines/src/
 NOTES.MD
+*.psd
+*.ttf
