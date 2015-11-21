@@ -1,18 +1,12 @@
 #pragma once
 
+#include "glut.hpp"
+
 #define P_CAM_FOV_Y  45
 
 #define PI 3.14159265358979323846
 
 #define pow2(x) pow(x, 2.0f)
-
-// we need glut in almost all files...
-#ifdef __MACH__
-# include <GLUT/glut.h>
-#else
-# include <stdlib.h>
-# include <GL/glut.h>
-#endif
 
 /* usefull unit conversions, assuming one unit is one meter */
 #define mm(x) ( (x) / 1000.0f ) // millimeter to meter
