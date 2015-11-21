@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include "DynamicObject.hpp"
 #include "LightSource.hpp"
 #include "global.hpp"
