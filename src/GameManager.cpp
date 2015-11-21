@@ -79,6 +79,9 @@ void GameManager::keyPressed(unsigned char key, int x, int y) {
         case 'a':
             _wired = !_wired;
             break;
+        case 's':
+            togglePause();
+            break;
         case '1':
             _activeCamera = _orthogonal_cam;
             break;
@@ -118,6 +121,9 @@ void GameManager::specialPressed(int key, int x, int y, bool pressed) {
 }
 
 void GameManager::update(GLdouble delta) {
+
+    // if the game is paused, set delta to zero, to "freeze" the image
+    delta = _gamePaused ? 0 : delta;
 
     /* toggle between flat shading and gouraud shading */
     if (_gouraud_shading) {
@@ -323,6 +329,19 @@ void GameManager::createCandle( Vector3 pos , GLenum lightNum) {
     auto _spot = std::make_shared<CandleLight> ( pos, lightNum );
     _lightSources.push_back( _spot );
     _candleLights.push_back( _spot );
+}
+
+void GameManager::togglePause()
+{
+    _gamePaused = !_gamePaused;
+
+    if (_gamePaused) {
+        // TODO: show "Paused" texture
+    }
+    else {
+        // TODO: hide "Paused" texture
+    }
+    
 }
 
 void GameManager::createCandles()
