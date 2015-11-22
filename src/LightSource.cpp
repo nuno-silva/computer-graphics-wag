@@ -81,28 +81,30 @@ void LightSource::setSpecular(const Vector4 & spec)
     _specular[3] = spec.getT();
 }
 
+void LightSource::setAttenuation(GLfloat constant, GLfloat linear, GLfloat quadratic) {
+    _attenuation[0] = constant;
+    _attenuation[1] = linear;
+    _attenuation[2] = quadratic;
+}
+
 void print4(GLfloat v[4]) {
     std::cout << v[0] << " " << v[1] << " " << v[2] << " " << v[3] << std::endl;
 }
 
 void LightSource::draw() {
     glPushMatrix();
-    //std::cout << "pos: "; print4(_position);
-    glLightfv( _lightNumber, GL_AMBIENT,  _ambient);
-    //std::cout << "amb: "; print4(_ambient);
-    glLightfv( _lightNumber, GL_DIFFUSE,  _diffuse);
-    //std::cout << "dif: "; print4(_diffuse);
-    glLightfv( _lightNumber, GL_SPECULAR, _specular);
-    //std::cout << "spe: "; print4(_specular);
-    //std::cout << "num: " << _lightNumber << std::endl;
-    glLightfv( _lightNumber, GL_POSITION,  _position);
 
-    glLightf( _lightNumber, GL_SPOT_CUTOFF,     _cut_off);
-    //std::cout << "cut: " << _cut_off << std::endl;
-    glLightfv( _lightNumber,GL_SPOT_DIRECTION,  _direction);
-    //std::cout << "dir: "; print4(_direction);
-    glLightf( _lightNumber, GL_SPOT_EXPONENT,   _exponent);
-    //std::cout << "exp: " << _exponent << std::endl;
+    glLightfv(_lightNumber, GL_AMBIENT,        _ambient);
+    glLightfv(_lightNumber, GL_DIFFUSE,        _diffuse);
+    glLightfv(_lightNumber, GL_SPECULAR,       _specular);
+    glLightfv(_lightNumber, GL_POSITION,       _position);
+    glLightf (_lightNumber, GL_SPOT_CUTOFF,    _cut_off);
+    glLightfv(_lightNumber, GL_SPOT_DIRECTION, _direction);
+    glLightf (_lightNumber, GL_SPOT_EXPONENT,  _exponent);
+
+    glLightf(_lightNumber, GL_CONSTANT_ATTENUATION,  _attenuation[0]);
+    glLightf(_lightNumber, GL_LINEAR_ATTENUATION,    _attenuation[1]);
+    glLightf(_lightNumber, GL_QUADRATIC_ATTENUATION, _attenuation[2]);
 
     glPopMatrix();
 }

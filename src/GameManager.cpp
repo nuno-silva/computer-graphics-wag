@@ -249,12 +249,14 @@ void GameManager::init() {
     _car->_leftLight  = std::make_shared<LightSource>(GL_LIGHT6);
     _car->_rightLight = std::make_shared<LightSource>(GL_LIGHT7);
 
+    _car-> _leftLight->setAttenuation(1, 1, 20);
     _car->_leftLight->setAmbient( Vector4( 0.3f, 0.3f, 0.3f, 1.0f ) );
     _car->_leftLight->setDiffuse( Vector4( 1.0f, 1.0f, 1.0f, 1.0f ) );
     _car->_leftLight->setSpecular(Vector4( 1.0f, 1.0f, 1.0f, 1.0f ) );
     _car->_leftLight->setCutoff( 30.0f );
     _car->_leftLight->setExponent( 1.5f );
 
+    _car->_rightLight->setAttenuation(1, 1, 20);
     _car->_rightLight->setAmbient( Vector4( 0.3f, 0.3f, 0.3f, 1.0f ) );
     _car->_rightLight->setDiffuse( Vector4( 1.0f, 1.0f, 1.0f, 1.0f ) );
     _car->_rightLight->setSpecular(Vector4( 1.0f, 1.0f, 1.0f, 1.0f ) );
