@@ -12,6 +12,7 @@
 #include "CandleLight.hpp"
 #include "Vector4.hpp"
 #include "Candle.hpp"
+#include "LibpngHelper.hpp"
 
 #include <iostream>
 #include <cstdlib>
@@ -31,6 +32,10 @@ void GameManager::display() {
 
     for (auto light : _lightSources ) {
         light->draw();
+    }
+
+    if (_gamePaused) {
+        _textures.at(PAUSE_TEXTURE_POS)->draw();
     }
 
     #ifdef SINGLEBUF
@@ -230,6 +235,8 @@ void GameManager::init() {
     // Candles
     createCandles();
 
+    createTextures();
+
     // Oranges
     const GLfloat orange_radius = cm(2.5);
     for( int i = 0; i < ORANGE_COUNT; i++ ) {
@@ -334,15 +341,17 @@ void GameManager::createCandle( Vector3 pos , GLenum lightNum) {
 void GameManager::togglePause()
 {
     _gamePaused = !_gamePaused;
+    _textures.at(PAUSE_TEXTURE_POS)->toggleEnabled();
 
-    if (_gamePaused) {
-        // TODO: show "Paused" texture
-    }
-    else {
-        // TODO: hide "Paused" texture
-    }
     
 }
+
+void GameManager::createTextures()
+{
+    char* pauseFileName = "pause.png";
+    _textures.push_back(std::make_shared<PauseTexture>(pauseFileName, 1024, 256));
+}
+
 
 void GameManager::createCandles()
 {
