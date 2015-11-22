@@ -12,10 +12,14 @@
 #include "LightSource.hpp"
 #include "CandleLight.hpp"
 #include "global.hpp"
+#include "Texture.hpp"
+#include "PauseTexture.hpp"
 
 #define ORANGE_COUNT 10
 #define ORANGES_UPDATE_PERIOD_MS (5.0f * 1000.0f)
 #define ORANGES_SPEED_INCREMENT_MS  (cm(3.0f) / (10.0f * 1000.0f)) // 3cm per 10s
+
+#define PAUSE_TEXTURE_POS 0
 
 class GameManager {
 private:
@@ -31,6 +35,7 @@ private:
     std::vector<std::shared_ptr<LightSource>> _lightSources;
     std::vector<std::shared_ptr<CandleLight>> _candleLights;
     std::shared_ptr<LightSource>         _sun;
+    std::vector<std::shared_ptr<Texture>> _textures;
 
     bool _wired = false;
     bool _gouraud_shading = false;
@@ -57,4 +62,5 @@ public:
     void createCandles();
     void createCandle( Vector3 pos , GLenum lightNum );
     void togglePause();
+    void createTextures();
 };

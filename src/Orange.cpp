@@ -95,9 +95,9 @@ void Orange::draw() {
 
 void Orange::setActive( bool value ) {
     DBG_PRINTF( "%p -> setActive( %s )\n", (void*)this, value ? "true":"false" );
-    std::cout << "pos: " << getPosition() << std::endl;
-    std::cout << "speed: " << getSpeed() << std::endl;
-    std::cout << "orientation: " << getOrientation() << std::endl;
+    //std::cout << "pos: " << getPosition() << std::endl;
+    //std::cout << "speed: " << getSpeed() << std::endl;
+    //std::cout << "orientation: " << getOrientation() << std::endl;
     _isActive = value;
 }
 
