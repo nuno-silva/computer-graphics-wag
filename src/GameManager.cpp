@@ -151,7 +151,7 @@ void GameManager::specialPressed(int key, int x, int y, bool pressed) {
 void GameManager::update(GLdouble delta) {
 
     // if the game is paused, set delta to zero, to "freeze" the image
-    delta = _gameFrozen ? 0 : delta;
+    delta = _gameFrozen || _gameOver ? 0 : delta;
 
     /* toggle between flat shading and gouraud shading */
     if (_gouraud_shading) {
@@ -182,7 +182,6 @@ void GameManager::update(GLdouble delta) {
     // check for and process collisions with the car
     _game_objects.processCollision(*_car);
     if( _livesno == 0 ) {
-        _gameFrozen = true;
         _gameOver = true;
         _textures.at(GAMEOVER_TEXTURE_POS)->setEnabled(true);
     } else {
