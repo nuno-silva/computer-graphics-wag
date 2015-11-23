@@ -3,9 +3,9 @@
 #include "LibpngHelper.hpp"
 #include <iostream>
 
-Texture::Texture(char* fileName, int w, int h) : _w(w), _h(h), _texImage(nullptr), 
-                                                _isImageLoaded(false),  _isEnabled(false) 
-{ 
+Texture::Texture(char* fileName, int w, int h) : _w(w), _h(h), _texImage(nullptr),
+                                                _isImageLoaded(false),  _isEnabled(false)
+{
     strcpy(_fileName, fileName);
     glGenTextures(1, &_texId);
 }
@@ -39,7 +39,7 @@ void Texture::loadTexture() {
     setParameterf();
 
    /* IMPORTANT: if subclasses wish to use a set of glParameterf's, they should
-    * override setParameterf(), and loadTexture() and within loadTexture() call 
+    * override setParameterf(), and loadTexture() and within loadTexture() call
     * Texture::loadTexture().
     */
 }
@@ -74,6 +74,9 @@ bool Texture::loadImage()
     }
 }
 
+GLuint Texture::getTexId() {
+    return _texId;
+}
 
 void Texture::draw(){
     if (!_isEnabled) return;

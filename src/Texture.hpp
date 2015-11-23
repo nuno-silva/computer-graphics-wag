@@ -23,6 +23,8 @@ public:
     virtual bool loadImage();
     virtual void toggleEnabled();
 
+    GLuint getTexId();
+
     Texture(char* filename, int w, int h);
     ~Texture();
 
