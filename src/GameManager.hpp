@@ -13,7 +13,7 @@
 #include "CandleLight.hpp"
 #include "global.hpp"
 #include "Texture.hpp"
-#include "PauseTexture.hpp"
+#include "QuadTexture.hpp"
 
 #define INITIAL_LIVES 5
 
@@ -22,6 +22,7 @@
 #define ORANGES_SPEED_INCREMENT_MS  (cm(3.0f) / (10.0f * 1000.0f)) // 3cm per 10s
 
 #define PAUSE_TEXTURE_POS 0
+#define GAMEOVER_TEXTURE_POS 1
 
 class GameManager {
 private:
@@ -48,6 +49,7 @@ private:
     bool _toggleCandles = false;
     bool _candleLightsOn = true;
     bool _gamePaused = false;
+    bool _gameOverText = false;
 
     void updateOranges( GLdouble msSinceStart );
     /** number of milliseconds since the game was init'ed */
@@ -67,6 +69,7 @@ public:
     void createCandles();
     void createCandle( Vector3 pos , GLenum lightNum );
     void togglePause();
+    void toggleGameOverText();
     void createTextures();
 
 };

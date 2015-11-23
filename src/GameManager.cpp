@@ -51,6 +51,10 @@ void GameManager::display() {
         _textures.at(PAUSE_TEXTURE_POS)->draw();
     }
 
+    if (_gameOverText) {
+        _textures.at(GAMEOVER_TEXTURE_POS)->draw();
+    }
+
     glEnable(GL_DEPTH_TEST);
     glDisable(GL_BLEND);
     if( lighting ) { // restore lighting state
@@ -381,14 +385,22 @@ void GameManager::togglePause()
 {
     _gamePaused = !_gamePaused;
     _textures.at(PAUSE_TEXTURE_POS)->toggleEnabled();
+}
 
-
+void GameManager::toggleGameOverText()
+{
+    _gameOverText = !_gameOverText;
+    _textures.at(GAMEOVER_TEXTURE_POS)->toggleEnabled();
 }
 
 void GameManager::createTextures()
 {
     char* pauseFileName = TEXTURE_PATH "pause.png";
-    _textures.push_back(std::make_shared<PauseTexture>(pauseFileName, 1024, 256));
+    _textures.push_back(std::make_shared<QuadTexture>(pauseFileName, 1024, 256, 0.25f));
+
+    char* gameOverFileName = TEXTURE_PATH "gameover.png";
+    _textures.push_back(std::make_shared<QuadTexture>(gameOverFileName, 1024, 512, 0.5f));
+
 }
 
 
