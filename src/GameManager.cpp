@@ -51,7 +51,7 @@ void GameManager::display() {
         _textures.at(PAUSE_TEXTURE_POS)->draw();
     }
 
-    if (_gameOverText) {
+    if (_gameOver) {
         _textures.at(GAMEOVER_TEXTURE_POS)->draw();
     }
 
@@ -181,7 +181,12 @@ void GameManager::update(GLdouble delta) {
 
     // check for and process collisions with the car
     _game_objects.processCollision(*_car);
-    _livesno = INITIAL_LIVES - _car->collisions();
+    if( _livesno == 0 ) {
+        _gameOver = true;
+        _textures.at(GAMEOVER_TEXTURE_POS)->setEnabled(true);
+    } else {
+        _livesno = INITIAL_LIVES - _car->collisions();
+    }
 
     // check for Orange collisions with table borders
     for( auto o : _oranges ) {
@@ -387,11 +392,6 @@ void GameManager::togglePause()
     _textures.at(PAUSE_TEXTURE_POS)->toggleEnabled();
 }
 
-void GameManager::toggleGameOverText()
-{
-    _gameOverText = !_gameOverText;
-    _textures.at(GAMEOVER_TEXTURE_POS)->toggleEnabled();
-}
 
 void GameManager::createTextures()
 {

@@ -49,7 +49,7 @@ private:
     bool _toggleCandles = false;
     bool _candleLightsOn = true;
     bool _gamePaused = false;
-    bool _gameOverText = false;
+    bool _gameOver = false;
 
     void updateOranges( GLdouble msSinceStart );
     /** number of milliseconds since the game was init'ed */
@@ -69,7 +69,6 @@ public:
     void createCandles();
     void createCandle( Vector3 pos , GLenum lightNum );
     void togglePause();
-    void toggleGameOverText();
     void createTextures();
 
 };
