@@ -34,9 +34,17 @@ void GameManager::display() {
         light->draw();
     }
 
+    _orthogonal_cam->update();
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glDisable(GL_DEPTH_TEST);
+
     if (_gamePaused) {
         _textures.at(PAUSE_TEXTURE_POS)->draw();
     }
+
+    glEnable(GL_DEPTH_TEST);
+    glDisable(GL_BLEND);
 
     #ifdef SINGLEBUF
     glFlush();
@@ -345,12 +353,12 @@ void GameManager::togglePause()
     _gamePaused = !_gamePaused;
     _textures.at(PAUSE_TEXTURE_POS)->toggleEnabled();
 
-    
+
 }
 
 void GameManager::createTextures()
 {
-    char* pauseFileName = "pause.png";
+    char* pauseFileName = TEXTURE_PATH "pause.png";
     _textures.push_back(std::make_shared<PauseTexture>(pauseFileName, 1024, 256));
 }
 

@@ -3,7 +3,7 @@
 #include <string>
 
 class Texture {
-    
+
 protected:
     bool _isEnabled;
     bool _isImageLoaded;
@@ -13,17 +13,25 @@ protected:
     GLuint _texId;
     GLubyte* _texImage;
 
-    virtual void loadTexture() = 0;
-
+    virtual void loadTexture();
+    virtual void setParameterf();
 
 public:
-    virtual void draw() = 0;
-    virtual void setEnabled(bool value) = 0;
-    virtual bool getEnabled() const = 0;
-    virtual bool loadImage() = 0;
-    virtual void toggleEnabled() = 0;
-  
+    virtual void draw();
+    virtual void setEnabled(bool value);
+    virtual bool getEnabled() const;
+    virtual bool loadImage();
+    virtual void toggleEnabled();
 
     Texture(char* filename, int w, int h);
+    ~Texture();
 
 };
+
+/* texture paths */
+#if __GNUC__
+# define TEXTURE_PATH "../res/textures/"
+#else
+# define TEXTURE_PATH ""
+#endif
+
