@@ -3,7 +3,7 @@
 #include <string>
 
 class Texture {
-    
+
 protected:
     bool _isEnabled;
     bool _isImageLoaded;
@@ -22,8 +22,16 @@ public:
     virtual bool getEnabled() const;
     virtual bool loadImage();
     virtual void toggleEnabled();
-  
+
     Texture(char* filename, int w, int h);
     ~Texture();
 
 };
+
+/* texture paths */
+#if __GNUC__
+# define TEXTURE_PATH "../res/textures/"
+#else
+# define TEXTURE_PATH ""
+#endif
+

@@ -353,12 +353,12 @@ void GameManager::togglePause()
     _gamePaused = !_gamePaused;
     _textures.at(PAUSE_TEXTURE_POS)->toggleEnabled();
 
-    
+
 }
 
 void GameManager::createTextures()
 {
-    char* pauseFileName = "pause.png";
+    char* pauseFileName = TEXTURE_PATH "pause.png";
     _textures.push_back(std::make_shared<PauseTexture>(pauseFileName, 1024, 256));
 }
 

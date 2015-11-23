@@ -1,5 +1,4 @@
 #include "PauseTexture.hpp"
-#include "OrthogonalCamera.hpp"
 
 void PauseTexture::draw()
 {
@@ -14,11 +13,11 @@ void PauseTexture::draw()
         glTexCoord2f(1, 0); glVertex3f( QUAD_SIDE   *   _ar,    -QUAD_SIDE, Z_DIST);
         glTexCoord2f(1, 1); glVertex3f( QUAD_SIDE   *   _ar,     QUAD_SIDE, Z_DIST);
         glTexCoord2f(0, 1); glVertex3f(-QUAD_SIDE   *   _ar,     QUAD_SIDE, Z_DIST);
-    }
-    glEnd();
 
+    }
+
+    glEnd();
     glDisable(GL_TEXTURE_2D);
- 
 }
 
 PauseTexture::PauseTexture(char* fileName, int w, int h) : Texture(fileName, w, h), _ar(_w/_h) { }

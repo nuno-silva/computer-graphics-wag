@@ -16,10 +16,10 @@ bool LibpngHelper::loadImage(char * filename, int outWidth, int outHeight, bool 
     FILE *fp;
 
     if ((fp = fopen(filename, "rb")) == NULL) {
-        perror("Error: ");
+        perror(filename);
         return false;
     }
-        
+
     png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING,
         NULL, NULL, NULL);
 
