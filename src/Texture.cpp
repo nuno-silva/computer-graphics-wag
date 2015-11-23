@@ -1,4 +1,5 @@
 #include "Texture.hpp"
+#include <cstring>
 
 Texture::Texture(char* fileName, int w, int h) : _w(w), _h(h), _texImage(nullptr), 
                                                 _isImageLoaded(false),  _isEnabled(false) 
