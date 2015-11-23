@@ -43,8 +43,8 @@ void GameManager::display() {
     bool lighting = glIsEnabled(GL_LIGHTING);
     glDisable(GL_LIGHTING);
 
-    for (auto l : _lives) {
-        l->draw();
+    for (int i = 0; i < _livesno; i++) {
+        _lives[i]->draw();
     }
 
     if (_gamePaused) {
@@ -253,7 +253,8 @@ void GameManager::init() {
     float offset = cm(10);
     float count  = 0;
     for (int i = 0; i < INITIAL_LIVES; i++) {
-        auto car = std::make_shared<Car>(Vector3(1.0f, 0.0f, 0.0f), 2.0f, 1.05f, 0.9f - count * offset, 0.0f);
+        auto car = std::make_shared<Car>(Vector3(1.0f, 0.0f, 0.0f), 2.0f, 0.9f - count * offset, 1.05f, 0.0f);
+        car->setOrientation(Vector3(0.0f, 1.0f, 0.0f));
         _lives.push_back(car);
         count++;
     }
