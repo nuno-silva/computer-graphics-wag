@@ -39,12 +39,18 @@ void GameManager::display() {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glDisable(GL_DEPTH_TEST);
 
+    bool lighting = glIsEnabled(GL_LIGHTING);
+    glDisable(GL_LIGHTING);
+
     if (_gamePaused) {
         _textures.at(PAUSE_TEXTURE_POS)->draw();
     }
 
     glEnable(GL_DEPTH_TEST);
     glDisable(GL_BLEND);
+    if( lighting ) { // restore lighting state
+        glEnable(GL_LIGHTING);
+    }
 
     #ifdef SINGLEBUF
     glFlush();
