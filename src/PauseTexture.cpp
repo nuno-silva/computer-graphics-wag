@@ -5,7 +5,7 @@ void PauseTexture::loadTexture()
 
     if (!loadImage()) {
         // NOTE: more approoriate error handling would be nice
-        std::cout << "Error loading image" << std::endl;
+        std::cout << "Error loading image '" << _fileName << "'"<< std::endl;
         _isEnabled = false; // disable texture so that nothing bogus is drawn
         _isImageLoaded = false;
         return;
@@ -30,7 +30,7 @@ void PauseTexture::draw()
 
     GLfloat ar = _w / _h; // aspect ratio for QUAD side calculations
 
-    glPushMatrix(); 
+    glPushMatrix();
     {
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -40,7 +40,7 @@ void PauseTexture::draw()
 
         glColor3f(1.0f, 1.0f, 1.0f);
 
-        glBegin(GL_QUADS); 
+        glBegin(GL_QUADS);
         {
             glTexCoord2f(0, 0); glVertex3f(-QUAD_SIDE * ar, -QUAD_SIDE, 0.3f);
             glTexCoord2f(1, 0); glVertex3f(QUAD_SIDE * ar, -QUAD_SIDE, 0.3f);
