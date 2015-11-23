@@ -19,7 +19,7 @@
 #include <ctime>
 
 GameManager::GameManager() : _game_objects(), _oranges(), _cameras() {
-    _car = std::make_shared<Car>(Vector3(-1.0f, 0.0f, 0.0f), 1.0, 0.0f, -0.6f, 0.0f);
+    _car = std::make_shared<Car>(Vector3(-1.0f, 0.0f, 0.0f), 1.0f, 0.0f, -0.6f, 0.0f);
 }
 
 /** called when the screen needs updating
@@ -35,12 +35,17 @@ void GameManager::display() {
     }
 
     _orthogonal_cam->update();
+
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glDisable(GL_DEPTH_TEST);
 
     bool lighting = glIsEnabled(GL_LIGHTING);
     glDisable(GL_LIGHTING);
+
+    for (auto l : _lives) {
+        l->draw();
+    }
 
     if (_gamePaused) {
         _textures.at(PAUSE_TEXTURE_POS)->draw();
@@ -172,6 +177,7 @@ void GameManager::update(GLdouble delta) {
 
     // check for and process collisions with the car
     _game_objects.processCollision(*_car);
+    _livesno = INITIAL_LIVES - _car->collisions();
 
     // check for Orange collisions with table borders
     for( auto o : _oranges ) {
@@ -242,6 +248,15 @@ void GameManager::init() {
 
     // Road
     _game_objects.add(std::make_shared<Roadside>( 0.92f ) );
+
+    // Lives
+    float offset = cm(10);
+    float count  = 0;
+    for (int i = 0; i < INITIAL_LIVES; i++) {
+        auto car = std::make_shared<Car>(Vector3(1.0f, 0.0f, 0.0f), 2.0f, 1.05f, 0.9f - count * offset, 0.0f);
+        _lives.push_back(car);
+        count++;
+    }
 
     // Butters
     createButters();

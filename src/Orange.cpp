@@ -108,5 +108,6 @@ bool Orange::isActive( ) {
 
 void Orange::processCollision(Car &car) {
     DBG_PRINTF( "processCollision( Car %p )\n", (void*)&car );
+    car.incCollisions();
     car.reset();
 }

@@ -92,6 +92,7 @@ void Table::processCollision(Car &car) {
     DBG_PRINTF("processCollision(Car %p)\n", (void*)&car);
 
     if( fabs(car.getSpeed()) >= cm(2) ) {
+        car.incCollisions();
         car.stop();
     }
 }

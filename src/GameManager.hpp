@@ -15,6 +15,8 @@
 #include "Texture.hpp"
 #include "PauseTexture.hpp"
 
+#define INITIAL_LIVES 5
+
 #define ORANGE_COUNT 10
 #define ORANGES_UPDATE_PERIOD_MS (5.0f * 1000.0f)
 #define ORANGES_SPEED_INCREMENT_MS  (cm(3.0f) / (10.0f * 1000.0f)) // 3cm per 10s
@@ -36,6 +38,9 @@ private:
     std::vector<std::shared_ptr<CandleLight>> _candleLights;
     std::shared_ptr<LightSource>         _sun;
     std::vector<std::shared_ptr<Texture>> _textures;
+
+    std::vector<std::shared_ptr<Car>> _lives;
+    int _livesno = INITIAL_LIVES;
 
     bool _wired = false;
     bool _gouraud_shading = false;
@@ -63,4 +68,5 @@ public:
     void createCandle( Vector3 pos , GLenum lightNum );
     void togglePause();
     void createTextures();
+
 };
