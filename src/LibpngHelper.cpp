@@ -10,6 +10,7 @@
 #include <png.h>
 
 #include <memory>
+#include <cstring>
 #include <stdio.h>
 
 bool LibpngHelper::loadImage(char * filename, int outWidth, int outHeight, bool outHasAlpha, GLubyte ** outData)
