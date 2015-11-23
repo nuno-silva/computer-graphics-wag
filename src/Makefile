@@ -14,7 +14,8 @@ else
 		ifeq ($(UNAME_S),Darwin)
 				CXXFLAGS += -Wno-deprecated-declarations -g
 				CXXFLAGS += -Wno-inconsistent-missing-override -Wno-unused-parameter -Wno-reorder
-				LDLIBS = -framework glut -framework opengl
+				CXXFLAGS += -I/opt/X11/include/libpng15
+				LDLIBS = -framework glut -framework opengl -L/opt/X11/lib -lpng15
 		endif
 endif
 

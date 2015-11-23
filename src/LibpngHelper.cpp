@@ -3,7 +3,12 @@
 */
 
 #include "LibpngHelper.hpp"
+
+#ifdef __MACH__
+#include <cstdlib>
+#endif
 #include <png.h>
+
 #include <memory>
 #include <stdio.h>
 
