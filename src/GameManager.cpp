@@ -282,8 +282,8 @@ void GameManager::init() {
     _car->_leftLight->setDirection (Vector3(cm(-1), 0, 0));
     _car->_rightLight->setDirection(Vector3(cm(-1), 0, 0));
 
-    _car->_leftLight->setPosition (Vector3(cm(-1), cm( 0.5), 0));
-    _car->_rightLight->setPosition(Vector3(cm(-1), cm(-0.5), 0));
+    _car->_leftLight->setPosition (Vector3(cm(-1), cm( 0.5), cm(1.5)));
+    _car->_rightLight->setPosition(Vector3(cm(-1), cm(-0.5), cm(1.5)));
 
 
     _car-> _leftLight->setAttenuation(1, 1, 20);
