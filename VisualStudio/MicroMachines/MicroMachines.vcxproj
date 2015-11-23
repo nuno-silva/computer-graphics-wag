@@ -170,8 +170,8 @@
     <ClCompile Include="src\Obstacle.cpp" />
     <ClCompile Include="src\Orange.cpp" />
     <ClCompile Include="src\OrthogonalCamera.cpp" />
-    <ClCompile Include="src\PauseTexture.cpp" />
     <ClCompile Include="src\PerspectiveCamera.cpp" />
+    <ClCompile Include="src\QuadTexture.cpp" />
     <ClCompile Include="src\Roadside.cpp" />
     <ClCompile Include="src\StaticObject.cpp" />
     <ClCompile Include="src\Table.cpp" />
@@ -201,6 +201,7 @@
     <ClInclude Include="src\OrthogonalCamera.hpp" />
     <ClInclude Include="src\PauseTexture.hpp" />
     <ClInclude Include="src\PerspectiveCamera.hpp" />
+    <ClInclude Include="src\QuadTexture.hpp" />
     <ClInclude Include="src\Roadside.hpp" />
     <ClInclude Include="src\StaticObject.hpp" />
     <ClInclude Include="src\Table.hpp" />
