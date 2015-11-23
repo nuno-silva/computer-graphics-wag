@@ -54,7 +54,7 @@ void Car::reset() {
 
 
 void Car::draw() {
-    if (!_alive) {
+    if (!alive()) {
         return;
     }
 

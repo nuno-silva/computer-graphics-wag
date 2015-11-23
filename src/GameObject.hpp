@@ -45,8 +45,9 @@ public:
     virtual void setSolid();
 
     inline void alive(bool a) { _alive = a; }
+    inline bool alive() { return _alive; }
     inline int  collisions() { return _collisions; }
-    inline int  incCollisions() { _collisions++; }
+    inline void incCollisions() { _collisions++; }
 
 #if defined DEBUG
     GLdouble _axis_size;
