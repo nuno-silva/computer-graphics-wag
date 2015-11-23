@@ -8,7 +8,7 @@ else
 		UNAME_S := $(shell uname -s)
 		ifeq ($(UNAME_S),Linux)
 				LDLIBS = -lGL -lGLU -lglut
-                LDLIBS+= -lpng
+				LDLIBS+= -lpng
 				CXXFLAGS += -Og -ggdb
 		endif
 		ifeq ($(UNAME_S),Darwin)
