@@ -48,7 +48,7 @@ private:
     bool _isDayTime = true;
     bool _toggleCandles = false;
     bool _candleLightsOn = true;
-    bool _gamePaused = false;
+    bool _gameFrozen = false;
     bool _gameOver = false;
 
     void updateOranges( GLdouble msSinceStart );
