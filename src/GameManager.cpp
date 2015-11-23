@@ -413,3 +413,6 @@ void GameManager::createCandles()
 	createCandle( Vector3 ( cm(80), cm(60), 0.0f ),   GL_LIGHT5 );
 }
 
+bool GameManager::isGameOver() {
+    return _gameOver;
+}

@@ -70,5 +70,6 @@ public:
     void createCandle( Vector3 pos , GLenum lightNum );
     void togglePause();
     void createTextures();
+    bool isGameOver();
 
 };
