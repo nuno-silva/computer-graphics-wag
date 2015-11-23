@@ -93,6 +93,6 @@ void Table::processCollision(Car &car) {
 
     if( fabs(car.getSpeed()) >= cm(2) ) {
         car.incCollisions();
-        car.stop();
+        car.reset();
     }
 }
