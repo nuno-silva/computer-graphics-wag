@@ -34,9 +34,17 @@ void GameManager::display() {
         light->draw();
     }
 
+    _orthogonal_cam->update();
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glDisable(GL_DEPTH_TEST);
+
     if (_gamePaused) {
         _textures.at(PAUSE_TEXTURE_POS)->draw();
     }
+
+    glEnable(GL_DEPTH_TEST);
+    glDisable(GL_BLEND);
 
     #ifdef SINGLEBUF
     glFlush();
