@@ -25,8 +25,7 @@ void Table::draw() {
     glEnable(GL_TEXTURE_2D);
     /* Texture class should be responsible for doing this: Illya sucks :p */
     glBindTexture(GL_TEXTURE_2D, _texture.getTexId());
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 
     //glColor3f( components3(TableColors::table) );
     {
@@ -72,7 +71,6 @@ void Table::draw() {
     glutWireCube( _size );
 #endif
 
-    glDisable(GL_BLEND);
     glDisable(GL_TEXTURE_2D);
 
     glPopMatrix();
