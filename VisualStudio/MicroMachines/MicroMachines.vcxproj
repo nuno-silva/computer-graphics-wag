@@ -164,15 +164,18 @@
     <ClCompile Include="src\GameManager.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\GameObjectCollection.cpp" />
+    <ClCompile Include="src\LibpngHelper.cpp" />
     <ClCompile Include="src\LightSource.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Obstacle.cpp" />
     <ClCompile Include="src\Orange.cpp" />
     <ClCompile Include="src\OrthogonalCamera.cpp" />
     <ClCompile Include="src\PerspectiveCamera.cpp" />
+    <ClCompile Include="src\QuadTexture.cpp" />
     <ClCompile Include="src\Roadside.cpp" />
     <ClCompile Include="src\StaticObject.cpp" />
     <ClCompile Include="src\Table.cpp" />
+    <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\Vector3.cpp" />
     <ClCompile Include="src\Wheel.cpp" />
     <ClCompile Include="src\Vector4.cpp" />
@@ -190,22 +193,41 @@
     <ClInclude Include="src\GameObject.hpp" />
     <ClInclude Include="src\GameObjectCollection.hpp" />
     <ClInclude Include="src\global.hpp" />
+    <ClInclude Include="src\glut.hpp" />
+    <ClInclude Include="src\LibpngHelper.hpp" />
     <ClInclude Include="src\LightSource.hpp" />
     <ClInclude Include="src\Obstacle.hpp" />
     <ClInclude Include="src\Orange.hpp" />
     <ClInclude Include="src\OrthogonalCamera.hpp" />
+    <ClInclude Include="src\PauseTexture.hpp" />
     <ClInclude Include="src\PerspectiveCamera.hpp" />
+    <ClInclude Include="src\QuadTexture.hpp" />
     <ClInclude Include="src\Roadside.hpp" />
     <ClInclude Include="src\StaticObject.hpp" />
     <ClInclude Include="src\Table.hpp" />
+    <ClInclude Include="src\Texture.hpp" />
     <ClInclude Include="src\Vector3.hpp" />
     <ClInclude Include="src\Wheel.hpp" />
     <ClInclude Include="src\Vector4.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\libpng.redist.1.6.18.1\build\native\libpng.redist.targets" Condition="Exists('..\packages\libpng.redist.1.6.18.1\build\native\libpng.redist.targets')" />
+    <Import Project="..\packages\zlib.v120.windesktop.msvcstl.dyn.rt-dyn.1.2.8.8\build\native\zlib.v120.windesktop.msvcstl.dyn.rt-dyn.targets" Condition="Exists('..\packages\zlib.v120.windesktop.msvcstl.dyn.rt-dyn.1.2.8.8\build\native\zlib.v120.windesktop.msvcstl.dyn.rt-dyn.targets')" />
+    <Import Project="..\packages\zlib.v140.windesktop.msvcstl.dyn.rt-dyn.1.2.8.8\build\native\zlib.v140.windesktop.msvcstl.dyn.rt-dyn.targets" Condition="Exists('..\packages\zlib.v140.windesktop.msvcstl.dyn.rt-dyn.1.2.8.8\build\native\zlib.v140.windesktop.msvcstl.dyn.rt-dyn.targets')" />
+    <Import Project="..\packages\libpng.1.6.18.1\build\native\libpng.targets" Condition="Exists('..\packages\libpng.1.6.18.1\build\native\libpng.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\libpng.redist.1.6.18.1\build\native\libpng.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\libpng.redist.1.6.18.1\build\native\libpng.redist.targets'))" />
+    <Error Condition="!Exists('..\packages\zlib.v120.windesktop.msvcstl.dyn.rt-dyn.1.2.8.8\build\native\zlib.v120.windesktop.msvcstl.dyn.rt-dyn.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\zlib.v120.windesktop.msvcstl.dyn.rt-dyn.1.2.8.8\build\native\zlib.v120.windesktop.msvcstl.dyn.rt-dyn.targets'))" />
+    <Error Condition="!Exists('..\packages\zlib.v140.windesktop.msvcstl.dyn.rt-dyn.1.2.8.8\build\native\zlib.v140.windesktop.msvcstl.dyn.rt-dyn.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\zlib.v140.windesktop.msvcstl.dyn.rt-dyn.1.2.8.8\build\native\zlib.v140.windesktop.msvcstl.dyn.rt-dyn.targets'))" />
+    <Error Condition="!Exists('..\packages\libpng.1.6.18.1\build\native\libpng.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\libpng.1.6.18.1\build\native\libpng.targets'))" />
+  </Target>
 </Project>

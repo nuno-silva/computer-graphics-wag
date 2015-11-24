@@ -19,6 +19,8 @@ struct BoundingSphere {
 };
 
 class GameObject : public Entity {
+    bool _alive     = true;
+    int _collisions = 0;
 
 protected:
     BoundingSphere _boundingSphere;
@@ -41,6 +43,11 @@ public:
     virtual void toggleWiredSolid();
     virtual void setWired();
     virtual void setSolid();
+
+    inline void alive(bool a) { _alive = a; }
+    inline bool alive() { return _alive; }
+    inline int  collisions() { return _collisions; }
+    inline void incCollisions() { _collisions++; }
 
 #if defined DEBUG
     GLdouble _axis_size;

@@ -6,6 +6,7 @@
 class LightSource {
 protected:
     GLfloat _ambient[4] = { 0.0f, 0.0f, 0.0f, 1.0f, };
+    GLfloat _attenuation[3] = { 1.0f, 0.0f, 0.0f, };
     GLfloat _diffuse[4] = { 0.0f, 0.0f, 0.0f, 1.0f, };
     GLfloat _specular[4] = { 0.0f, 0.0f, 0.0f, 1.0f, };
     GLfloat _position[4] = { 0.0f, 0.0f, 1.0f, 1.0f, };
@@ -41,6 +42,7 @@ public:
     void setAmbient(const Vector4& amb);
     void setDiffuse(const Vector4& diff);
     void setSpecular(const Vector4& spec);
+    void setAttenuation(GLfloat constant, GLfloat linear, GLfloat quadratic);
     virtual void draw();
 };
 

@@ -14,6 +14,9 @@ Car::Car(const Vector3 &initialOrientation, GLdouble scale,
 #endif
     _boundingSphere._radius = _bottom_length / 2.0f;
     _boundingSphere._initCenter = _boundingSphere._center = getPosition() - getOrientation() * cm(1.625);
+
+    _leftLight = NULL;
+    _rightLight = NULL;
 }
 
 Car::Car(GLdouble scale) : Car::Car(Vector3(-1.0f, 0.0f, 0.0f), scale, 0, 0, 0) {}
@@ -51,9 +54,21 @@ void Car::reset() {
 
 
 void Car::draw() {
+    if (!alive()) {
+        return;
+    }
+
     glPushMatrix();
     {
         DynamicObject::draw(); // translate to position, rotate and draw axis
+
+        glScalef(_scale, _scale, _scale);
+
+        // Car lights.
+        if (_leftLight != NULL) {
+            _leftLight->draw();
+            _rightLight->draw();
+        }
 
         // Car bottom.
         glColor3f(components3(CarColors::bottom));

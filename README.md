@@ -10,6 +10,11 @@ sudo apt-get install g++ freeglut3-dev
 ```
 should install all required dependencies.
 
+You also need libpng for the lab10 version of the project:
+```shell
+sudo apt-get install libpng++-dev
+```
+
 To compile, just run
 ```shell
 cd src/

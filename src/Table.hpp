@@ -2,6 +2,7 @@
 
 #include "global.hpp"
 #include "StaticObject.hpp"
+#include "Texture.hpp"
 
 namespace TableColors {
     //static constexpr GLfloat table[3] = { 0.000f, 0.392f, 0.000f }; // DarkGreen
@@ -18,4 +19,5 @@ public:
     virtual void processCollision(Car &car);
 private:
     GLdouble _size;
+    Texture _texture;
 };

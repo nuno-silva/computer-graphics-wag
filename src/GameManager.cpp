@@ -12,13 +12,14 @@
 #include "CandleLight.hpp"
 #include "Vector4.hpp"
 #include "Candle.hpp"
+#include "LibpngHelper.hpp"
 
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
 
 GameManager::GameManager() : _game_objects(), _oranges(), _cameras() {
-    _car = std::make_shared<Car>(Vector3(-1.0f, 0.0f, 0.0f), 1.0, 0.0f, -0.6f, 0.0f);
+    _car = std::make_shared<Car>(Vector3(-1.0f, 0.0f, 0.0f), 1.0f, 0.0f, -0.6f, 0.0f);
 }
 
 /** called when the screen needs updating
@@ -31,6 +32,33 @@ void GameManager::display() {
 
     for (auto light : _lightSources ) {
         light->draw();
+    }
+
+    _orthogonal_cam->update();
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glDisable(GL_DEPTH_TEST);
+
+    bool lighting = glIsEnabled(GL_LIGHTING);
+    glDisable(GL_LIGHTING);
+
+    for (int i = 0; i < _livesno; i++) {
+        _lives[i]->draw();
+    }
+
+    if (_gameFrozen) {
+        _textures.at(PAUSE_TEXTURE_POS)->draw();
+    }
+
+    if (_gameOver) {
+        _textures.at(GAMEOVER_TEXTURE_POS)->draw();
+    }
+
+    glEnable(GL_DEPTH_TEST);
+    glDisable(GL_BLEND);
+    if( lighting ) { // restore lighting state
+        glEnable(GL_LIGHTING);
     }
 
     #ifdef SINGLEBUF
@@ -72,8 +100,15 @@ void GameManager::keyPressed(unsigned char key, int x, int y) {
         case 'g':
             _gouraud_shading = ! _gouraud_shading;
             break;
+        case 'h':
+            _car->_leftLight-> setState(!_car->_leftLight-> getState());
+            _car->_rightLight->setState(!_car->_rightLight->getState());
+            break;
         case 'a':
             _wired = !_wired;
+            break;
+        case 's':
+            togglePause();
             break;
         case '1':
             _activeCamera = _orthogonal_cam;
@@ -115,6 +150,9 @@ void GameManager::specialPressed(int key, int x, int y, bool pressed) {
 
 void GameManager::update(GLdouble delta) {
 
+    // if the game is paused, set delta to zero, to "freeze" the image
+    delta = _gameFrozen || _gameOver ? 0 : delta;
+
     /* toggle between flat shading and gouraud shading */
     if (_gouraud_shading) {
         glShadeModel( GL_SMOOTH );
@@ -143,6 +181,12 @@ void GameManager::update(GLdouble delta) {
 
     // check for and process collisions with the car
     _game_objects.processCollision(*_car);
+    if( _livesno == 0 ) {
+        _gameOver = true;
+        _textures.at(GAMEOVER_TEXTURE_POS)->setEnabled(true);
+    } else {
+        _livesno = INITIAL_LIVES - _car->collisions();
+    }
 
     // check for Orange collisions with table borders
     for( auto o : _oranges ) {
@@ -214,11 +258,23 @@ void GameManager::init() {
     // Road
     _game_objects.add(std::make_shared<Roadside>( 0.92f ) );
 
+    // Lives
+    float offset = cm(10);
+    float count  = 0;
+    for (int i = 0; i < INITIAL_LIVES; i++) {
+        auto car = std::make_shared<Car>(Vector3(1.0f, 0.0f, 0.0f), 2.0f, 0.9f - count * offset, 1.05f, 0.0f);
+        car->setOrientation(Vector3(0.0f, 1.0f, 0.0f));
+        _lives.push_back(car);
+        count++;
+    }
+
     // Butters
     createButters();
 
     // Candles
     createCandles();
+
+    createTextures();
 
     // Oranges
     const GLfloat orange_radius = cm(2.5);
@@ -229,6 +285,31 @@ void GameManager::init() {
     }
 
     // Car
+    _car->_leftLight  = std::make_shared<LightSource>(GL_LIGHT6);
+    _car->_rightLight = std::make_shared<LightSource>(GL_LIGHT7);
+
+    _car->_leftLight->setDirection (Vector3(cm(-1), 0, 0));
+    _car->_rightLight->setDirection(Vector3(cm(-1), 0, 0));
+
+    _car->_leftLight->setPosition (Vector3(cm(-1), cm( 0.5), cm(1.5)));
+    _car->_rightLight->setPosition(Vector3(cm(-1), cm(-0.5), cm(1.5)));
+
+
+    _car-> _leftLight->setAttenuation(1, 1, 20);
+    _car->_leftLight->setAmbient( Vector4( 0.3f, 0.3f, 0.3f, 1.0f ) );
+    _car->_leftLight->setDiffuse( Vector4( 1.0f, 1.0f, 1.0f, 1.0f ) );
+    _car->_leftLight->setSpecular(Vector4( 1.0f, 1.0f, 1.0f, 1.0f ) );
+    _car->_leftLight->setCutoff( 30.0f );
+    _car->_leftLight->setExponent( 1.5f );
+
+    _car->_rightLight->setAttenuation(1, 1, 20);
+    _car->_rightLight->setAmbient( Vector4( 0.3f, 0.3f, 0.3f, 1.0f ) );
+    _car->_rightLight->setDiffuse( Vector4( 1.0f, 1.0f, 1.0f, 1.0f ) );
+    _car->_rightLight->setSpecular(Vector4( 1.0f, 1.0f, 1.0f, 1.0f ) );
+    _car->_rightLight->setCutoff( 30.0f );
+    _car->_rightLight->setExponent( 1.5f );
+
+
     _game_objects.add( _car );
 
     // Cameras
@@ -305,13 +386,33 @@ void GameManager::createCandle( Vector3 pos , GLenum lightNum) {
     _candleLights.push_back( _spot );
 }
 
-void GameManager::createCandles()
+void GameManager::togglePause()
 {
-	createCandle( Vector3 ( cm(63), cm(-63), 0.0f ), GL_LIGHT1 );
-	createCandle( Vector3 ( cm(-5), cm(-40), 0.0f ), GL_LIGHT2 );
-	createCandle( Vector3 ( cm(-65), cm(63), 0.0f ), GL_LIGHT3 );
-	createCandle( Vector3 ( cm(-40), cm(-5), 0.0f ), GL_LIGHT4 );
-	createCandle( Vector3 ( cm(-80), cm(-60), 0.0f ), GL_LIGHT5 );
-	createCandle( Vector3 ( cm(80), cm(60), 0.0f ), GL_LIGHT6 );
+    _gameFrozen = !_gameFrozen;
+    _textures.at(PAUSE_TEXTURE_POS)->toggleEnabled();
 }
 
+
+void GameManager::createTextures()
+{
+    char* pauseFileName = TEXTURE_PATH "pause.png";
+    _textures.push_back(std::make_shared<QuadTexture>(pauseFileName, 1024, 256, 0.25f));
+
+    char* gameOverFileName = TEXTURE_PATH "gameover.png";
+    _textures.push_back(std::make_shared<QuadTexture>(gameOverFileName, 1024, 512, 0.5f));
+
+}
+
+
+void GameManager::createCandles()
+{
+	createCandle( Vector3 ( cm(63), cm(-63), 0.0f ),  GL_LIGHT1 );
+	createCandle( Vector3 ( cm(-5), cm(-40), 0.0f ),  GL_LIGHT2 );
+	createCandle( Vector3 ( cm(-65), cm(63), 0.0f ),  GL_LIGHT3 );
+	createCandle( Vector3 ( cm(-80), cm(-60), 0.0f ), GL_LIGHT4 );
+	createCandle( Vector3 ( cm(80), cm(60), 0.0f ),   GL_LIGHT5 );
+}
+
+bool GameManager::isGameOver() {
+    return _gameOver;
+}
